@@ -1,4 +1,4 @@
-package huce.edu.workmanagermentprojectbackend.services;
+package huce.edu.workmanagermentprojectbackend.services.department;
 
 import huce.edu.workmanagermentprojectbackend.model.DepartmentEntity;
 import huce.edu.workmanagermentprojectbackend.repository.DepartmentRepository;
@@ -14,7 +14,12 @@ public class DepartmentServiceImpl implements IDepartmentService{
   private DepartmentRepository repository;
 
   @Override
-  public List<DepartmentEntity> getDepartments() {
+  public List<DepartmentEntity> getAll() {
     return repository.findAll();
+  }
+
+  @Override
+  public DepartmentEntity getObjectById(int id) {
+    return repository.findById(id).get();
   }
 }
