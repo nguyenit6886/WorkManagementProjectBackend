@@ -17,13 +17,13 @@ public class DepartmentController {
   private IDepartmentService iDepartmentService;
 
   @ResponseBody
-  @GetMapping("/list_department")
+  @GetMapping("/departments")
   public List<DepartmentEntity> getDepartments(){
     return iDepartmentService.getAll();
   }
 
   @ResponseBody
-  @GetMapping("/departmentbyid")
+  @GetMapping("/department_by_id")
   public DepartmentEntity getDepartmentById(@RequestParam int departmentId){
     return iDepartmentService.getObjectById(departmentId);
   }

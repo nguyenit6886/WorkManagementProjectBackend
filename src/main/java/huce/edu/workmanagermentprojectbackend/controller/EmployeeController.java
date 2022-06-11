@@ -19,16 +19,14 @@ public class EmployeeController {
   private IEmployeeService iEmployeeService;
 
   @ResponseBody
-  @GetMapping("/list_employee")
+  @GetMapping("/employees")
   public List<EmployeeEntity> getEmployees(){
     return iEmployeeService.getAll();
   }
 
   @ResponseBody
-  @GetMapping("/list_employeebydepartmentid")
+  @GetMapping("/employee_by_department_id")
   public List<EmployeeEntity> getEmployeesByDepartmentId(@RequestParam int departmentId){
-
-
     return iEmployeeService.getObjectsByDepartment(departmentId);
   }
 }
