@@ -22,4 +22,9 @@ public class ProjectServiceImpl implements IProjectService{
   public ProjectEntity getObjectById(int id) {
     return repository.findById(id).get();
   }
+
+  @Override
+  public int insertObject(ProjectEntity projectEntity) {
+    return 0;
+  }
 }

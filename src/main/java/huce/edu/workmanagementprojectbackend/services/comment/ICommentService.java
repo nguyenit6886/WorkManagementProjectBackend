@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface ICommentService extends IFunctionService<CommentEntity> {
   @Override
   List<CommentEntity> getAll();
 
   @Override
   CommentEntity getObjectById(int id);
+
+  @Override
+  int insertObject(CommentEntity commentEntity);
 }

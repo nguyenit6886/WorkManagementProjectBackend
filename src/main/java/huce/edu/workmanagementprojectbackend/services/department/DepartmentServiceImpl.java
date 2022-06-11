@@ -22,4 +22,10 @@ public class DepartmentServiceImpl implements IDepartmentService{
   public DepartmentEntity getObjectById(int id) {
     return repository.findById(id).get();
   }
+
+  @Override
+  public int insertObject(DepartmentEntity departmentEntity) {
+    repository.save(departmentEntity);
+    return 0;
+  }
 }

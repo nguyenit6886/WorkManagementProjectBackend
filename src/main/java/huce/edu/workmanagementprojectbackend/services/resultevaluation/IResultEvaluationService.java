@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface IResultEvaluationService extends IFunctionService<ResultEvaluationEntity> {
   @Override
   List<ResultEvaluationEntity> getAll();
 
   @Override
   ResultEvaluationEntity getObjectById(int id);
+
+  @Override
+  int insertObject(ResultEvaluationEntity resultEvaluationEntity);
 }

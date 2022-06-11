@@ -6,4 +6,6 @@ public interface IFunctionService<E> {
   List<E> getAll();
 
   E getObjectById(int id);
+
+  int insertObject(E e);
 }

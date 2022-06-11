@@ -3,9 +3,11 @@ package huce.edu.workmanagementprojectbackend.services.resultevaluation;
 import huce.edu.workmanagementprojectbackend.model.ResultEvaluationEntity;
 import huce.edu.workmanagementprojectbackend.repository.ResultEvaluationReponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ResultEvaluationServiceImpl implements IResultEvaluationService{
 
   @Autowired
@@ -19,5 +21,10 @@ public class ResultEvaluationServiceImpl implements IResultEvaluationService{
   @Override
   public ResultEvaluationEntity getObjectById(int id) {
     return reponsitory.findById(id).get();
+  }
+
+  @Override
+  public int insertObject(ResultEvaluationEntity resultEvaluationEntity) {
+    return 0;
   }
 }

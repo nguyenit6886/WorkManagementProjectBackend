@@ -9,4 +9,7 @@ public interface IDepartmentService extends IFunctionService<DepartmentEntity> {
   List<DepartmentEntity> getAll();
 
   DepartmentEntity getObjectById(int id);
+
+  @Override
+  int insertObject(DepartmentEntity departmentEntity);
 }

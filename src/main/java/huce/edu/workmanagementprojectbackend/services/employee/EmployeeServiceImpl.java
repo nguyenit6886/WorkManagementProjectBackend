@@ -34,4 +34,9 @@ public class EmployeeServiceImpl implements IEmployeeService{
     return repository.findAll().stream()
         .filter(e -> e.getDepartment().equals(department)).collect(Collectors.toList());
   }
+
+  @Override
+  public int insertObject(EmployeeEntity employeeEntity) {
+    return 0;
+  }
 }

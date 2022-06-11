@@ -3,9 +3,11 @@ package huce.edu.workmanagementprojectbackend.services.task;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TaskServiceImpl implements ITaskService{
 
   @Autowired
@@ -19,5 +21,10 @@ public class TaskServiceImpl implements ITaskService{
   @Override
   public TaskEntity getObjectById(int id) {
     return repository.findById(id).get();
+  }
+
+  @Override
+  public int insertObject(TaskEntity taskEntity) {
+    return 0;
   }
 }

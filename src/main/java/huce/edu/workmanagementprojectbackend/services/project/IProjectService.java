@@ -12,4 +12,7 @@ public interface IProjectService extends IFunctionService<ProjectEntity> {
 
   @Override
   ProjectEntity getObjectById(int id);
+
+  @Override
+  int insertObject(ProjectEntity projectEntity);
 }
