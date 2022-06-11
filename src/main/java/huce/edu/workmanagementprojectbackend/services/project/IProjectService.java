@@ -15,4 +15,10 @@ public interface IProjectService extends IFunctionService<ProjectEntity> {
 
   @Override
   int insertObject(ProjectEntity projectEntity);
+
+  @Override
+  int updateObject(ProjectEntity projectEntity);
+
+  @Override
+  int deleteObject(int id);
 }

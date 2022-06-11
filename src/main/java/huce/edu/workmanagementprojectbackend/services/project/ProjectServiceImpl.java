@@ -27,4 +27,14 @@ public class ProjectServiceImpl implements IProjectService{
   public int insertObject(ProjectEntity projectEntity) {
     return 0;
   }
+
+  @Override
+  public int updateObject(ProjectEntity projectEntity) {
+    return 0;
+  }
+
+  @Override
+  public int deleteObject(int id) {
+    return 0;
+  }
 }

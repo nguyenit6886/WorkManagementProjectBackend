@@ -25,7 +25,42 @@ public class DepartmentServiceImpl implements IDepartmentService{
 
   @Override
   public int insertObject(DepartmentEntity departmentEntity) {
-    repository.save(departmentEntity);
-    return 0;
+    try{
+      repository.save(departmentEntity);
+      return 200;
+    }catch (Exception e){
+      return 400;
+    }
+  }
+
+  @Override
+  public int updateObject(DepartmentEntity departmentEntity) {
+    try{
+      DepartmentEntity departmentEntityUpdated = repository.findById(departmentEntity.getId()).get();
+      if (departmentEntityUpdated.getUpdateDate() != departmentEntity.getUpdateDate())
+        departmentEntityUpdated.setUpdateDate(departmentEntity.getUpdateDate());
+      if (departmentEntityUpdated.getName() != departmentEntity.getName())
+        departmentEntityUpdated.setName(departmentEntity.getName());
+      if (departmentEntityUpdated.getNote() != departmentEntity.getNote())
+        departmentEntityUpdated.setNote(departmentEntity.getNote());
+      if (departmentEntityUpdated.isActive() != departmentEntity.isActive())
+        departmentEntityUpdated.setActive(departmentEntity.isActive());
+      repository.save(departmentEntityUpdated);
+      return 200;
+    }catch (Exception e){
+      return 400;
+    }
+  }
+
+  @Override
+  public int deleteObject(int id) {
+    try{
+      DepartmentEntity departmentEntityActived = repository.findById(id).get();
+      departmentEntityActived.setActive(true);
+      repository.save(departmentEntityActived);
+      return 200;
+    }catch (Exception e){
+      return 400;
+    }
   }
 }

@@ -27,4 +27,14 @@ public class ResultEvaluationServiceImpl implements IResultEvaluationService{
   public int insertObject(ResultEvaluationEntity resultEvaluationEntity) {
     return 0;
   }
+
+  @Override
+  public int updateObject(ResultEvaluationEntity resultEvaluationEntity) {
+    return 0;
+  }
+
+  @Override
+  public int deleteObject(int id) {
+    return 0;
+  }
 }

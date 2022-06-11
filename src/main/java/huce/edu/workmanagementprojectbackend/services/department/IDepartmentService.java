@@ -12,4 +12,10 @@ public interface IDepartmentService extends IFunctionService<DepartmentEntity> {
 
   @Override
   int insertObject(DepartmentEntity departmentEntity);
+
+  @Override
+  int updateObject(DepartmentEntity departmentEntity);
+
+  @Override
+  int deleteObject(int id);
 }

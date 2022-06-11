@@ -14,4 +14,10 @@ public interface ITaskService extends IFunctionService<TaskEntity> {
 
   @Override
   int insertObject(TaskEntity taskEntity);
+
+  @Override
+  int updateObject(TaskEntity taskEntity);
+
+  @Override
+  int deleteObject(int id);
 }

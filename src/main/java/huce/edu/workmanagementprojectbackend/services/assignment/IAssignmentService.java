@@ -15,4 +15,10 @@ public interface IAssignmentService extends IFunctionService<AssignmentEntity> {
 
   @Override
   int insertObject(AssignmentEntity assignmentEntity);
+
+  @Override
+  int updateObject(AssignmentEntity assignmentEntity);
+
+  @Override
+  int deleteObject(int id);
 }

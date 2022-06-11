@@ -15,4 +15,10 @@ public interface ICommentService extends IFunctionService<CommentEntity> {
 
   @Override
   int insertObject(CommentEntity commentEntity);
+
+  @Override
+  int updateObject(CommentEntity commentEntity);
+
+  @Override
+  int deleteObject(int id);
 }

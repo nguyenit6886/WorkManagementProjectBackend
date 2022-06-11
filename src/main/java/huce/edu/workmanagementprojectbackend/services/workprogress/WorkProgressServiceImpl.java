@@ -27,4 +27,14 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
   public int insertObject(WorkProgressEntity workProgressEntity) {
     return 0;
   }
+
+  @Override
+  public int updateObject(WorkProgressEntity workProgressEntity) {
+    return 0;
+  }
+
+  @Override
+  public int deleteObject(int id) {
+    return 0;
+  }
 }

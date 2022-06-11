@@ -27,4 +27,14 @@ public class CommentServiceImpl implements ICommentService{
   public int insertObject(CommentEntity commentEntity) {
     return 0;
   }
+
+  @Override
+  public int updateObject(CommentEntity commentEntity) {
+    return 0;
+  }
+
+  @Override
+  public int deleteObject(int id) {
+    return 0;
+  }
 }

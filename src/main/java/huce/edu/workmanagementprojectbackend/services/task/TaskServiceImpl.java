@@ -27,4 +27,14 @@ public class TaskServiceImpl implements ITaskService{
   public int insertObject(TaskEntity taskEntity) {
     return 0;
   }
+
+  @Override
+  public int updateObject(TaskEntity taskEntity) {
+    return 0;
+  }
+
+  @Override
+  public int deleteObject(int id) {
+    return 0;
+  }
 }

@@ -27,4 +27,14 @@ public class AssignmentServiceImpl implements IAssignmentService{
   public int insertObject(AssignmentEntity assignmentEntity) {
     return 0;
   }
+
+  @Override
+  public int updateObject(AssignmentEntity assignmentEntity) {
+    return 0;
+  }
+
+  @Override
+  public int deleteObject(int id) {
+    return 0;
+  }
 }

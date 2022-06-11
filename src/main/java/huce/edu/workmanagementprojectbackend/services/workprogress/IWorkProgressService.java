@@ -15,4 +15,10 @@ public interface IWorkProgressService extends IFunctionService<WorkProgressEntit
 
   @Override
   int insertObject(WorkProgressEntity workProgressEntity);
+
+  @Override
+  int updateObject(WorkProgressEntity workProgressEntity);
+
+  @Override
+  int deleteObject(int id);
 }

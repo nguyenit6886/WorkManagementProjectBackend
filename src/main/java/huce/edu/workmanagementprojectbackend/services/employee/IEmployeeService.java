@@ -16,4 +16,10 @@ public interface IEmployeeService extends IFunctionService<EmployeeEntity> {
 
   @Override
   int insertObject(EmployeeEntity employeeEntity);
+
+  @Override
+  int updateObject(EmployeeEntity employeeEntity);
+
+  @Override
+  int deleteObject(int id);
 }

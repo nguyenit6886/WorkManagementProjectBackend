@@ -8,4 +8,8 @@ public interface IFunctionService<E> {
   E getObjectById(int id);
 
   int insertObject(E e);
+
+  int updateObject(E e);
+
+  int deleteObject(int id);
 }

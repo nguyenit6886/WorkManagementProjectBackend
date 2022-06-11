@@ -15,4 +15,10 @@ public interface IResultEvaluationService extends IFunctionService<ResultEvaluat
 
   @Override
   int insertObject(ResultEvaluationEntity resultEvaluationEntity);
+
+  @Override
+  int updateObject(ResultEvaluationEntity resultEvaluationEntity);
+
+  @Override
+  int deleteObject(int id);
 }
