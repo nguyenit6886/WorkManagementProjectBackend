@@ -4,6 +4,7 @@ import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
 import huce.edu.workmanagementprojectbackend.services.department.IDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -45,5 +46,11 @@ public class DepartmentController {
   @PostMapping("/delete_department")
   public int updateDepartment(int departmentId) {
     return iDepartmentService.deleteObject(departmentId);
+  }
+
+  @RequestMapping("/department_management")
+  public String showDepartmentManagementPage(Model model){
+    model.addAttribute("departments",iDepartmentService.getAll());
+    return "departments";
   }
 }

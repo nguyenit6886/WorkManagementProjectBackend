@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments</title>
+</head>
+<body>
+<a href="department_management">Danh sách phòng ban</a>
+<a href="employee_management">Danh sách nhân viên</a>
+    <table align="center" border="1px">
+        <thead>
+            <tr>
+                <th> Id </th>
+                <th> Name </th>
+                <th> Note </th>
+                <th> Update </th>
+                <th> Delete </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="department : ${departments}">
+                <td>
+                    <a th:href="@{'employee_management_by_department?id=' + ${department.id}}"><span th:text="${department.id}"> Id </span></a>
+                </td>
+                <td><span th:text="${department.name}"> Name </span></td>
+                <td><span th:text="${department.note}"> Address </span></td>
+                <td>
+                    <a th:href="@{/update/{id}(id=${department.id})}"><img th:src="@{/img/edit.png}" width="50px" height="50px"></a>
+                </td>
+                <td>
+                    <a th:href="@{/delete/{id}(id=${department.id})}"><img th:src="@{/img/del.png}" width="50px" height="50px"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -14,6 +14,8 @@ public interface IEmployeeService extends IFunctionService<EmployeeEntity> {
 
   List<EmployeeEntity> getObjectsByDepartment(int departmentId);
 
+  EmployeeEntity getObjectForLogin(String username);
+
   @Override
   int insertObject(EmployeeEntity employeeEntity);
 

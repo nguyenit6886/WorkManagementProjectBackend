@@ -5,6 +5,7 @@ import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.repository.DepartmentRepository;
 import huce.edu.workmanagementprojectbackend.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,8 +37,26 @@ public class EmployeeServiceImpl implements IEmployeeService{
   }
 
   @Override
+  public EmployeeEntity getObjectForLogin(String username) {
+    List<EmployeeEntity> employees = repository.findAll();
+    for(EmployeeEntity employee : employees){
+      if(employee.getUsername().equals(username)){
+        return employee;
+      }
+    }
+    return null;
+  }
+
+
+  @Override
   public int insertObject(EmployeeEntity employeeEntity) {
-    return 0;
+    try{
+      repository.save(employeeEntity);
+      return 200;
+    }catch (Exception e){
+      System.out.println(e.getMessage());
+      return 400;
+    }
   }
 
   @Override

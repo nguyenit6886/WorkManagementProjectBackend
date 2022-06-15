@@ -1,14 +1,13 @@
 package huce.edu.workmanagementprojectbackend.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Builder
 @Data
-@Setter
-@Getter
 @NoArgsConstructor
 @Entity
 @AllArgsConstructor
@@ -27,6 +26,7 @@ public class EmployeeEntity {
   @Column(name = "last_name")
   private String lastName;
 
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   @Column(name = "birthday")
   private Date birthday;
 

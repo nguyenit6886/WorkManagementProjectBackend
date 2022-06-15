@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form action="checklogin" method="post">
+    <label for="username">Username:</label>
+    <input id="username" type="text" name="username">
+    <label id="password" for="password">Password:</label>
+    <input type="text" name="password">
+    <input type="submit" name="submit" value="submit">
+</form>
+<p th:text="${notify}"></p>
+</body>
+</html>
