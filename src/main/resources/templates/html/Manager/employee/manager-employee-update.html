@@ -99,11 +99,11 @@
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="../profile.html" class="dropdown-item">
+                                    <a href="../../profile.html" class="dropdown-item">
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
-                                    <a href="../login.html" class="dropdown-item">
+                                    <a href="../../login.html" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -125,14 +125,14 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li>
-                        <a href="#" aria-expanded="false">
+                        <a href="./manager-index.html" aria-expanded="false">
                             <i class="icon icon-single-04"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
-                        <a href="./department/manager-department.html" aria-expanded="false">
+                        <a href="../department/manager-department.html" aria-expanded="false">
                             <i class="icon icon-chart-bar-33"></i>
                             <span class="nav-text">Department</span>
                         </a>
@@ -143,12 +143,12 @@
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./employee/manager-employee.html">List of employees</a></li>
-                            <li><a href="./employee/manager-employee-add_new.html">Add new</a></li>
+                            <li><a href="./manager-employee.html">List of employees</a></li>
+                            <li><a href="./manager-employee-add_new.html">Add new</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="./project/manager-project.html" aria-expanded="false">
+                        <a href="../project/manager-project.html" aria-expanded="false">
                             <i class="icon icon-app-store"></i>
                             <span class="nav-text">Project</span>
                         </a>
@@ -166,6 +166,73 @@
             Content body start
         ***********************************-->
         <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Hi, welcome back!</h4>
+                            <span class="ml-1">Manager</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Management</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Employee</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Add new Employee</h4>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control" placeholder="First Name">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control" placeholder="Last Name">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Birth Date</label>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control" placeholder="Email">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Phone Number</label>
+                                            <input type="text" class="form-control" placeholder="Phone Number">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" placeholder="Address">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Position</label>
+                                            <input type="text" class="form-control" placeholder="Position">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <button type="button" class="btn btn-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--**********************************
             Content body end
