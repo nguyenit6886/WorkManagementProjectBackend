@@ -81,7 +81,7 @@
     // height: 45px;
     // border-radius: 0px!important;
     &:after{
-        background: #656C73;
+        background: #593bdb;
         border: 1px solid $border;
         color: $white;
     }
@@ -94,6 +94,7 @@
     }
 
     .custom-file-label::after {
+        background: #593bdb;
         height: 100%;
         // line-height: 2.4;
     }

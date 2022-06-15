@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +7,12 @@
     <title>Đồ án tổng hợp</title>
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
+    <!-- Datatable -->
+    <link href="../../../../static/view/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="../../../../static/view/vendor/select2/css/select2.min.css" rel="stylesheet">
     <link href="../../../../static/view/css/style.css" rel="stylesheet">
 </head>
-
 <body>
 
     <!--*******************
@@ -128,25 +130,42 @@
                 <ul class="metismenu" id="menu">
                     <li>
                         <a href="../manager-index.html" aria-expanded="false">
-                            <i class="icon icon-single-04"></i>
+                            <i class="icon icon-home"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-label first">Management</li>
-                    <li>
-                        <a class="has-arrow" href="" aria-expanded="false">
-                            <i class="icon icon-chart-bar-33"></i>
+                    <li class="mm-active">
+                        <a href="./manager-department.html" class="mm-active" aria-expanded="false">
+                            <i class="fa fa-sitemap"></i>
                             <span class="nav-text">Department</span>
                         </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon icon-users-mm-2"></i>
+                            <span class="nav-text">Employee</span>
+                        </a>
                         <ul aria-expanded="false">
-                            <li><a href="manager-department.html">List of departments</a></li>
-                            <li><a href="manager-department-add_new.html">Add new</a></li>
+                            <li><a href="../employee/manager-employee.html">List of employees</a></li>
+                            <li><a href="../employee/manager-employee-add_new.html">Add new</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="../project/manager-project.html" aria-expanded="false">
+                            <i class="icon icon-app-store"></i>
+                            <span class="nav-text">Project</span>
+                        </a>
+                    </li>
+                    <li class="nav-label first">System</li>
+                    <li>
+                        <a href="#" aria-expanded="false">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="nav-text">Logout</span>
+                        </a>
                     </li>
                 </ul>
             </div>
-
-
         </div>
         <!--**********************************
             Sidebar end
@@ -184,13 +203,11 @@
                                     <table id="example2" class="display" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th></th>
+                                                <th>Img</th>
                                                 <th>Name</th>
                                                 <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
+                                                <th>Department</th>
                                                 <th>Start date</th>
-                                                <th>Salary</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -200,15 +217,10 @@
                                                 <td>Tiger Nixon</td>
                                                 <td>System Architect</td>
                                                 <td>Edinburgh</td>
-                                                <td>61</td>
                                                 <td>2011/04/25</td>
-                                                <td>$320,800</td>
                                                 <td>
                                                     <span>
-                                                        <a href="#" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
-                                                            <i class="fa fa-pencil color-muted"></i>
-                                                        </a>
-                                                        <a href="#" class="mr-4" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                                        <a href="#" class="sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">
                                                             <i class="fa fa-close color-danger"></i>
                                                         </a>
                                                     </span>
@@ -219,15 +231,10 @@
                                                 <td>Garrett Winters</td>
                                                 <td>Accountant</td>
                                                 <td>Tokyo</td>
-                                                <td>63</td>
                                                 <td>2011/07/25</td>
-                                                <td>$170,750</td>
                                                 <td>
                                                     <span>
-                                                        <a href="#" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
-                                                            <i class="fa fa-pencil color-muted"></i>
-                                                        </a>
-                                                        <a href="#" class="mr-4" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                                        <a href="#" class="sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">
                                                             <i class="fa fa-close color-danger"></i>
                                                         </a>
                                                     </span>
@@ -236,13 +243,11 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th></th>
+                                                <th>Img</th>
                                                 <th>Name</th>
                                                 <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
+                                                <th>Department</th>
                                                 <th>Start date</th>
-                                                <th>Salary</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
@@ -265,7 +270,7 @@
         <div class="footer">
             <div class="copyright">
                 <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p>
+                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p> 
             </div>
         </div>
         <!--**********************************
@@ -297,6 +302,16 @@
     <!-- Datatable -->
     <script src="../../../../static/view/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../../../../static/view/js/plugins-init/datatables.init.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="../../../../static/view/js/plugins-init/sweetalert.init.js"></script>
+
+    <script src="../../../../static/view/js/custom/select_multi_emp.js"></script>
+
+    <!-- Select multiple -->
+    <script src="../../../../static/view/vendor/select2/js/select2.full.min.js"></script>
+    <script src="../../../../static/view/js/plugins-init/select2-init.js"></script>
 </body>
 
 </html>

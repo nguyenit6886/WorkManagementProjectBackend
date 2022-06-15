@@ -36,7 +36,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="#" class="brand-logo">
+            <a href="manager-index.html" class="brand-logo">
                 <img class="logo-abbr" src="../../../../static/view/images/logo.png" alt="">
                 <img class="logo-compact" src="../../../../static/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="../../../../static/view/images/logo-text.png" alt="">
@@ -133,7 +133,7 @@
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
-                        <a href="./manager-department.html" aria-expanded="false">
+                        <a href="../department/manager-department.html" aria-expanded="false">
                             <i class="fa fa-sitemap"></i>
                             <span class="nav-text">Department</span>
                         </a>
@@ -149,7 +149,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../project/manager-project.html" aria-expanded="false">
+                        <a href="./manager-project.html" aria-expanded="false">
                             <i class="icon icon-app-store"></i>
                             <span class="nav-text">Project</span>
                         </a>
@@ -174,66 +174,126 @@
         <div class="content-body">
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
-                    <div class="col-sm-6 p-md-0">
-                        <div class="welcome-text">
-                            <h4>Hi, welcome back!</h4>
-                            <p class="mb-0">Your business dashboard template</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Management</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Developer</a></li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">
-                        <a href="manager-employeeOfDepartment.html">
-                            <div class="card text-white bg-info">
-                                <div class="card-header d-sm-flex justify-content-between">
-                                    <h5 class="card-title text-white">Tên phòng ban</h5>
-                                    <div class="card-footer-link mb-4 mb-sm-0">
-                                        <p class="card-text text-white d-inline">Created at 3 days ago</p>
-                                    </div>
+					<div class="col-sm-6 p-md-0">
+						<div class="welcome-text">
+							<h4>Hi, welcome back!</h4>
+							<span class="mb-0">Manager</span>
+						</div>
+					</div>
+					<div
+						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex"
+					>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="javascript:void(0)">Management</a>
+							</li>
+							<li class="breadcrumb-item active">
+								<a href="javascript:void(0)">Project</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+						<div class="card text-white bg-primary">
+							<div class="card-header">
+								<h5 class="card-title text-white">Project 1</h5>
+							</div>
+							<div class="card-body mb-0">
+								<p class="card-text">Mô tả dự án</p>
+								<a href="./manager-task.html" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
+							</div>
+							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
+								<p>Last updated 3 min ago</p>
+                                <div>
+                                    <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-info">Cập nhật</button>
+                                    <a href="#" class="btn btn-danger">Xóa</a>
                                 </div>
-                                <div class="card-body mb-0 py-2">
-                                    <p class="card-text text-white">Note Department</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+						<div class="card text-white bg-primary">
+							<div class="card-header">
+								<h5 class="card-title text-white">Project 2</h5>
+							</div>
+							<div class="card-body mb-0">
+								<p class="card-text">Mô tả dự án</p>
+								<a href="./manager-task.html" class="btn btn-dark btn-card"
+									>Xem đầu mục công việc</a
+								>
+							</div>
+							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
+								<p>Last updated 3 min ago</p>
+                                <div>
+                                    <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-info">Cập nhật</button>
+                                    <a href="#" class="btn btn-danger">Xóa</a>
                                 </div>
-                                <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
-                                    <p class="text-white">Last updateed 3 min ago</p>
-                                    <div>
-                                        <a data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary">Sửa</a>
-                                        <button type="button" class="btn btn-danger sweet-success-cancel">Xóa</button>
-                                    </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+						<div class="card text-white bg-primary">
+							<div class="card-header">
+								<h5 class="card-title text-white">Project 3</h5>
+							</div>
+							<div class="card-body mb-0">
+								<p class="card-text">Mô tả dự án</p>
+								<a href="./manager-task.html" class="btn btn-dark btn-card"
+									>Xem đầu mục công việc</a
+								>
+							</div>
+							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
+								<p>Last updated 3 min ago</p>
+                                <div>
+                                    <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-info">Cập nhật</button>
+                                    <a href="#" class="btn btn-danger">Xóa</a>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+							</div>
+						</div>
+					</div>
+				</div>
 
                 <!-- Modal Edit Department -->
                 <div class="modal fade" id="exampleModalCenter">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title"><span>Thêm mới/Cập nhật</span> Phòng ban</h5>
+                                <h5 class="modal-title"><span>Thêm mới/Cập nhật</span> Dự án</h5>
                                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <div class="basic-form">
                                     <form>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Tên phòng ban</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="Department Name">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Tên dự án</label>
+                                                <input type="text" class="form-control" placeholder="Tên dự án">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Thuộc phòng ban</label>
+                                                <select class="form-control">
+                                                    <option value="">Tên phòng ban</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Ghi chú</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" rows="4" id="comment"></textarea>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Ngày bắt đầu</label>
+                                                <input type="date" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Deadline</label>
+                                                <input type="date" class="form-control" placeholder="Deadline">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Nội dung</label>
+                                                <textarea class="form-control" rows="4"></textarea>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Ghi chú</label>
+                                                <textarea class="form-control" rows="4"></textarea>
                                             </div>
                                         </div>
                                     </form>

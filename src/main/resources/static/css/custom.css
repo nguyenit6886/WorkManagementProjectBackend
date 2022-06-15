@@ -1,0 +1,37 @@
+input.workprogress-input[type="text"] {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #3d4465;
+    display: none;
+}
+
+input.workprogress-input {
+    display: none;
+}
+
+textarea.workprogress-input {
+    min-height: 100%;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    resize: none;
+    white-space: pre-line;
+    display: none;
+}
+
+/* Edit Comment Work Progress */
+.after-edit-cmt {
+    display: none;
+}
+
+.btn-edit-cmt, .btn-cancel-edit-cmt {
+    border: none;
+    color: #BDBDC7;
+    background-color: #fff;
+}
+
+.btn-edit-cmt:hover, .btn-cancel-edit-cmt:hover {
+    color: #593bdb;
+    text-decoration: inherit;
+}
