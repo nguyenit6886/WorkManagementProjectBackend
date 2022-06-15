@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,9 @@
     <title>Đồ án tổng hợp</title>
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
-    <link href="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-    <link href="../../../../static/view/css/style.css" rel="stylesheet">
+    <link href="../../../static/view/css/style.css" rel="stylesheet">
 </head>
+
 <body>
 
     <!--*******************
@@ -36,15 +37,16 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="#" class="brand-logo">
-                <img class="logo-abbr" src="../../../../static/view/images/logo.png" alt="">
-                <img class="logo-compact" src="../../../../static/view/images/logo-text.png" alt="">
-                <img class="brand-title" src="../../../../static/view/images/logo-text.png" alt="">
+            <a href="index.html" class="brand-logo">
+                <img class="logo-abbr" src="../../../static/view/images/logo.png" alt="">
+                <img class="logo-compact" src="../../../static/view/images/logo-text.png" alt="">
+                <img class="brand-title" src="../../../static/view/images/logo-text.png" alt="">
             </a>
 
             <div class="nav-control">
                 <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                    <span class="line"></span><span class="line"></span>
+                    <span class="line"></span>
                 </div>
             </div>
         </div>
@@ -66,7 +68,8 @@
                                 </span>
                                 <div class="dropdown-menu p-0 m-0">
                                     <form>
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                        <input class="form-control" type="search" placeholder="Search"
+                                            aria-label="Search">
                                     </form>
                                 </div>
                             </div>
@@ -84,7 +87,8 @@
                                             <span class="success"><i class="ti-user"></i></span>
                                             <div class="media-body">
                                                 <a href="#">
-                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
+                                                    <p><strong>Martin</strong> has added a <strong>customer</strong>
+                                                        Successfully
                                                     </p>
                                                 </a>
                                             </div>
@@ -100,11 +104,11 @@
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="../../profile.html" class="dropdown-item">
+                                    <a href="../../../static/view/profile.html" class="dropdown-item">
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
-                                    <a href="../../login.html" class="dropdown-item">
+                                    <a href="../../../static/view/login.html" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -125,37 +129,17 @@
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Main Menu</li>
                     <li>
-                        <a href="../../manager-index.html" aria-expanded="false">
+                        <a href="../../../static/view/index.html" aria-expanded="false">
                             <i class="icon icon-single-04"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-label first">Management</li>
-                    <li>
-                        <a href="./manager-department.html" aria-expanded="false">
-                            <i class="icon icon-chart-bar-33"></i>
-                            <span class="nav-text">Department</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon icon-app-store"></i>
-                            <span class="nav-text">Employee</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="../employee/manager-employee.html">List of employees</a></li>
-                            <li><a href="../employee/manager-employee-add_new.html">Add new</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="../project/manager-project.html" aria-expanded="false">
-                            <i class="icon icon-app-store"></i>
-                            <span class="nav-text">Project</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
+
+
         </div>
         <!--**********************************
             Sidebar end
@@ -164,7 +148,7 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body ">
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
@@ -175,82 +159,86 @@
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Management</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Developer</a></li>
+                            <li class="breadcrumb-item"><a href="list_task.html">List_task</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Summernote</a></li>
                         </ol>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">
-                        <a href="manager-employeeOfDepartment.html">
-                            <div class="card text-white bg-info">
-                                <div class="card-header d-sm-flex justify-content-between">
-                                    <h5 class="card-title text-white">Tên phòng ban</h5>
-                                    <div class="card-footer-link mb-4 mb-sm-0">
-                                        <p class="card-text text-white d-inline">Created at 3 days ago</p>
-                                    </div>
-                                </div>
-                                <div class="card-body mb-0 py-2">
-                                    <p class="card-text text-white">Note Department</p>
-                                </div>
-                                <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
-                                    <p class="text-white">Last updateed 3 min ago</p>
-                                    <div>
-                                        <a data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary">Sửa</a>
-                                        <button type="button" class="btn btn-danger sweet-success-cancel">Xóa</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Modal Edit Department -->
-                <div class="modal fade" id="exampleModalCenter">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title"><span>Thêm mới/Cập nhật</span> Phòng ban</h5>
-                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="basic-form">
-                                    <form>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Tên phòng ban</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="Department Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Ghi chú</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" rows="4" id="comment"></textarea>
-                                            </div>
-                                        </div>
-                                    </form>
+                <h3 class="ml-3">Thiết kế form nhân viên</h3>
+                <div class="col-lg-12">
+                    <div class="card border border-primary">
+                        <div class="card-body row">
+                            <div class="col-9 mr-2">
+                                <div class="card-content border border-primary ">
+                                    <div class="card-text m-2">
+                                        <h5>
+                                            Content: Thiết kế form task khi nhấn vào 1 task sẽ hiện list task nhỏ của
+                                            từng dự án
+                                            khi kích vào từng task nhỏ sẽ xem đk content , tiến độ làm việc, comment
+                                        </h5>
+                                    </div>
                                 </div>
+
+                                <div class="card-listFile mt-4  border border-primary">
+                                    <h4 class="m-3">Danh sách các tệp</h4>
+                                    <div class="row">
+                                        <div class="card text-white overflow-hidden ml-5  " style="width:10rem; height: 10rem;">
+                                            <img class="card-img-top pos" src="../../../static/view/images/avatar/NV.jpg" alt="...">
+                                            <div class="card-img-overlay d-flex align-items-start">
+                                                <div>
+                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
+                                            <img class="card-img-top pos" src="../../../static/view/images/avatar/NV1.jpg" alt="...">
+                                            <div class="card-img-overlay d-flex align-items-start">
+                                                <div>
+                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
+                                            <img class="card-img-top pos" src="../../../static/view/images/avatar/NV1.jpg" alt="...">
+                                            <div class="card-img-overlay d-flex align-items-start">
+                                                <div>
+                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="input-group mt-3">
+                                    <input type="text" class="form-control" placeholder="Comment here">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">Comment</button>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+
+                            <div class="col-2">
+                                <button type="button" class="btn btn-primary text-white mb-5 ">Đính kèm tệp</button>
+                                <select id="inputState" class="form-control bg-primary text-white">
+                                    <option selected="">Tiến độ CV</option>
+                                    <option>Hoàn thành</option>
+                                    <option>Đang tiến hành</option>
+                                </select>
+                                <button type="button" class="btn btn-primary text-white mt-5  ">Update</button>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
-
-                <div class="row mx-3 fixed-bottom">
-                    <div class="col-12 text-right mt-1 mb-5 mr-lg-3">
-						<button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-lg btn-rounded btn-primary pr-3">
-                            <span class="btn-icon-left text-primary">
-                                <i class="fa fa-plus color-primary"></i>
-						    </span>
-                            <span>Thêm Phòng ban</span>
-                        </button>
-					</div>
-                </div>
             </div>
+
         </div>
         <!--**********************************
             Content body end
@@ -261,9 +249,8 @@
             Footer start
         ***********************************-->
         <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p> 
+            <div class="copyright ">
+                <p>anh dung dep trai</p>
             </div>
         </div>
         <!--**********************************
@@ -288,13 +275,9 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="../../../../static/view/vendor/global/global.min.js"></script>
-    <script src="../../../../static/view/js/quixnav-init.js"></script>
-    <script src="../../../../static/view/js/custom.min.js"></script>
-
-    <!-- Sweet alert -->
-    <script src="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="../../../../static/view/js/plugins-init/sweetalert.init.js"></script>
+    <script src="../../../static/view/vendor/global/global.min.js"></script>
+    <script src="../../../static/view/js/quixnav-init.js"></script>
+    <script src="../../../static/view/js/custom.min.js"></script>
 </body>
 
 </html>
