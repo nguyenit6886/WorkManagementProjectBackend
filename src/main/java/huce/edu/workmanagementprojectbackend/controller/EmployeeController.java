@@ -1,6 +1,5 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
-import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.services.department.IDepartmentService;
 import huce.edu.workmanagementprojectbackend.services.employee.IEmployeeService;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,17 +48,34 @@ public class EmployeeController {
     return "employees";
   }
 
+  @RequestMapping("/employee_manager")
+  public String showEmployeeManagerPage(Model model){
+    model.addAttribute("employees",iEmployeeService.getAll());
+    return "/html/Manager/employee/manager-employee";
+  }
+
   @RequestMapping("/add_employee")
   public String showAddEmployeePage(Model model){
     model.addAttribute("departments",iDepartmentService.getAll());
-//    model.addAttribute("department", new DepartmentEntity());
-    return "add_employee";
+    return "/html/Manager/employee/manager-employee-add";
   }
 
-  @PostMapping("/add_employee_action")
-  public String addEmployee(@ModelAttribute("employee") EmployeeEntity employee,
-                            @RequestParam("department") int departmentId){
+  @PostMapping("/save_employee_action")
+  public String addEmployee(@ModelAttribute("employee") EmployeeEntity employee){
+    if(employee.getId() != 0){
+      employee.setUpdateDate(new Date());
+    }else{
+      employee.setCreateDate(new Date());
+    }
     iEmployeeService.insertObject(employee);
-    return "add_employee";
+    return "redirect:/employee_manager";
+  }
+
+  @RequestMapping("/update_employee")
+  public String showUpdateEmployeePage(@RequestParam("employeeId")int employeeId,
+                                       Model model){
+    model.addAttribute("employee",iEmployeeService.getObjectById(employeeId));
+    model.addAttribute("departments",iDepartmentService.getAll());
+    return "/html/Manager/employee/manager-employee-update";
   }
 }
