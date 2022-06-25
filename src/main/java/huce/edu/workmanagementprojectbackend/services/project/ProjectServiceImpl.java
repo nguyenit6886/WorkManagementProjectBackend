@@ -15,7 +15,7 @@ public class ProjectServiceImpl implements IProjectService{
 
   @Override
   public List<ProjectEntity> getAll() {
-    return repository.findAll();
+    return repository.findAllActive();
   }
 
   @Override

@@ -29,6 +29,7 @@ public class DepartmentServiceImpl implements IDepartmentService{
       repository.save(departmentEntity);
       return 200;
     }catch (Exception e){
+      e.printStackTrace();
       return 400;
     }
   }
@@ -39,15 +40,16 @@ public class DepartmentServiceImpl implements IDepartmentService{
       DepartmentEntity departmentEntityUpdated = repository.findById(departmentEntity.getId()).get();
       if (departmentEntityUpdated.getUpdateDate() != departmentEntity.getUpdateDate())
         departmentEntityUpdated.setUpdateDate(departmentEntity.getUpdateDate());
-      if (departmentEntityUpdated.getName() != departmentEntity.getName())
+      if (!departmentEntityUpdated.getName().equals(departmentEntity.getName()))
         departmentEntityUpdated.setName(departmentEntity.getName());
-      if (departmentEntityUpdated.getNote() != departmentEntity.getNote())
+      if (!departmentEntityUpdated.getNote().equals(departmentEntity.getNote()))
         departmentEntityUpdated.setNote(departmentEntity.getNote());
       if (departmentEntityUpdated.isActive() != departmentEntity.isActive())
         departmentEntityUpdated.setActive(departmentEntity.isActive());
       repository.save(departmentEntityUpdated);
       return 200;
     }catch (Exception e){
+      e.printStackTrace();
       return 400;
     }
   }
@@ -60,6 +62,7 @@ public class DepartmentServiceImpl implements IDepartmentService{
       repository.save(departmentEntityActived);
       return 200;
     }catch (Exception e){
+      e.printStackTrace();
       return 400;
     }
   }

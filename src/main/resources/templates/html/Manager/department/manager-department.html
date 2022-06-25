@@ -149,7 +149,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../project/manager-project.html" aria-expanded="false">
+                        <a href="project_manager" aria-expanded="false">
                             <i class="icon icon-app-store"></i>
                             <span class="nav-text">Project</span>
                         </a>
@@ -182,7 +182,7 @@
                 </div>
                 <div class="row" th:each="department : ${departments}">
                     <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12" th:id="'department' + ${department.id}">
-                        <a href="manager-employeeOfDepartment.html">
+                        <a th:href="@{'/employees_of_department'(departmentId=${department.id})}">
                             <div class="card text-white bg-info">
                                 <div class="card-header d-sm-flex justify-content-between">
                                     <h5 class="card-title text-white departmentInput" th:text="${department.name}" id="txtDepartmentName">Tên phòng ban</h5>
@@ -196,7 +196,7 @@
                                 <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
                                     <p class="text-white">Last updateed 3 min ago</p>
                                     <div>
-                                        <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'myFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-primary">Sửa</a>
+                                        <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'openModalFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-primary">Sửa</a>
                                         <a th:href="@{'/delete_department'(departmentId=${department.id})}" class="btn btn-danger">Xóa</a>
                                     </div>
                                 </div>

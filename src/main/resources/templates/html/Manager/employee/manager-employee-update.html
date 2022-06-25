@@ -132,7 +132,7 @@
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
-                        <a href="../department/manager-department.html" aria-expanded="false">
+                        <a href="department_manager" aria-expanded="false">
                             <i class="icon icon-chart-bar-33"></i>
                             <span class="nav-text">Department</span>
                         </a>
@@ -148,7 +148,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../project/manager-project.html" aria-expanded="false">
+                        <a href="project_manager" aria-expanded="false">
                             <i class="icon icon-app-store"></i>
                             <span class="nav-text">Project</span>
                         </a>
@@ -230,6 +230,10 @@
                                                         th:text="${department.name}"
                                                         th:selected="(${department.id} == *{employee.department.id})"/>
                                             </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Note</label>
+                                            <input type="text" class="form-control" placeholder="Note" name="note" th:value="${employee.note}">
                                         </div>
                                     </div>
                                     <div class="form-row">

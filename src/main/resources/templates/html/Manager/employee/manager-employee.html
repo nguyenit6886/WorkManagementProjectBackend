@@ -135,7 +135,7 @@
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
-                        <a href="../department/manager-department.html" aria-expanded="false">
+                        <a href="department_manager" aria-expanded="false">
                             <i class="icon icon-chart-bar-33"></i>
                             <span class="nav-text">Department</span>
                         </a>
@@ -151,7 +151,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="../project/manager-project.html" aria-expanded="false">
+                        <a href="project_manager" aria-expanded="false">
                             <i class="icon icon-app-store"></i>
                             <span class="nav-text">Project</span>
                         </a>
@@ -219,7 +219,7 @@
                                                         <a th:href="@{'/update_employee'(employeeId=${employee.id})}" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
                                                             <i class="fa fa-pencil color-muted"></i>
                                                         </a>
-                                                        <a href="#" class="btn-delete sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                                        <a th:href="@{'/delete_employee'(employeeId=${employee.id})}" class="btn-delete" data-toggle="tooltip" data-placement="top" title="Xóa">
                                                             <i class="fa fa-close color-danger"></i>
                                                         </a>
                                                     </span>

@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class EmployeeController {
@@ -20,33 +18,6 @@ public class EmployeeController {
 
   @Autowired
   private IDepartmentService iDepartmentService;
-
-  @ResponseBody
-  @GetMapping("/employees")
-  public List<EmployeeEntity> getEmployees(){
-    return iEmployeeService.getAll();
-  }
-
-  @ResponseBody
-  @GetMapping("/employee_by_department_id")
-  public List<EmployeeEntity> getEmployeesByDepartmentId(@RequestParam int departmentId){
-    return iEmployeeService.getObjectsByDepartment(departmentId);
-  }
-
-  @RequestMapping("/employee_management")
-  public String showEmployeeManagement(Model model){
-    model.addAttribute("employees",iEmployeeService.getAll());
-    model.addAttribute("departments",iDepartmentService.getAll());
-    return "employees";
-  }
-
-  @RequestMapping("/employee_management_by_department")
-  public String showEmployeeManagementByDepartment(@RequestParam("id")int id,
-                                                   Model model){
-    List<EmployeeEntity> employees = iEmployeeService.getAll().stream().filter(employee -> id == employee.getDepartment().getId()).collect(Collectors.toList());
-    model.addAttribute("employees", employees);
-    return "employees";
-  }
 
   @RequestMapping("/employee_manager")
   public String showEmployeeManagerPage(Model model){
@@ -64,10 +35,11 @@ public class EmployeeController {
   public String addEmployee(@ModelAttribute("employee") EmployeeEntity employee){
     if(employee.getId() != 0){
       employee.setUpdateDate(new Date());
+      iEmployeeService.updateObject(employee);
     }else{
       employee.setCreateDate(new Date());
+      iEmployeeService.insertObject(employee);
     }
-    iEmployeeService.insertObject(employee);
     return "redirect:/employee_manager";
   }
 
@@ -77,5 +49,18 @@ public class EmployeeController {
     model.addAttribute("employee",iEmployeeService.getObjectById(employeeId));
     model.addAttribute("departments",iDepartmentService.getAll());
     return "/html/Manager/employee/manager-employee-update";
+  }
+
+  @RequestMapping("/delete_employee")
+  public String deleteEmployee(@RequestParam("employeeId")int employeeId) {
+    iEmployeeService.deleteObject(employeeId);
+    return "redirect:/employee_manager";
+  }
+
+  @RequestMapping("/employees_of_department")
+  public String showEmployeesOfDepartmentPage(@RequestParam("departmentId")int departmentId,
+                                              Model model){
+    model.addAttribute("employees",iEmployeeService.getObjectsByDepartment(departmentId));
+    return "/html/Manager/department/manager-employeeOfDepartment";
   }
 }

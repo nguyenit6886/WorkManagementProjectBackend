@@ -5,10 +5,10 @@ import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.repository.DepartmentRepository;
 import huce.edu.workmanagementprojectbackend.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,18 +54,63 @@ public class EmployeeServiceImpl implements IEmployeeService{
       repository.save(employeeEntity);
       return 200;
     }catch (Exception e){
-      System.out.println(e.getMessage());
+      e.printStackTrace();
       return 400;
     }
   }
 
   @Override
   public int updateObject(EmployeeEntity employeeEntity) {
-    return 0;
+    try{
+      EmployeeEntity employeeEntityUpdated = repository.findById(employeeEntity.getId()).get();
+      if(!employeeEntityUpdated.getFirstName().equals(employeeEntity.getFirstName())){
+        employeeEntityUpdated.setFirstName(employeeEntity.getFirstName());
+      }
+      if(!employeeEntityUpdated.getLastName().equals(employeeEntity.getLastName())){
+        employeeEntityUpdated.setLastName(employeeEntity.getLastName());
+      }
+      if(employeeEntityUpdated.getBirthday() != employeeEntity.getBirthday()){
+        employeeEntityUpdated.setBirthday(employeeEntity.getBirthday());
+      }
+      if(!employeeEntityUpdated.getAddress().equals(employeeEntity.getAddress())){
+        employeeEntityUpdated.setAddress(employeeEntity.getAddress());
+      }
+      if(!employeeEntityUpdated.getEmail().equals(employeeEntity.getEmail())){
+        employeeEntityUpdated.setEmail(employeeEntity.getEmail());
+      }
+      if(!employeeEntityUpdated.getPhone().equals(employeeEntity.getPhone())){
+        employeeEntityUpdated.setPhone(employeeEntity.getPhone());
+      }
+      if(employeeEntityUpdated.getPosition() != employeeEntity.getPosition()){
+        employeeEntityUpdated.setPosition(employeeEntity.getPosition());
+      }
+      if(!employeeEntityUpdated.getNote().equals(employeeEntity.getNote())){
+        employeeEntityUpdated.setNote(employeeEntity.getNote());
+      }
+      if(employeeEntityUpdated.isActive() != employeeEntity.isActive()){
+        employeeEntityUpdated.setActive(employeeEntity.isActive());
+      }
+      if(!Objects.equals(employeeEntityUpdated.getDepartment(), employeeEntity.getDepartment())){
+        employeeEntityUpdated.setDepartment(employeeEntity.getDepartment());
+      }
+      repository.save(employeeEntityUpdated);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
   public int deleteObject(int id) {
-    return 0;
+    try{
+      EmployeeEntity employeeEntity = repository.findById(id).get();
+      employeeEntity.setActive(true);
+      repository.save(employeeEntity);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 }

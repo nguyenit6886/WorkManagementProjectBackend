@@ -7,8 +7,8 @@
     <title>Đồ án tổng hợp</title>
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
-    <link href="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-    <link href="../../../../static/view/css/style.css" rel="stylesheet">
+    <link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="/view/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -37,9 +37,9 @@
         ***********************************-->
         <div class="nav-header">
             <a href="manager-index.html" class="brand-logo">
-                <img class="logo-abbr" src="../../../../static/view/images/logo.png" alt="">
-                <img class="logo-compact" src="../../../../static/view/images/logo-text.png" alt="">
-                <img class="brand-title" src="../../../../static/view/images/logo-text.png" alt="">
+                <img class="logo-abbr" src="/view/images/logo.png" alt="">
+                <img class="logo-compact" src="/view/images/logo-text.png" alt="">
+                <img class="brand-title" src="/view/images/logo-text.png" alt="">
             </a>
 
             <div class="nav-control">
@@ -133,7 +133,7 @@
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
-                        <a href="../department/manager-department.html" aria-expanded="false">
+                        <a href="department_manager" aria-expanded="false">
                             <i class="icon icon-chart-bar-33"></i>
                             <span class="nav-text">Department</span>
                         </a>
@@ -149,7 +149,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="./manager-project.html" aria-expanded="false">
+                        <a href="project_manager" aria-expanded="false">
                             <i class="icon icon-app-store"></i>
                             <span class="nav-text">Project</span>
                         </a>
@@ -175,9 +175,7 @@
 							<span class="ml-1">Leader</span>
 						</div>
 					</div>
-					<div
-						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex"
-					>
+					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
 								<a href="javascript:void(0)">Leader</a>
@@ -189,74 +187,14 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" th:each="project : ${projects}">
 						<div class="card text-white bg-primary">
 							<div class="card-header">
-								<h5 class="card-title text-white">Project 1</h5>
+								<h5 class="card-title text-white" th:text="${project.title}">Project 1</h5>
 							</div>
 							<div class="card-body mb-0">
-								<p class="card-text">Mô tả dự án</p>
+								<p class="card-text" th:text="${project.content}">Mô tả dự án</p>
 								<a href="./leader-taskDetails.html" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
-							</div>
-							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
-								<p>Last updated 3 min ago</p>
-                                <div>
-                                    <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-info">Cập nhật</button>
-                                    <a href="#" class="btn btn-danger">Xóa</a>
-                                </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-						<div class="card text-white bg-primary">
-							<div class="card-header">
-								<h5 class="card-title text-white">Project 2</h5>
-							</div>
-							<div class="card-body mb-0">
-								<p class="card-text">Mô tả dự án</p>
-								<a href="./leader-taskDetails.html" class="btn btn-dark btn-card"
-									>Xem đầu mục công việc</a
-								>
-							</div>
-							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
-								<p>Last updated 3 min ago</p>
-                                <div>
-                                    <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-info">Cập nhật</button>
-                                    <a href="#" class="btn btn-danger">Xóa</a>
-                                </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-						<div class="card text-white bg-primary">
-							<div class="card-header">
-								<h5 class="card-title text-white">Project 3</h5>
-							</div>
-							<div class="card-body mb-0">
-								<p class="card-text">Mô tả dự án</p>
-								<a href="./leader-taskDetails.html" class="btn btn-dark btn-card"
-									>Xem đầu mục công việc</a
-								>
-							</div>
-							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
-								<p>Last updated 3 min ago</p>
-                                <div>
-                                    <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-info">Cập nhật</button>
-                                    <a href="#" class="btn btn-danger">Xóa</a>
-                                </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-						<div class="card text-white bg-primary">
-							<div class="card-header">
-								<h5 class="card-title text-white">Project 4</h5>
-							</div>
-							<div class="card-body mb-0">
-								<p class="card-text">Mô tả dự án</p>
-								<a href="./leader-taskDetails.html" class="btn btn-dark btn-card"
-									>Xem đầu mục công việc</a
-								>
 							</div>
 							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
 								<p>Last updated 3 min ago</p>
@@ -328,7 +266,7 @@
                             <span class="btn-icon-left text-primary">
                                 <i class="fa fa-plus color-primary"></i>
 						    </span>
-                            <span>Thêm Phòng ban</span>
+                            <span>Thêm Dự án</span>
                         </button>
 					</div>
                 </div>
@@ -370,13 +308,13 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="../../../../static/view/vendor/global/global.min.js"></script>
-    <script src="../../../../static/view/js/quixnav-init.js"></script>
-    <script src="../../../../static/view/js/custom.min.js"></script>
+    <script src="/view/vendor/global/global.min.js"></script>
+    <script src="/view/js/quixnav-init.js"></script>
+    <script src="/view/js/custom.min.js"></script>
 
     <!-- Sweet alert -->
-    <script src="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="../../../../static/view/js/plugins-init/sweetalert.init.js"></script>
+    <script src="/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/view/js/plugins-init/sweetalert.init.js"></script>
 </body>
 
 </html>
