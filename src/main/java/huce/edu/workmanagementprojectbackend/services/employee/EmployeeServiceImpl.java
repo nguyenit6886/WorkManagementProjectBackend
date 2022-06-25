@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements IEmployeeService{
 
   @Override
   public List<EmployeeEntity> getAll() {
-    return repository.findAll();
+    return repository.findAllActive();
   }
 
   @Override

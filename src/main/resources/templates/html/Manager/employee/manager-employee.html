@@ -8,9 +8,9 @@
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <!-- Datatable -->
-    <link href="../../../../static/view/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-    <link href="../../../../static/view/css/style.css" rel="stylesheet">
+    <link href="/view/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="/view/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -39,9 +39,9 @@
         ***********************************-->
         <div class="nav-header">
             <a href="manager-index.html" class="brand-logo">
-                <img class="logo-abbr" src="../../../../static/view/images/logo.png" alt="">
-                <img class="logo-compact" src="../../../../static/view/images/logo-text.png" alt="">
-                <img class="brand-title" src="../../../../static/view/images/logo-text.png" alt="">
+                <img class="logo-abbr" src="/view/images/logo.png" alt="">
+                <img class="logo-compact" src="/view/images/logo-text.png" alt="">
+                <img class="brand-title" src="/view/images/logo-text.png" alt="">
             </a>
 
             <div class="nav-control">
@@ -146,8 +146,8 @@
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./manager-employee.html">List of employees</a></li>
-                            <li><a href="./manager-employee-add_new.html">Add new</a></li>
+                            <li><a href="employee_manager">List of employees</a></li>
+                            <li><a href="add_employee">Add new</a></li>
                         </ul>
                     </li>
                     <li>
@@ -201,59 +201,25 @@
                                                 <th>Address</th>
                                                 <th>Phone</th>
                                                 <th>Position</th>
+                                                <th>Note</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                            <tr th:each="employee : ${employees}">
+                                                <td th:text="${employee.firstName} + ' ' + ${employee.lastName}">Tiger Nixon</td>
+                                                <td th:text="${employee.birthday}">System Architect</td>
+                                                <td th:text="${employee.email}">Edinburgh</td>
+                                                <td th:text="${employee.address}">61</td>
+                                                <td th:text="${employee.phone}">2011/04/25</td>
+                                                <td th:text="${employee.position}">$320,800</td>
+                                                <td th:text="${employee.note}"></td>
                                                 <td>
                                                     <span>
-                                                        <a href="./manager-employee-update.html" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
+                                                        <a th:href="@{'/update_employee'(employeeId=${employee.id})}" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
                                                             <i class="fa fa-pencil color-muted"></i>
                                                         </a>
                                                         <a href="#" class="btn-delete sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">
-                                                            <i class="fa fa-close color-danger"></i>
-                                                        </a>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td>63</td>
-                                                <td>2011/07/25</td>
-                                                <td>$170,750</td>
-                                                <td>
-                                                    <span>
-                                                        <a href="./manager-employee-update.html" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
-                                                            <i class="fa fa-pencil color-muted"></i>
-                                                        </a>
-                                                        <a href="#" class="btn-delete sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">
-                                                            <i class="fa fa-close color-danger"></i>
-                                                        </a>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ashton Cox</td>
-                                                <td>Junior Technical Author</td>
-                                                <td>San Francisco</td>
-                                                <td>66</td>
-                                                <td>2009/01/12</td>
-                                                <td>$86,000</td>
-                                                <td>
-                                                    <span>
-                                                        <a href="./manager-employee-update.html" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
-                                                            <i class="fa fa-pencil color-muted"></i>
-                                                        </a>
-                                                        <a href="#" class="sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">
                                                             <i class="fa fa-close color-danger"></i>
                                                         </a>
                                                     </span>
@@ -268,6 +234,7 @@
                                                 <th>Address</th>
                                                 <th>Phone</th>
                                                 <th>Position</th>
+                                                <th>Note</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
@@ -315,17 +282,17 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="../../../../static/view/vendor/global/global.min.js"></script>
-    <script src="../../../../static/view/js/quixnav-init.js"></script>
-    <script src="../../../../static/view/js/custom.min.js"></script>
+    <script src="/view/vendor/global/global.min.js"></script>
+    <script src="/view/js/quixnav-init.js"></script>
+    <script src="/view/js/custom.min.js"></script>
 
     <!-- Datatable -->
-    <script src="../../../../static/view/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../../../../static/view/js/plugins-init/datatables.init.js"></script>
+    <script src="/view/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/view/js/plugins-init/datatables.init.js"></script>
 
     <!-- Sweet alert -->
-    <script src="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="../../../../static/view/js/plugins-init/sweetalert.init.js"></script>
+    <script src="/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/view/js/plugins-init/sweetalert.init.js"></script>
 </body>
 
 </html>

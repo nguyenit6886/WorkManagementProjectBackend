@@ -144,8 +144,8 @@
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="../employee/manager-employee.html">List of employees</a></li>
-                            <li><a href="../employee/manager-employee-add_new.html">Add new</a></li>
+                            <li><a href="employee_manager">List of employees</a></li>
+                            <li><a href="add_employee">Add new</a></li>
                         </ul>
                     </li>
                     <li>
@@ -181,23 +181,23 @@
                     </div>
                 </div>
                 <div class="row" th:each="department : ${departments}">
-                    <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">
+                    <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12" th:id="'department' + ${department.id}">
                         <a href="manager-employeeOfDepartment.html">
                             <div class="card text-white bg-info">
                                 <div class="card-header d-sm-flex justify-content-between">
-                                    <h5 class="card-title text-white" th:text="${department.name}" id="txtDepartmentName">Tên phòng ban</h5>
+                                    <h5 class="card-title text-white departmentInput" th:text="${department.name}" id="txtDepartmentName">Tên phòng ban</h5>
                                     <div class="card-footer-link mb-4 mb-sm-0">
                                         <p class="card-text text-white d-inline">Created at 3 days ago</p>
                                     </div>
                                 </div>
                                 <div class="card-body mb-0 py-2">
-                                    <p class="card-text text-white" th:text="${department.note}" id="txtDepartmentNote">Note Department</p>
+                                    <p class="card-text text-white departmentInput" th:text="${department.note}" id="txtDepartmentNote">Note Department</p>
                                 </div>
                                 <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
                                     <p class="text-white">Last updateed 3 min ago</p>
                                     <div>
-                                        <a data-toggle="modal" data-target="#exampleModalCenter" onclick="myFunction()" id="updateModal" class="btn btn-primary">Sửa</a>
-                                        <button th:href="@{/delete/{id}(id=${department.id})}" type="button" class="btn btn-danger sweet-success-cancel">Xóa</button>
+                                        <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'myFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-primary">Sửa</a>
+                                        <a th:href="@{'/delete_department'(departmentId=${department.id})}" class="btn btn-danger">Xóa</a>
                                     </div>
                                 </div>
                             </div>
@@ -216,13 +216,14 @@
                             </div>
                             <div class="modal-body">
                                 <div class="basic-form">
-                                    <form th:action="@{/add_department}" method="post" id="add_update_form">
+                                    <form th:action="@{/save_department}" method="post" id="add_update_form">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Tên phòng ban</label>
                                             <div class="col-sm-9">
                                                 <input name="name" type="text" class="form-control" placeholder="Department Name" id="txtNameDepartmentDialog">
                                             </div>
                                         </div>
+                                        <input type="hidden" name="id" id="txtIdDepartmentDialog" value="0">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Ghi chú</label>
                                             <div class="col-sm-9">
@@ -242,12 +243,12 @@
 
                 <div class="row mx-3 fixed-bottom">
                     <div class="col-12 text-right mt-1 mb-5 mr-lg-3">
-						<button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-lg btn-rounded btn-primary pr-3">
+						<a id="addModal" onclick="openModalFunction(null,this.id,null)" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-lg btn-rounded btn-primary pr-3">
                             <span class="btn-icon-left text-primary">
                                 <i class="fa fa-plus color-primary"></i>
 						    </span>
                             <span>Thêm Phòng ban</span>
-                        </button>
+                        </a>
 					</div>
                 </div>
             </div>
@@ -297,14 +298,12 @@
     <script src="/view/js/plugins-init/sweetalert.init.js"></script>
 
     <script type="text/javascript">
-        function myFunction() {
-            let updateId = document.getElementById('updateModal').id;
-            if (updateId == "updateModal") {
-                let name = document.getElementById('txtDepartmentName').innerText;
-                let note = document.getElementById('txtDepartmentNote').innerText;
-                document.getElementById('txtNameDepartmentDialog').value = name;
-                document.getElementById('txtNoteDepartmentDialog').value = note;
-            }else{
+        function openModalFunction(departmentId, idElement, id) {
+            if(idElement == "updateModal"){
+                document.getElementById('txtIdDepartmentDialog').value = id;
+                document.getElementById('txtNameDepartmentDialog').value = document.getElementById(departmentId).querySelectorAll(".departmentInput")[0].innerHTML;
+                document.getElementById('txtNoteDepartmentDialog').value = document.getElementById(departmentId).querySelectorAll(".departmentInput")[1].innerHTML;
+            }else if (idElement == "addModal"){
                 document.getElementById('txtNameDepartmentDialog').value = '';
                 document.getElementById('txtNoteDepartmentDialog').value = '';
             }

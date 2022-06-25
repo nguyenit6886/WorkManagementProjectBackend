@@ -15,7 +15,7 @@ public class DepartmentServiceImpl implements IDepartmentService{
 
   @Override
   public List<DepartmentEntity> getAll() {
-    return repository.findAll();
+    return repository.findAllActive();
   }
 
   @Override
