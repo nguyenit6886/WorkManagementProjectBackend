@@ -38,7 +38,7 @@ public class LoginController {
     }else if(employee.getPasswordHash().equals(password)){
       model.addAttribute("departments",iDepartmentService.getAll());
 //      return "departments";
-      return "/html/Manager/department/manager-department";
+      return "/html/Manager/manager-index";
     }else{
       return "/html/login";
     }
