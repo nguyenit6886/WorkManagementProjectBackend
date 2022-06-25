@@ -28,11 +28,11 @@ public class DepartmentController {
     return iDepartmentService.getObjectById(departmentId);
   }
 
-  @ResponseBody
-  @PostMapping("/add_department")
-  public int addDepartment(DepartmentEntity department) {
+  @RequestMapping("/add_department")
+  public String addDepartment(DepartmentEntity department) {
     department.setCreateDate(new Date());
-    return iDepartmentService.insertObject(department);
+    iDepartmentService.insertObject(department);
+    return "redirect:/department_manager";
   }
 
   @ResponseBody

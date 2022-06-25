@@ -17,10 +17,13 @@ public class WorkProgressEntity {
   private int id;
 
   @ManyToOne
-  private AssignmentEntity assignmentEntity;
+  private TaskEntity taskEntity;
 
   @Column(name = "work_progress_level")
   private byte workProgressLevel;
+
+  @Column(name = "title")
+  private String title;
 
   @Column(name = "content")
   private String content;

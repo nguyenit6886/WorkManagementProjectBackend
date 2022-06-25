@@ -17,7 +17,7 @@ public class ResultEvaluationEntity {
   private int id;
 
   @ManyToOne
-  private AssignmentEntity assignmentEntity;
+  private TaskEntity taskEntity;
 
   @Column(name = "evaluation_level")
   private byte evaluationLevel;

@@ -24,6 +24,9 @@ public class TaskEntity {
   @Column(name = "content")
   private String content;
 
+  @Column(name = "work_progress_level")
+  private int workProgressLevel;
+
   @Column(name = "deadline")
   private Date deadline;
 
