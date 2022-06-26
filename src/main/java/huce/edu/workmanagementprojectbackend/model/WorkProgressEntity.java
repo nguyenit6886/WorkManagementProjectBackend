@@ -17,7 +17,7 @@ public class WorkProgressEntity {
   private int id;
 
   @ManyToOne
-  private TaskEntity taskEntity;
+  private TaskEntity task;
 
   @Column(name = "work_progress_level")
   private byte workProgressLevel;

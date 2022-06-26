@@ -4,6 +4,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
+@Builder
 @Data
 @NoArgsConstructor
 @Entity
@@ -16,7 +17,7 @@ public class TaskEntity {
   private int id;
 
   @ManyToOne
-  private ProjectEntity projectEntity;
+  private ProjectEntity project;
 
   @Column(name = "title")
   private String title;

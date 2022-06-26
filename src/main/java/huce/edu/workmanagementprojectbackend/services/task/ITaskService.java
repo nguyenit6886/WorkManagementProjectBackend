@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ITaskService extends IFunctionService<TaskEntity> {
   @Override
-  List getAll();
+  List<TaskEntity> getAll();
 
   @Override
   TaskEntity getObjectById(int id);

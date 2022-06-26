@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IProjectService extends IFunctionService<ProjectEntity> {
   @Override
-  List getAll();
+  List<ProjectEntity> getAll();
 
   @Override
   ProjectEntity getObjectById(int id);

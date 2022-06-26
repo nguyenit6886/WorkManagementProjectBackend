@@ -25,16 +25,58 @@ public class ProjectServiceImpl implements IProjectService{
 
   @Override
   public int insertObject(ProjectEntity projectEntity) {
-    return 0;
+    try{
+      repository.save(projectEntity);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
   public int updateObject(ProjectEntity projectEntity) {
-    return 0;
+    try{
+      ProjectEntity projectEntityUpdated = repository.findById(projectEntity.getId()).get();
+      if(!projectEntityUpdated.getTitle().equals(projectEntity.getTitle())){
+        projectEntityUpdated.setTitle(projectEntity.getTitle());
+      }
+      if(!projectEntityUpdated.getContent().equals(projectEntity.getContent())){
+        projectEntityUpdated.setContent(projectEntity.getContent());
+      }
+      if(projectEntityUpdated.getDeadline() != projectEntity.getDeadline()){
+        projectEntityUpdated.setDeadline(projectEntity.getDeadline());
+      }
+      if(projectEntityUpdated.getBeginDate() != projectEntity.getBeginDate()){
+        projectEntityUpdated.setBeginDate(projectEntity.getBeginDate());
+      }
+      if(projectEntityUpdated.getEndDate() != projectEntity.getEndDate()){
+        projectEntityUpdated.setEndDate(projectEntity.getEndDate());
+      }
+      if(!projectEntityUpdated.getNote().equals(projectEntity.getNote())){
+        projectEntityUpdated.setNote(projectEntity.getNote());
+      }
+      if(projectEntityUpdated.isActive() != projectEntity.isActive()){
+        projectEntityUpdated.setActive(projectEntity.isActive());
+      }
+      repository.save(projectEntityUpdated);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
   public int deleteObject(int id) {
-    return 0;
+    try{
+      ProjectEntity projectEntity = repository.findById(id).get();
+      projectEntity.setActive(true);
+      repository.save(projectEntity);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 }

@@ -15,7 +15,7 @@ public class TaskServiceImpl implements ITaskService{
 
   @Override
   public List<TaskEntity> getAll() {
-    return repository.findAll();
+    return repository.findAllActive();
   }
 
   @Override

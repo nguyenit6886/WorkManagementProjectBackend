@@ -15,7 +15,7 @@ public class AssignmentServiceImpl implements IAssignmentService{
 
   @Override
   public List<AssignmentEntity> getAll() {
-    return repository.findAll();
+    return repository.findAllActive();
   }
 
   @Override

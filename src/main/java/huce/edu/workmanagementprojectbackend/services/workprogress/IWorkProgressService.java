@@ -2,7 +2,6 @@ package huce.edu.workmanagementprojectbackend.services.workprogress;
 
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -21,4 +20,6 @@ public interface IWorkProgressService extends IFunctionService<WorkProgressEntit
 
   @Override
   int deleteObject(int id);
+
+  List<WorkProgressEntity> getObjectsByTask(int taskId);
 }

@@ -17,10 +17,10 @@ public class AssignmentEntity {
   private int id;
 
   @ManyToOne
-  private TaskEntity taskEntity;
+  private TaskEntity task;
 
   @ManyToOne
-  private EmployeeEntity employeeEntity;
+  private EmployeeEntity employee;
 
   @Column(name = "deadline")
   private Date deadline;
