@@ -8,6 +8,7 @@
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="/view/vendor/select2/css/select2.min.css" rel="stylesheet">
     <link href="/view/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -36,7 +37,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="manager-index.html" class="brand-logo">
+            <a href="manager" class="brand-logo">
                 <img class="logo-abbr" src="/view/images/logo.png" alt="">
                 <img class="logo-compact" src="/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -126,21 +127,21 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li>
-                        <a href="./manager-index.html" aria-expanded="false">
-                            <i class="icon icon-single-04"></i>
+                        <a href="manager" aria-expanded="false">
+                            <i class="icon icon-home"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
                         <a href="department_manager" aria-expanded="false">
-                            <i class="icon icon-chart-bar-33"></i>
+                            <i class="fa fa-sitemap"></i>
                             <span class="nav-text">Department</span>
                         </a>
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon icon-app-store"></i>
+                            <i class="icon icon-users-mm-2"></i>
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
@@ -154,10 +155,15 @@
                             <span class="nav-text">Project</span>
                         </a>
                     </li>
+                    <li class="nav-label first">System</li>
+                    <li>
+                        <a href="#" aria-expanded="false">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="nav-text">Logout</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
-
-
         </div>
         <!--**********************************
             Sidebar end
@@ -172,16 +178,16 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>Hi, welcome back!</h4>
-							<span class="ml-1">Leader</span>
+							<span class="mb-0">Manager</span>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
-								<a href="javascript:void(0)">Leader</a>
+								<a href="javascript:void(0)">Management</a>
 							</li>
 							<li class="breadcrumb-item active">
-								<a href="javascript:void(0)">Danh sách dự án</a>
+								<a href="javascript:void(0)">Project</a>
 							</li>
 						</ol>
 					</div>
@@ -193,8 +199,8 @@
 								<h5 class="card-title text-white" th:text="${project.title}">Project 1</h5>
 							</div>
 							<div class="card-body mb-0">
-								<p class="card-text" th:text="${project.content}">Mô tả dự án</p>
-								<a href="./leader-taskDetails.html" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
+								<p class="card-text text-truncate" th:text="${project.content}">Mô tả dự án</p>
+								<a href="manager-task.html" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
 							</div>
 							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
 								<p>Last updated 3 min ago</p>
@@ -227,7 +233,7 @@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Thuộc phòng ban</label>
-                                                <select class="form-control" name="departments" id="department" multiple>
+                                                <select class="form-control multi-select" name="departments[]" id="department" multiple="multiple">
                                                     <option th:each="department : ${departments}"
                                                             th:value="${department.id}"
                                                             th:text="${department.name}"/>
@@ -269,7 +275,7 @@
                             <span class="btn-icon-left text-primary">
                                 <i class="fa fa-plus color-primary"></i>
 						    </span>
-                            <span>Thêm Dự án</span>
+                            <span class="text-white">Thêm Dự án</span>
                         </a>
 					</div>
                 </div>
@@ -318,6 +324,10 @@
     <!-- Sweet alert -->
     <script src="/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/view/js/plugins-init/sweetalert.init.js"></script>
+
+    <!-- Select Multi -->
+    <script src="/view/vendor/select2/js/select2.full.min.js"></script>
+    <script src="/view/js/plugins-init/select2-init.js"></script>
 
     <script type="text/javascript">
         $('document').ready(function (){
