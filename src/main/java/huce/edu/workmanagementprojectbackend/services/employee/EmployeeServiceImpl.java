@@ -105,7 +105,7 @@ public class EmployeeServiceImpl implements IEmployeeService{
   public int deleteObject(int id) {
     try{
       EmployeeEntity employeeEntity = repository.findById(id).get();
-      employeeEntity.setActive(true);
+      employeeEntity.setActive(false);
       repository.save(employeeEntity);
       return 200;
     }catch (Exception e){

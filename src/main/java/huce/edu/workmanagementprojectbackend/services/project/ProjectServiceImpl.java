@@ -71,7 +71,7 @@ public class ProjectServiceImpl implements IProjectService{
   public int deleteObject(int id) {
     try{
       ProjectEntity projectEntity = repository.findById(id).get();
-      projectEntity.setActive(true);
+      projectEntity.setActive(false);
       repository.save(projectEntity);
       return 200;
     }catch (Exception e){

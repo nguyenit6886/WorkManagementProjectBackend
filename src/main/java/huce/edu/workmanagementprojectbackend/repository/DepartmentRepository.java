@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<DepartmentEntity, Integer> {
-  @Query("Select d from DepartmentEntity d where d.active = false")
+  @Query("Select d from DepartmentEntity d where d.active = true")
   List<DepartmentEntity> findAllActive();
 }

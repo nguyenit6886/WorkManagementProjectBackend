@@ -38,6 +38,7 @@ public class EmployeeController {
       iEmployeeService.updateObject(employee);
     }else{
       employee.setCreateDate(new Date());
+      employee.setActive(true);
       iEmployeeService.insertObject(employee);
     }
     return "redirect:/employee_manager";

@@ -28,6 +28,7 @@ public class DepartmentController {
       iDepartmentService.updateObject(department);
     }else{
       department.setCreateDate(new Date());
+      department.setActive(true);
       iDepartmentService.insertObject(department);
     }
     return "redirect:/department_manager";

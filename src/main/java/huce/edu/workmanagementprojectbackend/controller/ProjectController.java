@@ -35,6 +35,7 @@ public class ProjectController {
       iProjectService.updateObject(project);
     }else{
       project.setCreateDate(new Date());
+      project.setActive(true);
       iProjectService.insertObject(project);
     }
     return "redirect:/project_manager";

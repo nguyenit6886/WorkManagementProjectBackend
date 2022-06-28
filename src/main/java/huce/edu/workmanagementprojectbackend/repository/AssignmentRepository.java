@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AssignmentRepository extends JpaRepository<AssignmentEntity, Integer> {
-  @Query("Select a from AssignmentEntity a where a.active = false")
+  @Query("Select a from AssignmentEntity a where a.active = true")
   List<AssignmentEntity> findAllActive();
 }

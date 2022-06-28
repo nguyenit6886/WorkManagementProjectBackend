@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface WorkProgressRepository extends JpaRepository<WorkProgressEntity, Integer> {
-  @Query("Select w from WorkProgressEntity w where w.active = false")
+  @Query("Select w from WorkProgressEntity w where w.active = true")
   List<WorkProgressEntity> findAllActive();
 }

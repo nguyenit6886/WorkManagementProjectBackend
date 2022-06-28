@@ -58,7 +58,7 @@ public class DepartmentServiceImpl implements IDepartmentService{
   public int deleteObject(int id) {
     try{
       DepartmentEntity departmentEntityActived = repository.findById(id).get();
-      departmentEntityActived.setActive(true);
+      departmentEntityActived.setActive(false);
       repository.save(departmentEntityActived);
       return 200;
     }catch (Exception e){
