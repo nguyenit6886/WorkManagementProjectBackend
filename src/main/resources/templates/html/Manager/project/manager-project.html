@@ -227,8 +227,10 @@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Thuộc phòng ban</label>
-                                                <select class="form-control">
-                                                    <option value="">Tên phòng ban</option>
+                                                <select class="form-control" name="departments" id="department" multiple>
+                                                    <option th:each="department : ${departments}"
+                                                            th:value="${department.id}"
+                                                            th:text="${department.name}"/>
                                                 </select>
                                             </div>
                                         </div>

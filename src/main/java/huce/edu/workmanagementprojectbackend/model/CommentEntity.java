@@ -33,6 +33,9 @@ public class CommentEntity {
   @Column(name = "delete_date")
   private String deleteDate;
 
+  @Column(name="create_user")
+  private int createUser;
+
   @Column(name = "active")
   private boolean active;
 }

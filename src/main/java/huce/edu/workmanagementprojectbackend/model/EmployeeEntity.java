@@ -57,6 +57,9 @@ public class EmployeeEntity {
   @Column(name = "update_date")
   private Date updateDate;
 
+  @Column(name="create_user")
+  private int createUser;
+
   @Column(name = "active")
   private boolean active;
 }

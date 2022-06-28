@@ -34,6 +34,9 @@ public class WorkProgressEntity {
   @Column(name = "update_date")
   private Date updateDate;
 
+  @Column(name="create_user")
+  private int createUser;
+
   @Column(name = "note")
   private String note;
 

@@ -56,9 +56,6 @@ public class ProjectServiceImpl implements IProjectService{
       if(!projectEntityUpdated.getNote().equals(projectEntity.getNote())){
         projectEntityUpdated.setNote(projectEntity.getNote());
       }
-      if(projectEntityUpdated.isActive() != projectEntity.isActive()){
-        projectEntityUpdated.setActive(projectEntity.isActive());
-      }
       repository.save(projectEntityUpdated);
       return 200;
     }catch (Exception e){

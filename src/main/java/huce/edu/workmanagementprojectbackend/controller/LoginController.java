@@ -16,11 +16,10 @@ import javax.jws.WebParam;
 @Controller
 public class LoginController {
 
-  @Autowired
-  private IEmployeeService iEmployeeService;
+  public static int CREATE_USER_ID;
 
   @Autowired
-  private IDepartmentService iDepartmentService;
+  private IEmployeeService iEmployeeService;
 
   @RequestMapping("/login")
   public String showLogin(){
@@ -41,7 +40,7 @@ public class LoginController {
       model.addAttribute("notify","Have not account");
       return "/html/login";
     }else if(employee.getPasswordHash().equals(password)){
-      model.addAttribute("departments",iDepartmentService.getAll());
+      CREATE_USER_ID = employee.getId();
       return "redirect:/manager";
     }else{
       return "/html/login";

@@ -44,8 +44,6 @@ public class DepartmentServiceImpl implements IDepartmentService{
         departmentEntityUpdated.setName(departmentEntity.getName());
       if (!departmentEntityUpdated.getNote().equals(departmentEntity.getNote()))
         departmentEntityUpdated.setNote(departmentEntity.getNote());
-      if (departmentEntityUpdated.isActive() != departmentEntity.isActive())
-        departmentEntityUpdated.setActive(departmentEntity.isActive());
       repository.save(departmentEntityUpdated);
       return 200;
     }catch (Exception e){

@@ -1,6 +1,8 @@
 package huce.edu.workmanagementprojectbackend.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,33 +11,26 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @AllArgsConstructor
-@Table(name = "Result_Evaluation")
-public class ResultEvaluationEntity {
-
+@Table(name = "Assignment_Department")
+public class AssignmentDepartmentEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
   @ManyToOne
-  private TaskEntity taskEntity;
+  private ProjectEntity project;
 
-  @Column(name = "evaluation_level")
-  private byte evaluationLevel;
+  @ManyToOne
+  private DepartmentEntity department;
 
-  @Column(name = "content")
-  private String content;
+  @Column(name="create_user")
+  private int createUser;
 
   @Column(name = "create_date")
   private Date createDate;
 
   @Column(name = "update_date")
   private Date updateDate;
-
-  @Column(name="create_user")
-  private int createUser;
-
-  @Column(name = "note")
-  private String note;
 
   @Column(name = "active")
   private boolean active;

@@ -87,9 +87,6 @@ public class EmployeeServiceImpl implements IEmployeeService{
       if(!employeeEntityUpdated.getNote().equals(employeeEntity.getNote())){
         employeeEntityUpdated.setNote(employeeEntity.getNote());
       }
-      if(employeeEntityUpdated.isActive() != employeeEntity.isActive()){
-        employeeEntityUpdated.setActive(employeeEntity.isActive());
-      }
       if(!Objects.equals(employeeEntityUpdated.getDepartment(), employeeEntity.getDepartment())){
         employeeEntityUpdated.setDepartment(employeeEntity.getDepartment());
       }
