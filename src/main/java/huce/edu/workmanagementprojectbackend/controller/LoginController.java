@@ -27,6 +27,11 @@ public class LoginController {
     return "/html/login";
   }
 
+  @RequestMapping("/manager")
+  public String showManagerPage(){
+    return "/html/Manager/manager-index";
+  }
+
   @PostMapping("/checklogin")
   public String checkLogin(@RequestParam("username")String username,
                            @RequestParam("password")String password,
@@ -37,8 +42,7 @@ public class LoginController {
       return "/html/login";
     }else if(employee.getPasswordHash().equals(password)){
       model.addAttribute("departments",iDepartmentService.getAll());
-//      return "departments";
-      return "/html/Manager/manager-index";
+      return "redirect:/manager";
     }else{
       return "/html/login";
     }
