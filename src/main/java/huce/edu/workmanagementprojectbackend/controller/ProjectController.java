@@ -28,6 +28,12 @@ public class ProjectController {
     return "/html/Manager/project/manager-project";
   }
 
+  @RequestMapping("/leader_manager")
+  public String showLeaderManagerPage(Model model){
+    model.addAttribute("projects",iProjectService.getAll());
+    return "/html/Leader/leader-project.html";
+  }
+
   @RequestMapping("/save_project")
   public String addProject(@ModelAttribute("project") ProjectEntity project){
     if(project.getId() != 0){
