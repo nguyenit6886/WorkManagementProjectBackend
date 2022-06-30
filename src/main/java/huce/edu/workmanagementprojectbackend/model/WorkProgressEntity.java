@@ -37,9 +37,6 @@ public class WorkProgressEntity {
   @Column(name="create_user")
   private int createUser;
 
-  @Column(name = "note")
-  private String note;
-
   @Column(name = "active")
   private boolean active;
 }

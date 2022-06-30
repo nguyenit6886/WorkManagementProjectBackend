@@ -16,10 +16,10 @@ public class CommentEntity {
   private int id;
 
   @ManyToOne
-  private WorkProgressEntity workProgressEntity;
+  private WorkProgressEntity workProgress;
 
   @ManyToOne
-  private EmployeeEntity employeeEntity;
+  private EmployeeEntity employee;
 
   @Column(name = "content")
   private String content;

@@ -66,4 +66,11 @@ public class TaskController {
     return "redirect:"+url;
   }
 
+  @RequestMapping("/manager-task-list")
+  public String showTaskListManagerPage(@RequestParam("projectId") int projectId, Model model){
+    List<TaskEntity> taskEntities = iTaskService.getAllTasksByProjectId(projectId);
+    model.addAttribute("tasks", taskEntities);
+    model.addAttribute("projectId", projectId);
+    return "/html/Manager/project/manager-task";
+  }
 }

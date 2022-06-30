@@ -16,7 +16,7 @@ import javax.jws.WebParam;
 @Controller
 public class LoginController {
 
-  public static int CREATE_USER_ID;
+  public static int CREATE_USER_ID = 3;
 
   @Autowired
   private IEmployeeService iEmployeeService;

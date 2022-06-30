@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.services.comment;
 
 import huce.edu.workmanagementprojectbackend.model.CommentEntity;
+import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +22,6 @@ public interface ICommentService extends IFunctionService<CommentEntity> {
 
   @Override
   int deleteObject(int id);
+
+  List<CommentEntity> getCommentByWorkProgress(WorkProgressEntity workProgress);
 }

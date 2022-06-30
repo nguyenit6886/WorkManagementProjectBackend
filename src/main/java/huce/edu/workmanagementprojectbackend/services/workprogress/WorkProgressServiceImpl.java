@@ -1,5 +1,6 @@
 package huce.edu.workmanagementprojectbackend.services.workprogress;
 
+import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.repository.TaskRepository;
@@ -31,23 +32,52 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
 
   @Override
   public int insertObject(WorkProgressEntity workProgressEntity) {
-    return 0;
+    try{
+      repository.save(workProgressEntity);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
   public int updateObject(WorkProgressEntity workProgressEntity) {
-    return 0;
+    try{
+      WorkProgressEntity departmentEntityUpdated = repository.findById(workProgressEntity.getId()).get();
+      if (departmentEntityUpdated.getUpdateDate() != workProgressEntity.getUpdateDate())
+        departmentEntityUpdated.setUpdateDate(workProgressEntity.getUpdateDate());
+      if (departmentEntityUpdated.getWorkProgressLevel() != workProgressEntity.getWorkProgressLevel())
+        departmentEntityUpdated.setWorkProgressLevel(workProgressEntity.getWorkProgressLevel());
+      if (departmentEntityUpdated.getTitle() != workProgressEntity.getTitle())
+        departmentEntityUpdated.setTitle(workProgressEntity.getTitle());
+      if (departmentEntityUpdated.getContent() != workProgressEntity.getContent())
+        departmentEntityUpdated.setContent(workProgressEntity.getContent());
+      repository.save(departmentEntityUpdated);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
   public int deleteObject(int id) {
-    return 0;
+    try{
+      WorkProgressEntity workProgressEntityUpdated = repository.findById(id).get();
+      workProgressEntityUpdated.setActive(false);
+      repository.save(workProgressEntityUpdated);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
   public List<WorkProgressEntity> getObjectsByTask(int taskId) {
     TaskEntity taskEntity = taskRepository.findById(taskId).get();
-    return repository.findAll().stream()
+    return repository.findAllActive().stream()
         .filter(w -> w.getTask().equals(taskEntity)).collect(Collectors.toList());
   }
 }

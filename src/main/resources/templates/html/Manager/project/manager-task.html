@@ -186,31 +186,29 @@ Preloader end
 
         <h3>Project 1</h3>
         <div class="row">
-            <div class="col-xl-4 col-xxl-4 col-lg-6 col-sm-6">
+            <div class="col-xl-4 col-xxl-4 col-lg-6 col-sm-6" th:each="task : ${tasks}">
                 <a href="manager-workprogress.html">
                     <div class="card text-white bg-info">
                         <div class="card-header">
-                            <h5 class="card-title text-white">Task 1</h5>
-                            <span class="text-danger">Deadline</span>
+                            <h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
+                            <span class="text-danger" th:text="|Deadline: ${task.deadline}|">Deadline</span>
                         </div>
                         <div class="card-body mb-0">
                             <div class="d-flex justify-content-between mb-3">
-                                <p class="card-text text-white text-truncate">Mô tả công việc</p>
+                                <p class="card-text text-white text-truncate" th:text="${task.content}">Mô tả công việc</p>
                                 <a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
                             </div>
-                            <h6 class="text-white mb-1">Đang hoàn thành</h6>
-                            <div class="progress mb-3">
-                                <div
-                                        class="progress-bar bg-primary progress-bar-striped"
-                                        aria-valuenow="85"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"
-                                        style="width: 85%; height: 10px"
-                                        role="progressbar"
-                                >
-                                    <span class="sr-only">85% Complete (success)</span>
+                            <th:block th:switch="${task.workProgressLevel}">
+                                <div th:case="'0'">
+                                    <h6 class="text-white mb-1">Chưa tiến hành</h6>
                                 </div>
-                            </div>
+                                <div th:case="'1'">
+                                    <h6 class="text-white mb-1">Đang tiến hành</h6>
+                                </div>
+                                <div th:case="'2'">
+                                    <h6 class="text-white mb-1">Hoàn thành</h6>
+                                </div>
+                            </th:block>
                             <a href="#" class="btn btn-dark btn-card mt-2">Đánh giá kết quả</a>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-white">

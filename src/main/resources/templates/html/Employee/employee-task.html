@@ -127,7 +127,7 @@
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>
                     <li>
-                        <a href="./employee-task.html" aria-expanded="false">
+                        <a href="tasklist" aria-expanded="false">
                             <i class="icon icon-single-04"></i>
                             <span class="nav-text">Tasks</span>
                         </a>
@@ -176,19 +176,17 @@
                                 </div>
                                 <div class="card-body mb-0">
                                     <p class="card-text" th:text="${task.content}">Mô tả công việc</p>
-                                    <h6 class="text-white mb-3" th:text="${task.workProgressLevel}">Tiến độ</h6>
-                                    <div class="progress mb-3">
-                                        <div
-                                            class="progress-bar bg-primary progress-bar-striped"
-                                            aria-valuenow="85"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                            style="width: 85%; height: 10px"
-                                            role="progressbar"
-                                        >
-                                            <span class="sr-only">85% Complete (success)</span>
+                                    <th:block th:switch="${task.workProgressLevel}">
+                                        <div th:case="0">
+                                            <h6 class="text-white mb-1">Chưa tiến hành</h6>
                                         </div>
-                                    </div>
+                                        <div th:case="1">
+                                            <h6 class="text-white mb-1">Đang tiến hành</h6>
+                                        </div>
+                                        <div th:case="2">
+                                            <h6 class="text-white mb-1">Hoàn thành</h6>
+                                        </div>
+                                    </th:block>
                                 </div>
                                 <div class="card-footer bg-transparent border-0 text-white">
                                     Last updated 3 min ago

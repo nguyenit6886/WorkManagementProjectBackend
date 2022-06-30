@@ -45,7 +45,7 @@ public class ProjectController {
   @RequestMapping("/leader_manager")
   public String showLeaderManagerPage(Model model){
     model.addAttribute("projects",iProjectService.getAll());
-    return "/html/Leader/leader-project.html";
+    return "/html/Leader/leader-project";
   }
 
   @RequestMapping("/save_project")

@@ -8,7 +8,7 @@
     <title>Đồ án tổng hợp</title>
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
-    <link href="../../../static/view/css/style.css" rel="stylesheet">
+    <link href="/view/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,9 +38,9 @@
         ***********************************-->
         <div class="nav-header">
             <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="../../../static/view/images/logo.png" alt="">
-                <img class="logo-compact" src="../../../static/view/images/logo-text.png" alt="">
-                <img class="brand-title" src="../../../static/view/images/logo-text.png" alt="">
+                <img class="logo-abbr" src="/view/images/logo.png" alt="">
+                <img class="logo-compact" src="/view/images/logo-text.png" alt="">
+                <img class="brand-title" src="/view/images/logo-text.png" alt="">
             </a>
 
             <div class="nav-control">
@@ -104,11 +104,11 @@
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="../../../static/view/profile.html" class="dropdown-item">
+                                    <a href="/view/profile.html" class="dropdown-item">
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
-                                    <a href="../../../static/view/login.html" class="dropdown-item">
+                                    <a href="/view/login.html" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -131,7 +131,7 @@
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">Main Menu</li>
                     <li>
-                        <a href="./employee-task.html" aria-expanded="false">
+                        <a href="tasklist" aria-expanded="false">
                             <i class="icon icon-single-04"></i>
                             <span class="nav-text">Tasks</span>
                         </a>
@@ -171,7 +171,8 @@
                                 <h3>Thêm mới Work Progress</h3>
                             </div> -->
                             <div class="card-body">
-                                <form action="" method="" enctype="multipart/form-data">
+                                <form th:action="@{/save_workprogress}" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="task" th:value="${taskId}">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <div class="border border-primary p-2">
@@ -183,7 +184,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-form-label text-black">Nội dung</label>
-                                                            <textarea name="" id="" rows="10" class="form-control"></textarea>
+                                                            <textarea name="content" id="" rows="10" class="form-control"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -192,7 +193,7 @@
                                                     <h4 class="m-2">Danh sách tệp đính kèm</h4>
                                                     <div class="row px-2">
                                                         <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="../../../static/view/images/avatar/NV.jpg" alt="...">
+                                                            <img class="card-img-top pos" src="/view/images/avatar/NV.jpg" alt="...">
                                                             <div class="card-img-overlay d-flex align-items-start">
                                                                 <div>
                                                                     <i class="fa fa-window-close close" aria-hidden="true"></i>
@@ -201,7 +202,7 @@
                                                         </div>
                     
                                                         <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="../../../static/view/images/avatar/NV1.jpg" alt="...">
+                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
                                                             <div class="card-img-overlay d-flex align-items-start">
                                                                 <div>
                                                                     <i class="fa fa-window-close close" aria-hidden="true"></i>
@@ -210,7 +211,7 @@
                                                         </div>
                                                         
                                                         <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="../../../static/view/images/avatar/NV1.jpg" alt="...">
+                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
                                                             <div class="card-img-overlay d-flex align-items-start">
                                                                 <div>
                                                                     <i class="fa fa-window-close close" aria-hidden="true"></i>
@@ -227,10 +228,10 @@
                                                 <input type="file" class="custom-file-input">
                                                 <label class="custom-file-label">Đính kèm tệp</label>
                                             </div>
-                                            <select id="inputState" class="btn bg-primary text-white" style="text-align: start;">
+                                            <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;">
                                                 <option selected="">Tiến độ CV</option>
-                                                <option>Hoàn thành</option>
-                                                <option>Đang tiến hành</option>
+                                                <option value="2">Hoàn thành</option>
+                                                <option value="1">Đang tiến hành</option>
                                             </select>
                                             <input type="submit" name="submit" value="Add" class="btn btn-primary text-white mt-5">
                                         </div>
@@ -279,9 +280,9 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="../../../static/view/vendor/global/global.min.js"></script>
-    <script src="../../../static/view/js/quixnav-init.js"></script>
-    <script src="../../../static/view/js/custom.min.js"></script>
+    <script src="/view/vendor/global/global.min.js"></script>
+    <script src="/view/js/quixnav-init.js"></script>
+    <script src="/view/js/custom.min.js"></script>
 </body>
 
 </html>

@@ -22,7 +22,7 @@ public class DepartmentController {
   }
 
   @RequestMapping("/save_department")
-  public String addDepartment(DepartmentEntity department) {
+  public String addDepartment(@ModelAttribute("department")DepartmentEntity department) {
     if(department.getId() != 0){
       department.setUpdateDate(new Date());
       iDepartmentService.updateObject(department);
