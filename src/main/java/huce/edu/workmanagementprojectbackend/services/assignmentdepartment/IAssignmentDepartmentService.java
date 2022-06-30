@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.services.assignmentdepartment;
 
 import huce.edu.workmanagementprojectbackend.model.AssignmentDepartmentEntity;
+import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface IAssignmentDepartmentService extends IFunctionService<Assignmen
 
   @Override
   int deleteObject(int id);
+
+  List<AssignmentDepartmentEntity> getAssignmentDepartmentByProject(ProjectEntity project);
+
+  List<AssignmentDepartmentEntity> getAssignmentDepartmentByProjectAvtive(ProjectEntity project);
 }
