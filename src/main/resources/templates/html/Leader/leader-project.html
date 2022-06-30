@@ -10,9 +10,9 @@
 			rel="icon"
 			type="image/png"
 			sizes="16x16"
-			href="../../../static/view/images/favicon.png"
+			href="/view/images/favicon.png"
 		/>
-		<link href="../../../static/view/css/style.css" rel="stylesheet" />
+		<link href="/view/css/style.css" rel="stylesheet" />
 	</head>
 	<body>
 		<!--*******************
@@ -35,9 +35,9 @@
 
 		<div class="nav-header">
 			<a href="index.html" class="brand-logo">
-				<img class="logo-abbr" src="../../../static/view/images/logo.png" alt="" />
-				<img class="logo-compact" src="../../../static/view/images/logo-text.png" alt="" />
-				<img class="brand-title" src="../../../static/view/images/logo-text.png" alt="" />
+				<img class="logo-abbr" src="/view/images/logo.png" alt="" />
+				<img class="logo-compact" src="/view/images/logo-text.png" alt="" />
+				<img class="brand-title" src="/view/images/logo-text.png" alt="" />
 			</a>
 
 			<div class="nav-control">
@@ -165,7 +165,7 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>Hi, welcome back!</h4>
-							<span class="ml-1">Leader</span>
+							<span class="ml-1" th:text="${user.lastName}">Leader</span>
 						</div>
 					</div>
 					<div
@@ -182,71 +182,22 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" th:each="project : ${projects}">
 						<div class="card text-white bg-primary">
 							<div class="card-header">
-								<h5 class="card-title text-white">Project 1</h5>
+								<h5 class="card-title text-white" th:text="${project.title}">Project 1</h5>
 							</div>
 							<div class="card-body mb-0">
-								<p class="card-text">Mô tả dự án</p>
-								<a href="./leader-task.html" class="btn btn-dark btn-card"
-									>Xem đầu mục công việc</a
-								>
+								<p class="card-text" th:text="${project.content}">Mô tả dự án</p>
+								<a th:href="@{'/leader-task-list'(projectId=${project.id})}" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
 							</div>
-							<div class="card-footer bg-transparent border-0 text-white">
-								Last updated 3 min ago
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-						<div class="card text-white bg-primary">
-							<div class="card-header">
-								<h5 class="card-title text-white">Project 2</h5>
-							</div>
-							<div class="card-body mb-0">
-								<p class="card-text">Mô tả dự án</p>
-								<a href="./leader-task.html" class="btn btn-dark btn-card"
-									>Xem đầu mục công việc</a
-								>
-							</div>
-							<div class="card-footer bg-transparent border-0 text-white">
-								Last updated 3 min ago
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-						<div class="card text-white bg-primary">
-							<div class="card-header">
-								<h5 class="card-title text-white">Project 3</h5>
-							</div>
-							<div class="card-body mb-0">
-								<p class="card-text">Mô tả dự án</p>
-								<a href="./leader-task.html" class="btn btn-dark btn-card"
-									>Xem đầu mục công việc</a
-								>
-							</div>
-							<div class="card-footer bg-transparent border-0 text-white">
-								Last updated 3 min ago
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-						<div class="card text-white bg-primary">
-							<div class="card-header">
-								<h5 class="card-title text-white">Project 4</h5>
-							</div>
-							<div class="card-body mb-0">
-								<p class="card-text">Mô tả dự án</p>
-								<a href="./leader-task.html" class="btn btn-dark btn-card"
-									>Xem đầu mục công việc</a
-								>
-							</div>
-							<div class="card-footer bg-transparent border-0 text-white">
-								Last updated 3 min ago
+							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
+								<p>Last updated 3 min ago</p>
 							</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 		<!--**********************************
@@ -257,8 +208,8 @@
         Scripts
     ***********************************-->
 		<!-- Required vendors -->
-		<script src="../../../static/view/vendor/global/global.min.js"></script>
-		<script src="../../../static/view/js/quixnav-init.js"></script>
-		<script src="../../../static/view/js/custom.min.js"></script>
+		<script src="/view/vendor/global/global.min.js"></script>
+		<script src="/view/js/quixnav-init.js"></script>
+		<script src="/view/js/custom.min.js"></script>
 	</body>
 </html>

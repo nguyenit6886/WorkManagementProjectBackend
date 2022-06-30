@@ -11,4 +11,7 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<TaskEntity, Integer> {
   @Query("Select t from TaskEntity t where t.active = true")
   List<TaskEntity> findAllActive();
+
+  @Query("Select t from TaskEntity t where t.active = true and t.project.id = :#{#projectId}")
+  List<TaskEntity> findAllTasksByProjectId(int projectId);
 }

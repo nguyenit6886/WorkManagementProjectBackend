@@ -201,7 +201,7 @@
                                     <p class="card-text text-white departmentInput" th:text="${department.note}" id="txtDepartmentNote">Note Department</p>
                                 </div>
                                 <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
-                                    <p class="text-white">Last updateed 3 min ago</p>
+                                    <p class="text-white">Last updated 3 min ago</p>
                                     <div>
                                         <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'openModalFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-primary">Sửa</a>
                                         <a th:href="@{'/delete_department'(departmentId=${department.id})}" class="btn btn-danger">Xóa</a>
