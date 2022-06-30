@@ -1,6 +1,8 @@
 package huce.edu.workmanagementprojectbackend.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -28,12 +30,15 @@ public class TaskEntity {
   @Column(name = "work_progress_level")
   private int workProgressLevel;
 
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   @Column(name = "deadline")
   private Date deadline;
 
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   @Column(name = "begin_date")
   private Date beginDate;
 
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   @Column(name = "end_date")
   private Date endDate;
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.jws.WebParam;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -35,16 +36,23 @@ public class LoginController {
   @PostMapping("/checklogin")
   public String checkLogin(@RequestParam("username")String username,
                            @RequestParam("password")String password,
-                           Model model){
-    EmployeeEntity employee = iEmployeeService.getObjectForLogin(username);
-    if(employee == null){
+                           Model model,
+                           HttpSession session){
+    EmployeeEntity employee = iEmployeeService.getEmployeeForLogin(username,password);
+    if(employee != null){
+      session.setAttribute("user",employee);
+      switch (employee.getPosition()){
+        case 0:
+          return "redirect:/project_manager";
+        case 1:
+          return "redirect:/leader_manager";
+        case 2:
+          return "redirect:/tasks";
+      }
+    }else{
       model.addAttribute("notify","Have not account");
       return "/html/login";
-    }else if(employee.getPasswordHash().equals(password)){
-      model.addAttribute("departments",iDepartmentService.getAll());
-      return "redirect:/manager";
-    }else{
-      return "/html/login";
     }
+    return "/html/login";
   }
 }

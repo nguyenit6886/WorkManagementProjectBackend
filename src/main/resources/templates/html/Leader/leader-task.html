@@ -7,8 +7,8 @@
 	<title>Leader: Tasks Details</title>
 	<!-- Favicon icon -->
 	<!-- <link rel="icon" type="image/png" sizes="16x16" href="../../../static/view/images/favicon.png" /> -->
-	<link href="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-	<link href="../../../static/view/css/style.css" rel="stylesheet" />
+	<link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="/view/css/style.css" rel="stylesheet" />
 </head>
 <body>
 <!--*******************
@@ -31,9 +31,9 @@ Preloader end
 
 <div class="nav-header">
 	<a href="index.html" class="brand-logo">
-		<img class="logo-abbr" src="../../../static/view/images/logo.png" alt="" />
-		<img class="logo-compact" src="../../../static/view/images/logo-text.png" alt="" />
-		<img class="brand-title" src="../../../static/view/images/logo-text.png" alt="" />
+		<img class="logo-abbr" src="/view/images/logo.png" alt="" />
+		<img class="logo-compact" src="/view/images/logo-text.png" alt="" />
+		<img class="brand-title" src="/view/images/logo-text.png" alt="" />
 	</a>
 
 	<div class="nav-control">
@@ -178,41 +178,39 @@ Preloader end
 			</div>
 		</div>
 		<div class="row px-3">
-			<h2>Project 1</h2>
+			<h2 id="projectTitle">Example Project</h2>
 		</div>
 		<div class="row mt-3">
-			<div class="col-xl-6 col-xxl-12 col-lg-6 col-sm-6">
+			<div class="col-xl-6 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks}">
 				<div class="card text-white bg-info">
 					<div class="card-header">
-						<h5 class="card-title text-white">Task 1</h5>
-						<span class="text-danger">Deadline</span>
+						<h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
+						<span class="text-danger" th:text="|Deadline: ${task.deadline}|">Deadline</span>
 					</div>
 					<div class="card-body mb-0">
 						<div class="d-flex justify-content-between">
-							<p class="card-text text-truncate">Mô tả công việc</p>
+							<p class="card-text text-truncate" th:text="${task.content}">Mô tả công việc</p>
 							<a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
 						</div>
-						<h6 class="text-white mb-1">Đang hoàn thành</h6>
-						<div class="progress mb-3">
-							<div
-									class="progress-bar bg-primary progress-bar-striped"
-									aria-valuenow="85"
-									aria-valuemin="0"
-									aria-valuemax="100"
-									style="width: 85%; height: 10px"
-									role="progressbar"
-							>
-								<span class="sr-only">85% Complete (success)</span>
+						<th:block th:switch="${task.workProgressLevel}">
+							<div th:case="'0'">
+								<h6 class="text-white mb-1">Chưa tiến hành</h6>
 							</div>
-						</div>
+							<div th:case="'1'">
+								<h6 class="text-white mb-1">Đang tiến hành</h6>
+							</div>
+							<div th:case="'2'">
+								<h6 class="text-white mb-1">Hoàn thành</h6>
+							</div>
+						</th:block>
 						<a href="#" class="btn btn-dark btn-card mt-2">Đánh giá kết quả</a>
 					</div>
 					<div class="card-footer bg-transparent border-0 text-white">
 						<div class="d-flex justify-content-between">
 							<p>Last updated 3 min ago</p>
-							<div>
-								<button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary mr-1">Update</button>
-								<a href="#" class="btn btn-danger">Delete</a>
+							<div class="action">
+								<a th:href="@{'/get_task'(taskId=${task.id})}" class="btn btn-primary">Update</a>
+								<a th:href="@{'/delete_task'(taskId=${task.id})}" class="btn btn-danger">Xóa</a>
 							</div>
 						</div>
 					</div>
@@ -229,49 +227,51 @@ Preloader end
 						<button type="button" class="close" data-dismiss="modal"><span>&times;</span>
 						</button>
 					</div>
-					<form>
+					<form method="post" th:action="@{/save_task}">
 						<div class="modal-body">
 							<div class="basic-form">
 								<div class="form-row">
 									<div class="form-group col-md-4">
 										<label>Tên nhiệm vụ</label>
-										<input type="text" class="form-control" placeholder="Tên dự án">
+										<input id="txtTitle" type="text" class="form-control" name="title" placeholder="Tên nhiệm vụ">
+										<input type="hidden" name="id" id="txtId" value="0">
 									</div>
 									<div class="form-group col-md-4">
 										<label>Thuộc dự án</label>
-										<p class="mt-1 text-black">Project_Name</p>
+										<p id="txtProjectTitle" class="mt-1 text-black">Project_Name</p>
+										<input type="hidden" name="project" id="objectProject" th:value="${projectId}">
 									</div>
 									<div class="form-group col-md-4">
-										<label>Mức độ công việc</label>
-										<select class="form-control">
-											<option value="">Khó</option>
-											<option value="">Trung bình</option>
-											<option value="">Dễ</option>
+										<label>Tiến độ công việc</label>
+										<select id="slProgress" name="workProgressLevel" class="form-control">
+											<option value="0">Chưa tiến hành</option>
+											<option value="1">Đang tiến hành</option>
+											<option value="2">Hoàn thành</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-6 col-lg-4">
 										<label>Ngày bắt đầu</label>
-										<input type="date" class="form-control">
+										<input id="txtBeginDate" type="date" name="beginDate" class="form-control">
 									</div>
 									<div class="form-group col-md-6 col-lg-4">
 										<label>Deadline</label>
-										<input type="date" class="form-control" placeholder="Deadline">
+										<input id="txtDeadlineDate" type="date" name="deadline" class="form-control" placeholder="Deadline">
 									</div>
 									<div class="form-group col-lg-4">
-										<label>Ngày kết thúc (Phục vụ cho update)</label>
-										<input type="date" class="form-control">
+										<label>Ngày kết thúc dự kiến</label>
+										<input id="txtEndDate" type="date" name="endDate" class="form-control">
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-12">
 										<label>Nội dung</label>
-										<textarea class="form-control" rows="5"></textarea>
+										<textarea id="txtContent" name="content" class="form-control" rows="5"></textarea>
 									</div>
 									<div class="form-group col-md-12">
 										<label>Ghi chú</label>
-										<textarea class="form-control" rows="3"></textarea>
+										<textarea id="txtNote" name="note" class="form-control" rows="3"></textarea>
 									</div>
 								</div>
 							</div>
@@ -287,7 +287,7 @@ Preloader end
 
 		<div class="row mx-3 fixed-bottom">
 			<div class="col-12 text-right mt-1 mb-5 mr-lg-3">
-				<button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-lg btn-rounded btn-primary pr-3">
+				<button id="addModal" type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-lg btn-rounded btn-primary pr-3">
                             <span class="btn-icon-left text-primary">
                                 <i class="fa fa-plus color-primary"></i>
 						    </span>
@@ -304,13 +304,63 @@ Preloader end
 <!--**********************************
 Scripts
 ***********************************-->
+
+
 <!-- Required vendors -->
-<script src="../../../static/view/vendor/global/global.min.js"></script>
-<script src="../../../static/view/js/quixnav-init.js"></script>
-<script src="../../../static/view/js/custom.min.js"></script>
+<script src="/view/vendor/global/global.min.js"></script>
+<script src="/view/js/quixnav-init.js"></script>
+<script src="/view/js/custom.min.js"></script>
 
 <!-- Sweet alert -->
-<script src="../../../../static/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
-<script src="../../../../static/view/js/plugins-init/sweetalert.init.js"></script>
+<script src="/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/view/js/plugins-init/sweetalert.init.js"></script>
+
+<script type="text/javascript" th:inline="javascript">
+	$('document').ready(function (){
+		var projectId = [[${projectId}]];
+
+		$.ajax({url: "/getone_project?projectId="+projectId, success: function(projectResult){
+				$('#projectTitle').text(projectResult.title);
+			}});
+
+		$('.action .btn-primary').on('click',function (event){
+			event.preventDefault();
+			var href = $(this).attr('href');
+			$.get(href, function(task){
+				$('#txtId').val(task.id);
+				$('#txtTitle').val(task.title);
+				$('#txtProjectTitle').text(task.project.title);
+				$('#txtBeginDate').val((task.beginDate).substring(0, 10));
+				$('#txtDeadlineDate').val((task.deadline).substring(0, 10));
+				$('#txtEndDate').val((task.deadline).substring(0, 10));
+				$('#txtContent').val(task.content);
+				$('#txtNote').val(task.note);
+				$('#slProgress').val(task.workProgressLevel);
+			});
+			$('#exampleModalCenter').modal();
+		})
+
+	})
+
+	$('document').ready(function (){
+		$('#addModal').on('click',function (event){
+			event.preventDefault();
+			$('#txtId').val(0);
+			$('#txtTitle').val('');
+			$('#txtProjectTitle').text('');
+			$('#txtBeginDate').val(new Date());
+			$('#txtDeadlineDate').val(new Date());
+			$('#txtEndDate').val(new Date());
+			$('#txtContent').val('');
+			$('#txtNote').val('');
+			$('#slProgress').val(0);
+			$('#exampleModalCenter').modal();
+			var projectTitle = document.getElementById("projectTitle").innerText;
+			console.log(projectTitle);
+			$('#txtProjectTitle').text(projectTitle);
+		})
+	})
+
+</script>
 </body>
 </html>

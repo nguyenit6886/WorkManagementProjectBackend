@@ -9,6 +9,7 @@ public interface ITaskService extends IFunctionService<TaskEntity> {
   @Override
   List<TaskEntity> getAll();
 
+  List<TaskEntity> getAllTasksByProjectId(int projectId);
   @Override
   TaskEntity getObjectById(int id);
 

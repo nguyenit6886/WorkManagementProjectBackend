@@ -35,7 +35,7 @@ public class ProjectController {
   }
 
   @RequestMapping("/save_project")
-  public String addProject(@ModelAttribute("project") ProjectEntity project){
+  public String addProject(@ModelAttribute("project") ProjectEntity project, HttpSession session){
     if(project.getId() != 0){
       project.setUpdateDate(new Date());
       iProjectService.updateObject(project);
