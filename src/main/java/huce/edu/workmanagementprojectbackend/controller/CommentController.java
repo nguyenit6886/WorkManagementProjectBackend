@@ -19,8 +19,19 @@ public class CommentController {
   @Autowired
   private IEmployeeService iEmployeeService;
 
-  @RequestMapping("/save_comment")
-  public String addDepartment(@ModelAttribute("comment")CommentEntity comment) {
+  @RequestMapping("/save_employee_comment")
+  public String addEmployeeComment(@ModelAttribute("comment")CommentEntity comment) {
+    addCommentAction(comment);
+    return "redirect:/employee_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
+  }
+
+  @RequestMapping("/save_manager_comment")
+  public String addManagerComment(@ModelAttribute("comment")CommentEntity comment) {
+    addCommentAction(comment);
+    return "redirect:/manager_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
+  }
+
+  private void addCommentAction(CommentEntity comment){
     if(comment.getId() != 0){
       comment.setUpdateDate(new Date());
       iCommentService.updateObject(comment);
@@ -31,6 +42,5 @@ public class CommentController {
       comment.setCreateUser(LoginController.CREATE_USER_ID);
       iCommentService.insertObject(comment);
     }
-    return "redirect:/detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
   }
 }

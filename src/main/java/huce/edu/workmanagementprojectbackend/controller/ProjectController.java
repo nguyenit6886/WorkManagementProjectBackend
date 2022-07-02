@@ -94,7 +94,7 @@ public class ProjectController {
 
   @RequestMapping("/project2")
   public String showProject2(){
-    return "/html/Manager/project/manager-detail.workprogress";
+    return "manager-detail-workprogress";
   }
 
   @RequestMapping("/project3")

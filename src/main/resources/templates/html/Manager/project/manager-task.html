@@ -187,7 +187,7 @@ Preloader end
         <h3>Project 1</h3>
         <div class="row">
             <div class="col-xl-4 col-xxl-4 col-lg-6 col-sm-6" th:each="task : ${tasks}">
-                <a href="manager-workprogress.html">
+                <a th:href="@{'/manager_workprogress_by_task'(taskId=${task.id})}">
                     <div class="card text-white bg-info">
                         <div class="card-header">
                             <h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>

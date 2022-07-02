@@ -21,21 +21,38 @@ public class WorkProgressController {
   @Autowired
   private ICommentService iCommentService;
 
-  @RequestMapping("/workprogress_by_task")
-  public String showWorkProgressListPage(@RequestParam("taskId")int taskId,
-                                         Model model){
+  @RequestMapping("/employee_workprogress_by_task")
+  public String showEmployeeWorkProgressListPage(@RequestParam("taskId")int taskId,
+                                                 Model model){
     model.addAttribute("workProgresss",iWorkProgressService.getObjectsByTask(taskId));
     model.addAttribute("taskId",taskId);
     return "/html/Employee/employee-workprogress";
   }
 
-  @RequestMapping("/detail_workprogress")
-  public String showDetailWorkProgressPage(@RequestParam("workProgressId")int workProgressId,
+  @RequestMapping("/manager_workprogress_by_task")
+  public String showManagerWorkProgressListPage(@RequestParam("taskId")int taskId,
+                                                Model model){
+    model.addAttribute("workProgresss",iWorkProgressService.getObjectsByTask(taskId));
+    model.addAttribute("taskId",taskId);
+    return "/html/Manager/project/manager-workprogress";
+  }
+
+  @RequestMapping("/employee_detail_workprogress")
+  public String showEmployeeDetailWorkProgressPage(@RequestParam("workProgressId")int workProgressId,
                                            Model model){
     WorkProgressEntity workProgress = iWorkProgressService.getObjectById(workProgressId);
     model.addAttribute("workProgress",workProgress);
     model.addAttribute("comments",iCommentService.getCommentByWorkProgress(workProgress));
     return "/html/Employee/employee-detail-workprogress";
+  }
+
+  @RequestMapping("/manager_detail_workprogress")
+  public String showManagerDetailWorkProgressPage(@RequestParam("workProgressId")int workProgressId,
+                                           Model model){
+    WorkProgressEntity workProgress = iWorkProgressService.getObjectById(workProgressId);
+    model.addAttribute("workProgress",workProgress);
+    model.addAttribute("comments",iCommentService.getCommentByWorkProgress(workProgress));
+    return "/html/Manager/project/manager-detail-workprogress";
   }
 
   @RequestMapping("/add_workprogress")
@@ -55,13 +72,13 @@ public class WorkProgressController {
       workProgress.setActive(true);
       iWorkProgressService.insertObject(workProgress);
     }
-    return "redirect:/workprogress_by_task?taskId="+workProgress.getTask().getId();
+    return "redirect:/employee_workprogress_by_task?taskId="+workProgress.getTask().getId();
   }
 
   @RequestMapping("/delete_workprogress")
   public String deleteDepartment(@RequestParam("taskId")int taskId,
                                  @RequestParam("workProgressId")int workProgressId) {
     iWorkProgressService.deleteObject(workProgressId);
-    return "redirect:/workprogress_by_task?taskId="+taskId;
+    return "redirect:/employee_workprogress_by_task?taskId="+taskId;
   }
 }
