@@ -2,6 +2,7 @@ package huce.edu.workmanagementprojectbackend.controller;
 
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.services.comment.ICommentService;
+import huce.edu.workmanagementprojectbackend.services.employee.IEmployeeService;
 import huce.edu.workmanagementprojectbackend.services.workprogress.IWorkProgressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class WorkProgressController {
 
   @Autowired
   private ICommentService iCommentService;
+
+  @Autowired
+  private IEmployeeService iEmployeeService;
 
   @RequestMapping("/employee_workprogress_by_task")
   public String showEmployeeWorkProgressListPage(@RequestParam("taskId")int taskId,
@@ -70,6 +74,7 @@ public class WorkProgressController {
     }else{
       workProgress.setCreateDate(new Date());
       workProgress.setActive(true);
+      workProgress.setEmployee(iEmployeeService.getObjectById(LoginController.CREATE_USER_ID));
       iWorkProgressService.insertObject(workProgress);
     }
     return "redirect:/employee_workprogress_by_task?taskId="+workProgress.getTask().getId();
