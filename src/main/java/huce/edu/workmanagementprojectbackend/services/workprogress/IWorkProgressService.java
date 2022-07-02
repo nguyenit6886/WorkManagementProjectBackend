@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.services.workprogress;
 
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public interface IWorkProgressService extends IFunctionService<WorkProgressEntit
   int deleteObject(int id);
 
   List<WorkProgressEntity> getObjectsByTask(int taskId);
+
+  @Override
+  Paged<WorkProgressEntity> getPage(int pageNumber);
 }

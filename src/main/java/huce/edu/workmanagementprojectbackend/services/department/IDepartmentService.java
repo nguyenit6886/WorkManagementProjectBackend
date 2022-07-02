@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.services.department;
 
 import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface IDepartmentService extends IFunctionService<DepartmentEntity> {
 
   @Override
   int deleteObject(int id);
+
+  @Override
+  Paged<DepartmentEntity> getPage(int pageNumber);
 }

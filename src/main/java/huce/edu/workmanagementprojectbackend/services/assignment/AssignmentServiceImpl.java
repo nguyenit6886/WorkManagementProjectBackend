@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.services.assignment;
 
 import huce.edu.workmanagementprojectbackend.model.AssignmentEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.repository.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,10 @@ public class AssignmentServiceImpl implements IAssignmentService{
   @Override
   public int deleteObject(int id) {
     return 0;
+  }
+
+  @Override
+  public Paged<AssignmentEntity> getPage(int pageNumber) {
+    return null;
   }
 }

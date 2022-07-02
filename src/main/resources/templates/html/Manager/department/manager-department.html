@@ -187,7 +187,7 @@
                         </ol>
                     </div>
                 </div>
-                <div class="row" th:each="department : ${departments}">
+                <div class="row" th:each="department : ${departments.page}">
                     <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12" th:id="'department' + ${department.id}">
                         <a th:href="@{'/employees_of_department'(departmentId=${department.id})}">
                             <div class="card text-white bg-info">
@@ -258,6 +258,32 @@
                         </a>
 					</div>
                 </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center" th:if="${departments.page.totalPages > 1}">
+                        <li class="page-item" th:classappend="${!departments.paging.isPrevEnabled()? 'disabled' : ''}">
+                            <a class="page-link" th:href="@{'department_manager?pageNumber=1'}" >First</a>
+                        </li>
+                        <li class="page-item" th:classappend="${!departments.paging.isPrevEnabled()? 'disabled' : ''}">
+                            <a class="page-link" th:href="@{'department_manager?pageNumber=' + ${departments.paging.pageNumber - 1 > 0 ? departments.paging.pageNumber - 1 : 1}}" >Previous</a>
+                        </li>
+                        <th:block th:each="item : ${departments.paging.getItems()}">
+                            <li class="page-item" th:classappend="${item.index == departments.paging.pageNumber? 'active' : ''}"
+                                th:if="${item.pageItemType.name() == 'PAGE'}">
+                                <a class="page-link" th:href="@{'department_manager?pageNumber=' + ${item.index}}"
+                                   th:text="${item.index}"></a>
+                            </li>
+                            <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                                <a class="page-link" href="#">...</a>
+                            </li>
+                        </th:block>
+                        <li class="page-item" th:classappend="${!departments.paging.isNextEnabled()? 'disabled' : ''}">
+                            <a class="page-link" th:href="@{'department_manager?pageNumber=' + ${departments.paging.pageNumber + 1 <= departments.page.totalPages ? departments.paging.pageNumber + 1 : departments.page.totalPages}}">Next</a>
+                        </li>
+                        <li class="page-item" th:classappend="${!departments.paging.isNextEnabled()? 'disabled' : ''}">
+                            <a class="page-link" th:href="@{'department_manager?pageNumber=' + ${departments.page.totalPages}}" >Last</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
         <!--**********************************

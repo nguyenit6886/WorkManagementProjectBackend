@@ -3,6 +3,7 @@ package huce.edu.workmanagementprojectbackend.services.workprogress;
 import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.repository.TaskRepository;
 import huce.edu.workmanagementprojectbackend.repository.WorkProgressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,11 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
       e.printStackTrace();
       return 400;
     }
+  }
+
+  @Override
+  public Paged<WorkProgressEntity> getPage(int pageNumber) {
+    return null;
   }
 
   @Override

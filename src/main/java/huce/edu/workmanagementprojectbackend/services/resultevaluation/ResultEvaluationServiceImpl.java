@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.services.resultevaluation;
 
 import huce.edu.workmanagementprojectbackend.model.ResultEvaluationEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.repository.ResultEvaluationReponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,10 @@ public class ResultEvaluationServiceImpl implements IResultEvaluationService{
   @Override
   public int deleteObject(int id) {
     return 0;
+  }
+
+  @Override
+  public Paged<ResultEvaluationEntity> getPage(int pageNumber) {
+    return null;
   }
 }

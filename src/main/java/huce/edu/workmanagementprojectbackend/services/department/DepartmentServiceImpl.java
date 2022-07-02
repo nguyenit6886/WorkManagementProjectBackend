@@ -1,8 +1,12 @@
 package huce.edu.workmanagementprojectbackend.services.department;
 
 import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
+import huce.edu.workmanagementprojectbackend.paging.Paging;
 import huce.edu.workmanagementprojectbackend.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,5 +67,11 @@ public class DepartmentServiceImpl implements IDepartmentService{
       e.printStackTrace();
       return 400;
     }
+  }
+
+  @Override
+  public Paged<DepartmentEntity> getPage(int pageNumber) {
+    Page<DepartmentEntity> postPage = repository.findAllActive(PageRequest.of(pageNumber - 1, Paging.PAGE_SIZE));
+    return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, Paging.PAGE_SIZE));
   }
 }
