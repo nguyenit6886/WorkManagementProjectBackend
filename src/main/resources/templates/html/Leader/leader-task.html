@@ -30,7 +30,7 @@ Preloader end
 ***********************************-->
 
 <div class="nav-header">
-	<a href="index.html" class="brand-logo">
+	<a href="leader-index.html" class="brand-logo">
 		<img class="logo-abbr" src="/view/images/logo.png" alt="" />
 		<img class="logo-compact" src="/view/images/logo-text.png" alt="" />
 		<img class="brand-title" src="/view/images/logo-text.png" alt="" />
@@ -61,12 +61,7 @@ Preloader end
 								</span>
 						<div class="dropdown-menu p-0 m-0">
 							<form>
-								<input
-										class="form-control"
-										type="search"
-										placeholder="Search"
-										aria-label="Search"
-								/>
+								<input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
 							</form>
 						</div>
 					</div>
@@ -104,12 +99,7 @@ Preloader end
 						</div>
 					</li>
 					<li class="nav-item dropdown header-profile">
-						<a
-								class="nav-link"
-								href="#"
-								role="button"
-								data-toggle="dropdown"
-						>
+						<a class="nav-link" href="#" role="button" data-toggle="dropdown">
 							<i class="mdi mdi-account"></i>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right">
@@ -138,11 +128,24 @@ Preloader end
 <div class="quixnav">
 	<div class="quixnav-scroll">
 		<ul class="metismenu" id="menu">
-			<li class="nav-label first">Main Menu</li>
+			<li>
+				<a href="leader-index.html" aria-expanded="false">
+					<i class="icon icon-home"></i>
+					<span class="nav-text">Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-label first">Management</li>
 			<li>
 				<a href="leader_manager" aria-expanded="false">
-					<i class="icon icon-single-content-03"></i>
-					<span class="nav-text">Danh sách dự án của phòng</span>
+					<i class="icon icon-app-store"></i>
+					<span class="nav-text">Project</span>
+				</a>
+			</li>
+			<li class="nav-label first">System</li>
+			<li>
+				<a href="#" aria-expanded="false">
+					<i class="fa fa-sign-out"></i>
+					<span class="nav-text">Logout</span>
 				</a>
 			</li>
 		</ul>
@@ -161,18 +164,16 @@ Preloader end
 			<div class="col-sm-6 p-md-0">
 				<div class="welcome-text">
 					<h4>Hi, welcome back!</h4>
-					<span class="ml-1">Leader</span>
+					<span class="mb-0">Leader</span>
 				</div>
 			</div>
-			<div
-					class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex"
-			>
+			<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
-						<a href="javascript:void(0)">Leader</a>
+						<a href="javascript:void(0)">Project</a>
 					</li>
 					<li class="breadcrumb-item active">
-						<a href="javascript:void(0)">Danh sách đầu mục công việc</a>
+						<a href="javascript:void(0)">Task</a>
 					</li>
 				</ol>
 			</div>
@@ -182,39 +183,41 @@ Preloader end
 		</div>
 		<div class="row mt-3">
 			<div class="col-xl-6 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks}">
-				<div class="card text-white bg-info">
-					<div class="card-header">
-						<h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
-						<span class="text-danger" th:text="|Deadline: ${task.deadline}|">Deadline</span>
-					</div>
-					<div class="card-body mb-0">
-						<div class="d-flex justify-content-between">
-							<p class="card-text text-truncate" th:text="${task.content}">Mô tả công việc</p>
-							<a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
+				<a href="./leader-workprogress.html">
+					<div class="card text-white bg-info">
+						<div class="card-header">
+							<h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
+							<span class="text-danger" th:text="|Deadline: ${task.deadline}|">Deadline</span>
 						</div>
-						<th:block th:switch="${task.workProgressLevel}">
-							<div th:case="'0'">
-								<h6 class="text-white mb-1">Chưa tiến hành</h6>
+						<div class="card-body mb-0">
+							<div class="d-flex justify-content-between">
+								<p class="card-text text-truncate" th:text="${task.content}">Mô tả công việc</p>
+								<a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
 							</div>
-							<div th:case="'1'">
-								<h6 class="text-white mb-1">Đang tiến hành</h6>
-							</div>
-							<div th:case="'2'">
-								<h6 class="text-white mb-1">Hoàn thành</h6>
-							</div>
-						</th:block>
-						<a href="#" class="btn btn-dark btn-card mt-2">Đánh giá kết quả</a>
-					</div>
-					<div class="card-footer bg-transparent border-0 text-white">
-						<div class="d-flex justify-content-between">
-							<p>Last updated 3 min ago</p>
-							<div class="action">
-								<a th:href="@{'/get_task'(taskId=${task.id})}" class="btn btn-primary">Update</a>
-								<a th:href="@{'/delete_task'(taskId=${task.id})}" class="btn btn-danger">Xóa</a>
+							<th:block th:switch="${task.workProgressLevel}">
+								<div th:case="'0'">
+									<h6 class="text-white mb-1">Chưa tiến hành</h6>
+								</div>
+								<div th:case="'1'">
+									<h6 class="text-white mb-1">Đang tiến hành</h6>
+								</div>
+								<div th:case="'2'">
+									<h6 class="text-white mb-1">Hoàn thành</h6>
+								</div>
+							</th:block>
+							<a href="#" class="btn btn-dark btn-card mt-2">Đánh giá kết quả</a>
+						</div>
+						<div class="card-footer bg-transparent border-0 text-white">
+							<div class="d-flex justify-content-between">
+								<p>Last updated 3 min ago</p>
+								<div class="action">
+									<a th:href="@{'/get_task'(taskId=${task.id})}" class="btn btn-primary">Update</a>
+									<a th:href="@{'/delete_task'(taskId=${task.id})}" class="btn btn-danger">Xóa</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 		</div>
 
