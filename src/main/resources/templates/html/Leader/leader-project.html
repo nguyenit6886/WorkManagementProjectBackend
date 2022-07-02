@@ -121,7 +121,7 @@
 										<i class="icon-user"></i>
 										<span class="ml-2">Profile </span>
 									</a>
-									<a href="../login.html" class="dropdown-item">
+									<a href="/logout" class="dropdown-item">
 										<i class="icon-key"></i>
 										<span class="ml-2">Logout </span>
 									</a>
@@ -165,7 +165,7 @@
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
 							<h4>Hi, welcome back!</h4>
-							<span class="ml-1" th:text="${user.lastName}">Leader</span>
+							<span class="ml-1" th:if="${user != null}" th:text="${user.lastName}">Leader</span>
 						</div>
 					</div>
 					<div

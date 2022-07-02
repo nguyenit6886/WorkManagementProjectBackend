@@ -1,5 +1,7 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
+import huce.edu.workmanagementprojectbackend.common.AccountRole;
+import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
 import huce.edu.workmanagementprojectbackend.services.project.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class ProjectController {
@@ -22,20 +24,28 @@ public class ProjectController {
     return iProjectService.getObjectById(projectId);
   }
 
+
   @RequestMapping("/project_manager")
-  public String showProjectManagerPage(Model model){
+  public String showProjectManagerPage(Model model,HttpSession session){
     model.addAttribute("projects",iProjectService.getAll());
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/project/manager-project";
   }
 
   @RequestMapping("/leader_manager")
-  public String showLeaderManagerPage(Model model){
+  public String showLeaderManagerPage(Model model,
+                                      HttpSession session){
     model.addAttribute("projects",iProjectService.getAll());
-    return "/html/Leader/leader-project.html";
+    EmployeeEntity userSession = (EmployeeEntity) session.getAttribute("user");
+    if(userSession != null && userSession.getPosition() == AccountRole.ROLE_LEADER.getValue()){
+      model.addAttribute("user",userSession);
+      return "/html/Leader/leader-project";
+    }
+    return "redirect:/login";
   }
 
   @RequestMapping("/save_project")
-  public String addProject(@ModelAttribute("project") ProjectEntity project, HttpSession session){
+  public String addProject(@ModelAttribute("project") ProjectEntity project){
     if(project.getId() != 0){
       project.setUpdateDate(new Date());
       iProjectService.updateObject(project);
@@ -51,4 +61,6 @@ public class ProjectController {
     iProjectService.deleteObject(projectId);
     return "redirect:/project_manager";
   }
+
+
 }

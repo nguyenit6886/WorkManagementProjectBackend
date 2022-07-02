@@ -37,7 +37,18 @@ public class EmployeeServiceImpl implements IEmployeeService{
   }
 
   @Override
-  public EmployeeEntity getObjectForLogin(String username) {
+  public EmployeeEntity getEmployeeForLogin(String username, String password) {
+    List<EmployeeEntity> employees = repository.findAll();
+    for(EmployeeEntity employee : employees){
+      if(employee.getUsername().equals(username) && employee.getPasswordHash().equals(password)){
+        return employee;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public EmployeeEntity getEmployeeByUsername(String username) {
     List<EmployeeEntity> employees = repository.findAll();
     for(EmployeeEntity employee : employees){
       if(employee.getUsername().equals(username)){
