@@ -1,6 +1,8 @@
 package huce.edu.workmanagementprojectbackend.services.assignment;
 
 import huce.edu.workmanagementprojectbackend.model.AssignmentEntity;
+import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
+import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ public interface IAssignmentService extends IFunctionService<AssignmentEntity> {
 
   @Override
   int deleteObject(int id);
+
+  List<TaskEntity> getTaskByEmployee(EmployeeEntity employee);
 
   @Override
   Paged<AssignmentEntity> getPage(int pageNumber);

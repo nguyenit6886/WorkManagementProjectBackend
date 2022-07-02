@@ -1,13 +1,20 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
+import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
+import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
+import huce.edu.workmanagementprojectbackend.services.assignment.IAssignmentService;
+import huce.edu.workmanagementprojectbackend.services.employee.IEmployeeService;
 import huce.edu.workmanagementprojectbackend.services.task.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class TaskController {
@@ -15,15 +22,24 @@ public class TaskController {
   @Autowired
   private ITaskService iTaskService;
 
+  @Autowired
+  private IAssignmentService iAssignmentService;
+
+  @Autowired
+  private IEmployeeService iEmployeeService;
+
   @ResponseBody
   @GetMapping("/tasks")
   public List<TaskEntity> getEmployees(){
     return iTaskService.getAll();
   }
 
-  @RequestMapping("/tasklist")
+  @RequestMapping("/employee_task")
   public String showTaskListPage(Model model){
-    model.addAttribute("tasks",iTaskService.getAll());
+    EmployeeEntity employee = iEmployeeService.getObjectById(LoginController.CREATE_USER_ID);
+    model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
+    Map<ProjectEntity,List<TaskEntity>> map = iAssignmentService.getTaskByEmployee(employee)
+                                                                .stream().collect(Collectors.groupingBy(w -> w.getProject()));
     return "/html/Employee/employee-task";
   }
 
@@ -34,6 +50,7 @@ public class TaskController {
     model.addAttribute("projectId", projectId);
     return "/html/Leader/leader-task";
   }
+
   @ResponseBody
   @RequestMapping("/get_task")
   public TaskEntity getTask(@RequestParam("taskId") int taskId){
