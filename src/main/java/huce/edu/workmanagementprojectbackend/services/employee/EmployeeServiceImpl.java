@@ -2,9 +2,13 @@ package huce.edu.workmanagementprojectbackend.services.employee;
 
 import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
+import huce.edu.workmanagementprojectbackend.paging.Paging;
 import huce.edu.workmanagementprojectbackend.repository.DepartmentRepository;
 import huce.edu.workmanagementprojectbackend.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -109,5 +113,11 @@ public class EmployeeServiceImpl implements IEmployeeService{
       e.printStackTrace();
       return 400;
     }
+  }
+
+  @Override
+  public Paged<EmployeeEntity> getPage(int pageNumber) {
+    Page<EmployeeEntity> postPage = repository.findAllActive(PageRequest.of(pageNumber - 1, Paging.PAGE_SIZE));
+    return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, Paging.PAGE_SIZE));
   }
 }

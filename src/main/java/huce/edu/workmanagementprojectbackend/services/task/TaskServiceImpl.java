@@ -2,8 +2,12 @@ package huce.edu.workmanagementprojectbackend.services.task;
 
 import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
+import huce.edu.workmanagementprojectbackend.paging.Paging;
 import huce.edu.workmanagementprojectbackend.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -74,5 +78,16 @@ public class TaskServiceImpl implements ITaskService{
     deleteTask.setActive(false);
     deleteTask = repository.save(deleteTask);
     return deleteTask.getId();
+  }
+
+  @Override
+  public Paged<TaskEntity> getPage(int pageNumber) {
+    return null;
+  }
+
+  @Override
+  public Paged<TaskEntity> getPageByProjectId(int projectId, int pageNumber){
+    Page<TaskEntity> postPage = repository.findAllTasksByProjectId(projectId, PageRequest.of(pageNumber - 1, Paging.PAGE_SIZE));
+    return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, Paging.PAGE_SIZE));
   }
 }

@@ -186,7 +186,7 @@ Preloader end
 
         <h3>Project 1</h3>
         <div class="row">
-            <div class="col-xl-4 col-xxl-4 col-lg-6 col-sm-6" th:each="task : ${tasks}">
+            <div class="col-xl-4 col-xxl-4 col-lg-6 col-sm-6" th:each="task : ${tasks.page}">
                 <a href="manager-workprogress.html">
                     <div class="card text-white bg-info">
                         <div class="card-header">
@@ -218,6 +218,32 @@ Preloader end
                 </a>
             </div>
         </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" th:if="${tasks.page.totalPages > 1}">
+                <li class="page-item" th:classappend="${!tasks.paging.isPrevEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=1'}" >First</a>
+                </li>
+                <li class="page-item" th:classappend="${!tasks.paging.isPrevEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.paging.pageNumber - 1 > 0 ? tasks.paging.pageNumber - 1 : 1}}" >Previous</a>
+                </li>
+                <th:block th:each="item : ${tasks.paging.getItems()}">
+                    <li class="page-item" th:classappend="${item.index == tasks.paging.pageNumber? 'active' : ''}"
+                        th:if="${item.pageItemType.name() == 'PAGE'}">
+                        <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${item.index}}"
+                           th:text="${item.index}"></a>
+                    </li>
+                    <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+                </th:block>
+                <li class="page-item" th:classappend="${!tasks.paging.isNextEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.paging.pageNumber + 1 <= tasks.page.totalPages ? tasks.paging.pageNumber + 1 : tasks.page.totalPages}}">Next</a>
+                </li>
+                <li class="page-item" th:classappend="${!tasks.paging.isNextEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.page.totalPages}}" >Last</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 <!--**********************************

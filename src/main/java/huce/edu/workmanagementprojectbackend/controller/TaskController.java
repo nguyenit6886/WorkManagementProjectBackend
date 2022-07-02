@@ -1,19 +1,12 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
-import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
-import huce.edu.workmanagementprojectbackend.services.assignment.IAssignmentService;
-import huce.edu.workmanagementprojectbackend.services.project.IProjectService;
 import huce.edu.workmanagementprojectbackend.services.task.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -67,9 +60,11 @@ public class TaskController {
   }
 
   @RequestMapping("/manager-task-list")
-  public String showTaskListManagerPage(@RequestParam("projectId") int projectId, Model model){
-    List<TaskEntity> taskEntities = iTaskService.getAllTasksByProjectId(projectId);
-    model.addAttribute("tasks", taskEntities);
+  public String showTaskListManagerPage(@RequestParam("projectId") int projectId,
+                                        @RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
+                                        Model model){
+    //List<TaskEntity> taskEntities = iTaskService.getAllTasksByProjectId(projectId);
+    model.addAttribute("tasks", iTaskService.getPageByProjectId(projectId, pageNumber));
     model.addAttribute("projectId", projectId);
     return "/html/Manager/project/manager-task";
   }

@@ -1,5 +1,7 @@
 package huce.edu.workmanagementprojectbackend.services;
 
+import huce.edu.workmanagementprojectbackend.paging.Paged;
+
 import java.util.List;
 
 public interface IFunctionService<E> {
@@ -12,4 +14,6 @@ public interface IFunctionService<E> {
   int updateObject(E e);
 
   int deleteObject(int id);
+
+  Paged<E> getPage(int pageNumber);
 }

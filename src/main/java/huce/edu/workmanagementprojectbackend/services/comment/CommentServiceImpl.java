@@ -2,6 +2,7 @@ package huce.edu.workmanagementprojectbackend.services.comment;
 
 import huce.edu.workmanagementprojectbackend.model.CommentEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.repository.CommentReponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,11 @@ public class CommentServiceImpl implements ICommentService{
   @Override
   public int deleteObject(int id) {
     return 0;
+  }
+
+  @Override
+  public Paged<CommentEntity> getPage(int pageNumber) {
+    return null;
   }
 
   @Override

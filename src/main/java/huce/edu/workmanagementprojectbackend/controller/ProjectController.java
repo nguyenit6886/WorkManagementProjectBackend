@@ -36,15 +36,17 @@ public class ProjectController {
   }
 
   @RequestMapping("/project_manager")
-  public String showProjectManagerPage(Model model){
-    model.addAttribute("projects",iProjectService.getAll());
+  public String showProjectManagerPage(@RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
+                                       Model model){
+    model.addAttribute("projects",iProjectService.getPage(pageNumber));
     model.addAttribute("departments",iDepartmentService.getAll());
     return "/html/Manager/project/manager-project";
   }
 
   @RequestMapping("/leader_manager")
-  public String showLeaderManagerPage(Model model){
-    model.addAttribute("projects",iProjectService.getAll());
+  public String showLeaderManagerPage(@RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
+                                      Model model){
+    model.addAttribute("projects",iProjectService.getPage(pageNumber));
     return "/html/Leader/leader-project";
   }
 

@@ -16,8 +16,9 @@ public class DepartmentController {
   private IDepartmentService iDepartmentService;
 
   @RequestMapping("/department_manager")
-  public String showDepartmentManagerPage(Model model){
-    model.addAttribute("departments",iDepartmentService.getAll());
+  public String showDepartmentManagerPage(@RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
+                                          Model model){
+    model.addAttribute("departments",iDepartmentService.getPage(pageNumber));
     return "/html/Manager/department/manager-department";
   }
 

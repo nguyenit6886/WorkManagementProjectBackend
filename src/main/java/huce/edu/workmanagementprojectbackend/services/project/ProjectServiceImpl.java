@@ -1,8 +1,13 @@
 package huce.edu.workmanagementprojectbackend.services.project;
 
+import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
+import huce.edu.workmanagementprojectbackend.paging.Paging;
 import huce.edu.workmanagementprojectbackend.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +17,8 @@ public class ProjectServiceImpl implements IProjectService{
 
   @Autowired
   private ProjectRepository repository;
+
+  private final int PAGE_SIZE = 6;
 
   @Override
   public List<ProjectEntity> getAll() {
@@ -75,5 +82,11 @@ public class ProjectServiceImpl implements IProjectService{
       e.printStackTrace();
       return 400;
     }
+  }
+
+  @Override
+  public Paged<ProjectEntity> getPage(int pageNumber) {
+    Page<ProjectEntity> postPage = repository.findAllActive(PageRequest.of(pageNumber - 1, Paging.PAGE_SIZE));
+    return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, Paging.PAGE_SIZE));
   }
 }
