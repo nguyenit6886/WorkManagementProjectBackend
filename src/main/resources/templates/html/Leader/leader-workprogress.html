@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <link href="/view/css/style.css" rel="stylesheet">
 </head>
+
 <body>
 
     <!--*******************
@@ -35,7 +37,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="employee-index.html" class="brand-logo">
+            <a href="./leader-index.html" class="brand-logo">
                 <img class="logo-abbr" src="/view/images/logo.png" alt="">
                 <img class="logo-compact" src="/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -128,18 +130,18 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li>
-                        <a href="employee-index.html" aria-expanded="false">
+                        <a href="leader-index.html" aria-expanded="false">
                             <i class="icon icon-home"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
-                        <a href="tasklist" aria-expanded="false">
-                            <i class="fa fa-tasks"></i>
-                            <span class="nav-text">Task</span>
-                        </a>
-                    </li>
+						<a href="leader_manager" aria-expanded="false">
+							<i class="icon icon-app-store"></i>
+							<span class="nav-text">Project</span>
+						</a>
+					</li>
                     <li class="nav-label first">System</li>
                     <li>
                         <a href="#" aria-expanded="false">
@@ -163,11 +165,12 @@
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Hi, welcome back!</h4>
-                            <p class="mb-0">Employee</p>
+                            <p class="mb-0">Leader</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Project</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Task</a></li>
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">Work Progress</a></li>
                         </ol>
@@ -176,36 +179,126 @@
 
                 <h3>Work progress List</h3>
                 <div class="row">
-                    <div class="col-md-6" th:each="workProgress : ${workProgresss}">
-                        <a th:href="@{'/employee_detail_workprogress'(workProgressId=${workProgress.id})}">
+                    <div class="col-md-6">
+                        <a href="./leader-detail.workprogress.html">
                             <div class="card text-white bg-primary">
                                 <div class="card-header d-flex justify-content-between pt-1">
-                                    <h4 class="card-title text-white" th:text="${workProgress.title}">Work Progress 1</h4>
+                                    <h4 class="card-title text-white">Work Progress 1</h4>
                                     <p class="mt-3" style="color:#BDBDC7">Created by Employee-Name</p>
                                 </div>
                                 <div class="card-body mb-0 pt-1">
-                                    <p class="text-white mb-3" th:text="${workProgress.workProgressLevel}">Tiến độ</p>
+                                    <p class="text-white mb-3">Tiến độ</p>
+                                    <div class="progress mb-3">
+                                        <div
+                                            class="progress-bar bg-danger progress-bar-striped"
+                                            aria-valuenow="85"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style="width: 85%; height: 10px"
+                                            role="progressbar"
+                                        >
+                                            <span class="sr-only">85% Complete (success)</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer bg-transparent border-1 text-white py-0">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p class="pt-3" style="color:#BDBDC7">Last updated 3 min ago by Employee-Update</p>
-                                        <a th:href="@{'/delete_workprogress'(taskId=${workProgress.task.id},workProgressId=${workProgress.id})}" class="btn btn-danger text-white">Remove</a>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                </div>
-
-                <div class="row mx-4 fixed-bottom">
-                    <div class="col-12 text-right mt-1 mb-5 mr-lg-5">
-						<a th:href="@{'/add_workprogress'(taskId=${taskId})}" class="btn btn-lg btn-rounded btn-primary pr-3">
-                            <span class="btn-icon-left text-primary">
-                                <i class="fa fa-plus color-primary"></i>
-						    </span>
-                            <span>Thêm Tiến độ</span>
+                    <div class="col-md-6">
+                        <a href="./leader-detail.workprogress.html">
+                            <div class="card text-white bg-primary">
+                                <div class="card-header d-flex justify-content-between pt-1">
+                                    <h4 class="card-title text-white">Work Progress 1</h4>
+                                    <p class="mt-3" style="color:#BDBDC7">Created by Employee-Name</p>
+                                </div>
+                                <div class="card-body mb-0 pt-1">
+                                    <p class="text-white mb-3">Tiến độ</p>
+                                    <div class="progress mb-3">
+                                        <div
+                                            class="progress-bar bg-danger progress-bar-striped"
+                                            aria-valuenow="85"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style="width: 85%; height: 10px"
+                                            role="progressbar"
+                                        >
+                                            <span class="sr-only">85% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-1 text-white py-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="pt-3" style="color:#BDBDC7">Last updated 3 min ago by Employee-Update</p>
+                                    </div>
+                                </div>
+                            </div>
                         </a>
-					</div>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="./leader-detail.workprogress.html">
+                            <div class="card text-white bg-primary">
+                                <div class="card-header d-flex justify-content-between pt-1">
+                                    <h4 class="card-title text-white">Work Progress 1</h4>
+                                    <p class="mt-3" style="color:#BDBDC7">Created by Employee-Name</p>
+                                </div>
+                                <div class="card-body mb-0 pt-1">
+                                    <p class="text-white mb-3">Tiến độ</p>
+                                    <div class="progress mb-3">
+                                        <div
+                                            class="progress-bar bg-danger progress-bar-striped"
+                                            aria-valuenow="85"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style="width: 85%; height: 10px"
+                                            role="progressbar"
+                                        >
+                                            <span class="sr-only">85% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-1 text-white py-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="pt-3" style="color:#BDBDC7">Last updated 3 min ago by Employee-Update</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="./leader-detail.workprogress.html">
+                            <div class="card text-white bg-primary">
+                                <div class="card-header d-flex justify-content-between pt-1">
+                                    <h4 class="card-title text-white">Work Progress 1</h4>
+                                    <p class="mt-3" style="color:#BDBDC7">Created by Employee-Name</p>
+                                </div>
+                                <div class="card-body mb-0 pt-1">
+                                    <p class="text-white mb-3">Tiến độ</p>
+                                    <div class="progress mb-3">
+                                        <div
+                                            class="progress-bar bg-danger progress-bar-striped"
+                                            aria-valuenow="85"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style="width: 85%; height: 10px"
+                                            role="progressbar"
+                                        >
+                                            <span class="sr-only">85% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-1 text-white py-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="pt-3" style="color:#BDBDC7">Last updated 3 min ago by Employee-Update</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

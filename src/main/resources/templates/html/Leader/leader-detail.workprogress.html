@@ -9,7 +9,6 @@
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <link href="/view/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/custom.css">
 </head>
 
 <body>
@@ -26,7 +25,7 @@
     </div>
     <!--*******************
         Preloader end
-    ********************-->F
+    ********************-->
 
 
     <!--**********************************
@@ -38,7 +37,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="employee-index.html" class="brand-logo">
+            <a href="./leader-index.html" class="brand-logo">
                 <img class="logo-abbr" src="/view/images/logo.png" alt="">
                 <img class="logo-compact" src="/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -131,18 +130,18 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li>
-                        <a href="employee-index.html" aria-expanded="false">
+                        <a href="leader-index.html" aria-expanded="false">
                             <i class="icon icon-home"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
-                        <a href="tasklist" aria-expanded="false">
-                            <i class="fa fa-tasks"></i>
-                            <span class="nav-text">Task</span>
-                        </a>
-                    </li>
+						<a href="leader_manager" aria-expanded="false">
+							<i class="icon icon-app-store"></i>
+							<span class="nav-text">Project</span>
+						</a>
+					</li>
                     <li class="nav-label first">System</li>
                     <li>
                         <a href="#" aria-expanded="false">
@@ -166,13 +165,14 @@
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Hi, welcome back!</h4>
-                            <p class="mb-0">Employee</p>
+                            <p class="mb-0">Leader</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Project</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Task</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Work Progress</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Work Progress</a></li>
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">Detail</a></li>
                         </ol>
                     </div>
@@ -180,100 +180,79 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form th:action="@{/save_workprogress}" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="id" th:value="${workProgress.id}">
-                                <input type="hidden" name="task" th:value="${workProgress.task.id}">
-                                <div class="card-header pb-0 col-md-10">
-                                    <h3 class="workprogress-old" th:text="${workProgress.title}">Tên Work Progress</h3>
-                                    <input type="text" name="title" th:value="${workProgress.title}" class="form-control border-primary workprogress-input">
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <div class="border border-primary p-2">
-                                                <div class="card-content">
-                                                    <div class="card-text m-2">
-                                                        <p class="text-black workprogress-old" th:text="${workProgress.content}">
-                                                            Content: Thiết kế form task khi nhấn vào 1 task sẽ hiện list task nhỏ của
-                                                            từng dự án
-                                                            khi kích vào từng task nhỏ sẽ xem đk content , tiến độ làm việc, comment
-                                                        </p>
-                                                        <textarea name="content" id="autoresizing" autofocus class="form-control workprogress-input" th:value="${workProgress.content}">Nội dung cũ</textarea>
-                                                    </div>
-                                                </div>
-                
-                                                <div class="card-listFile">
-                                                    <h4 class="m-2">Danh sách tệp đính kèm</h4>
-                                                    <div class="row px-2">
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                    
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                            <div class="card-header pb-0 col-md-12">
+                                <h3 class="workprogress-old">Tên Work Progress</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="border border-primary p-2">
+                                            <div class="card-content">
+                                                <div class="card-text m-2">
+                                                    <p class="text-black workprogress-old">
+                                                        Content: Thiết kế form task khi nhấn vào 1 task sẽ hiện list task nhỏ của
+                                                        từng dự án
+                                                        khi kích vào từng task nhỏ sẽ xem đk content , tiến độ làm việc, comment
+                                                    </p>
                                                 </div>
                                             </div>
-                                        </div>
             
-                                        <div class="col-md-2">
-                                            <div class="custom-file text-white mb-5">
-                                                <input type="file" class="custom-file-input">
-                                                <label class="custom-file-label">Đính kèm tệp</label>
+                                            <div class="card-listFile">
+                                                <h4 class="m-2">Danh sách tệp đính kèm</h4>
+                                                <div class="row px-2">
+                                                    <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
+                                                        <img class="card-img-top pos" src="/view/images/avatar/NV.jpg" alt="...">
+                                                        <div class="card-img-overlay d-flex align-items-start">
+                                                            <div>
+                                                                <i class="fa fa-window-close close" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                
+                                                    <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
+                                                        <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
+                                                        <div class="card-img-overlay d-flex align-items-start">
+                                                            <div>
+                                                                <i class="fa fa-window-close close" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
+                                                        <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
+                                                        <div class="card-img-overlay d-flex align-items-start">
+                                                            <div>
+                                                                <i class="fa fa-window-close close" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;">
-                                                <option th:value="${workProgress.workProgressLevel}" th:text="${workProgress.workProgressLevel}" selected>Tiến độ CV</option>
-                                                <option>Hoàn thành</option>
-                                                <option>Đang tiến hành</option>
-                                            </select>
-                                            <input type="submit" name="submit" value="Save" class="btn btn-primary text-white mt-5 workprogress-input">
-                                            <button type="button" id="btn-update" class="btn btn-primary text-white mt-5 workprogress-old">Edit</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <div class="card-footer" style="border-top: none">
+                            </div>
+                            <div class="card-footer border-0">
                                 <div class="row px-1">
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         <div class="p-2 border border-primary">
                                             <div class="d-flex">
                                                 <img src="/view/images/avatar/1.png" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
-                                                <form th:action="@{/save_employee_comment}" class="d-inline-flex w-100 ml-3" style="align-items: center;" id="addCommentForm">
-                                                    <input type="hidden" name="workProgress" th:value="${workProgress.id}">
+                                                <form class="d-inline-flex w-100 ml-3" style="align-items: center;">
                                                     <div class="w-100">
-                                                        <input type="text" name="content" class="form-control input-rounded bg-light" placeholder="input-rounded">
+                                                        <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded">
                                                     </div>
-                                                    <button class="btn btn-primary ml-2" type="submit" form="addCommentForm">Comment</button>
+                                                    <button class="btn btn-primary ml-2" type="button">Comment</button>
                                                 </form>
                                             </div>
-                                            <div class="list-comment mt-3" th:each="comment : ${comments}">
+                                            <div class="list-comment mt-3">
                                                 <div class="comment-item d-flex justify-content-start">
                                                     <div class="rounded-circle">
                                                         <img src="/view/images/avatar/1.png" alt="avt" style="width: 40px; height: 40px; object-fit: cover;">
                                                     </div>
                                                     <div class="ml-3 px-2 py-1 bg-light" style="border-radius: 15px;">
-                                                        <span class="text-black" style="font-weight: 500;" th:text="${comment.employee.firstName} + ' ' + ${comment.employee.lastName}">Hoàng Tuấn Anh</span>
-                                                        <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
+                                                        <span class="text-black" style="font-weight: 500;">Hoàng Tuấn Anh</span>
+                                                        <p class="text-black-50" style="margin-bottom: 5px;">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -285,6 +264,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <!--**********************************
             Content body end
@@ -325,8 +305,6 @@
     <script src="/view/vendor/global/global.min.js"></script>
     <script src="/view/js/quixnav-init.js"></script>
     <script src="/view/js/custom.min.js"></script>
-
-    <script src="/view/js/custom/form-workprogress.custom.js"></script>
 </body>
 
 </html>

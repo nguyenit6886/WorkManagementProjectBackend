@@ -35,7 +35,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="employee-index.html" class="brand-logo">
+            <a href="leader-index.html" class="brand-logo">
                 <img class="logo-abbr" src="/view/images/logo.png" alt="">
                 <img class="logo-compact" src="/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -43,8 +43,7 @@
 
             <div class="nav-control">
                 <div class="hamburger">
-                    <span class="line"></span><span class="line"></span>
-                    <span class="line"></span>
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
                 </div>
             </div>
         </div>
@@ -100,11 +99,11 @@
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="/view/profile.html" class="dropdown-item">
+                                    <a href="../profile.html" class="dropdown-item">
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
-                                    <a href="/view/login.html" class="dropdown-item">
+                                    <a href="../login.html" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -126,18 +125,18 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li>
-                        <a href="employee-index.html" aria-expanded="false">
+                        <a href="leader-index.html" aria-expanded="false">
                             <i class="icon icon-home"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-label first">Management</li>
                     <li>
-                        <a href="tasklist" aria-expanded="false">
-                            <i class="fa fa-tasks"></i>
-                            <span class="nav-text">Task</span>
-                        </a>
-                    </li>
+						<a href="leader_manager" aria-expanded="false">
+							<i class="icon icon-app-store"></i>
+							<span class="nav-text">Project</span>
+						</a>
+					</li>
                     <li class="nav-label first">System</li>
                     <li>
                         <a href="#" aria-expanded="false">
@@ -155,53 +154,7 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body ">
-            <div class="container-fluid">
-				<div class="row page-titles mx-0">
-					<div class="col-sm-6 p-md-0">
-						<div class="welcome-text">
-							<h4>Hi, welcome back!</h4>
-							<span class="mb-0">Employee</span>
-						</div>
-					</div>
-					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">Task</a></li>
-						</ol>
-					</div>
-				</div>
-				<div class="row mx-3">
-					<h2>Project 1</h2>
-				</div>
-				<div class="row mt-3">
-					<div class="col-xl-4 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks}">
-                        <a th:href="@{'/employee_workprogress_by_task'(taskId=${task.id})}">
-                            <div class="card text-white bg-info">
-                                <div class="card-header">
-                                    <h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
-                                </div>
-                                <div class="card-body mb-0">
-                                    <p class="card-text" th:text="${task.content}">Mô tả công việc</p>
-                                    <th:block th:switch="${task.workProgressLevel}">
-                                        <div th:case="0">
-                                            <h6 class="text-white mb-1">Chưa tiến hành</h6>
-                                        </div>
-                                        <div th:case="1">
-                                            <h6 class="text-white mb-1">Đang tiến hành</h6>
-                                        </div>
-                                        <div th:case="2">
-                                            <h6 class="text-white mb-1">Hoàn thành</h6>
-                                        </div>
-                                    </th:block>
-                                </div>
-                                <div class="card-footer bg-transparent border-0 text-white">
-                                    Last updated 3 min ago
-                                </div>
-                            </div>
-                        </a>
-					</div>
-				</div>
-			</div>
+        <div class="content-body">
         </div>
         <!--**********************************
             Content body end
