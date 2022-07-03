@@ -9,6 +9,7 @@
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <link href="/view/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 
 <body>
@@ -266,9 +267,30 @@
                                                 <div class="rounded-circle">
                                                     <img src="/view/images/avatar/1.png" alt="avt" style="width: 40px; height: 40px; object-fit: cover;">
                                                 </div>
-                                                <div class="ml-3 px-2 py-1 bg-light" style="border-radius: 15px;">
-                                                    <span class="text-black" style="font-weight: 500;" th:text="${comment.employee.firstName} + ' ' + ${comment.employee.lastName}">Hoàng Tuấn Anh</span>
-                                                    <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
+                                                <div class="ml-3 item-content-cmt">
+                                                    <div class="before-edit-cmt">
+                                                        <div class="bg-light px-2 py-1" style="border-radius: 15px;">
+                                                            <span class="text-black" style="font-weight: 500;" th:text="${comment.employee.firstName} + ' ' + ${comment.employee.lastName}">Hoàng Tuấn Anh</span>
+                                                            <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <span class="ml-2" style="font-size: 90%;line-height:1.8">Thời gian comment</span>
+                                                            <div class="action ml-2">
+                                                                <span class="mr-1" style="font-size: 7px;position: relative;top:-2px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                                                <button class="btn-edit-cmt mr-1" style="font-size: 90%;"><strong>Chỉnh sửa</strong></button>
+                                                                <a href="#" style="font-size: 90%;"><strong>Xóa</strong></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="after-edit-cmt">
+                                                        <form class="d-inline-flex w-100" style="align-items: center;">
+                                                            <div class="w-100">
+                                                                <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded">
+                                                            </div>
+                                                            <button class="btn btn-primary ml-2" type="button">Comment</button>
+                                                        </form>
+                                                        <button class="ml-2 btn-cancel-edit-cmt" style="font-size: 90%;"><strong>Hủy</strong></button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -321,6 +343,8 @@
 <script src="/view/vendor/global/global.min.js"></script>
 <script src="/view/js/quixnav-init.js"></script>
 <script src="/view/js/custom.min.js"></script>
+
+<script src="/view/js/custom/form-workprogress.custom.js"></script>
 </body>
 
 </html>
