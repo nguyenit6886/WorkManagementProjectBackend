@@ -1,7 +1,9 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
+import huce.edu.workmanagementprojectbackend.common.AccountRole;
 import huce.edu.workmanagementprojectbackend.model.AssignmentDepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
+import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
 import huce.edu.workmanagementprojectbackend.services.assignmentdepartment.IAssignmentDepartmentService;
 import huce.edu.workmanagementprojectbackend.services.department.IDepartmentService;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @Controller
 public class ProjectController {
@@ -37,17 +41,25 @@ public class ProjectController {
 
   @RequestMapping("/project_manager")
   public String showProjectManagerPage(@RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
-                                       Model model){
+                                       Model model,
+                                       HttpSession session){
     model.addAttribute("projects",iProjectService.getPage(pageNumber));
     model.addAttribute("departments",iDepartmentService.getAll());
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/project/manager-project";
   }
 
   @RequestMapping("/leader_manager")
   public String showLeaderManagerPage(@RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
-                                      Model model){
+                                      Model model,
+                                      HttpSession session){
     model.addAttribute("projects",iProjectService.getPage(pageNumber));
-    return "/html/Leader/leader-project";
+    EmployeeEntity userSession = (EmployeeEntity) session.getAttribute("user");
+    if(userSession != null && userSession.getPosition() == AccountRole.ROLE_LEADER.getValue()){
+      model.addAttribute("user",userSession);
+      return "/html/Leader/leader-project";
+    }
+    return "redirect:/login";
   }
 
   @RequestMapping("/save_project")
