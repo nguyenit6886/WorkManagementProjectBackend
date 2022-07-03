@@ -9,12 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class CoreController {
@@ -45,7 +43,7 @@ public class CoreController {
         session.setAttribute("user",employeeService.getEmployeeByUsername(loginedUser.getUsername()));
         switch (grantedAuthorityList.get(0).getAuthority()){
             case "ROLE_MANAGER":
-                return "redirect:/project_manager";
+                return "redirect:/manager";
             case "ROLE_LEADER":
                 return "redirect:/leader_manager";
             case "ROLE_EMPLOYEE":

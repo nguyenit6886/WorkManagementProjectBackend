@@ -1,7 +1,5 @@
 package huce.edu.workmanagementprojectbackend.common;
 
-import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
-
 public enum AccountRole {
     ROLE_MANAGER(0),
     ROLE_LEADER(1),
