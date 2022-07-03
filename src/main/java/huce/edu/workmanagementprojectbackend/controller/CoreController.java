@@ -47,7 +47,7 @@ public class CoreController {
             case "ROLE_LEADER":
                 return "redirect:/leader_manager";
             case "ROLE_EMPLOYEE":
-                return "redirect:/tasks";
+                return "redirect:/employee_task";
         }
         return "";
     }
