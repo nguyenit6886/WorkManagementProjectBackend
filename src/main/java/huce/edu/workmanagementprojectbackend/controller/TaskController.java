@@ -3,6 +3,7 @@ package huce.edu.workmanagementprojectbackend.controller;
 import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.services.assignment.IAssignmentService;
 import huce.edu.workmanagementprojectbackend.services.employee.IEmployeeService;
 import huce.edu.workmanagementprojectbackend.services.task.ITaskService;
@@ -44,8 +45,10 @@ public class TaskController {
   }
 
   @RequestMapping("/leader-task-list")
-  public String showTaskListPage(@RequestParam("projectId") int projectId, Model model){
-    List<TaskEntity> taskEntities = iTaskService.getAllTasksByProjectId(projectId);
+  public String showTaskListPage(@RequestParam("projectId") int projectId,
+                                 @RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
+                                 Model model){
+    Paged<TaskEntity> taskEntities = iTaskService.getPageByProjectId(projectId, pageNumber);
     model.addAttribute("tasks", taskEntities);
     model.addAttribute("projectId", projectId);
     return "/html/Leader/leader-task";

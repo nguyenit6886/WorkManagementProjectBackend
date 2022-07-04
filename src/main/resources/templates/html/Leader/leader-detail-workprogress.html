@@ -176,7 +176,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header pb-0 col-md-12">
-                                <h3 class="workprogress-old">Tên Work Progress</h3>
+                                <h3 class="workprogress-old" th:text="${workProgress.title}">Tên Work Progress</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -184,7 +184,7 @@
                                         <div class="border border-primary p-2">
                                             <div class="card-content">
                                                 <div class="card-text m-2">
-                                                    <p class="text-black workprogress-old">
+                                                    <p class="text-black workprogress-old" th:text="${workProgress.content}">
                                                         Content: Thiết kế form task khi nhấn vào 1 task sẽ hiện list task nhỏ của
                                                         từng dự án
                                                         khi kích vào từng task nhỏ sẽ xem đk content , tiến độ làm việc, comment
@@ -233,23 +233,25 @@
                                         <div class="p-2 border border-primary">
                                             <div class="d-flex">
                                                 <img src="/view/images/avatar/1.png" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
-                                                <form class="d-inline-flex w-100 ml-3" style="align-items: center;">
+                                                <form class="d-inline-flex w-100 ml-3" style="align-items: center;" th:action="@{/save_comment}" method="post">
                                                     <div class="w-100">
-                                                        <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded">
+                                                        <input type="text" class="form-control input-rounded bg-light" name="content" placeholder="Comment">
+                                                        <input type="hidden" class="form-control input-rounded bg-light" name="employee" th:value="${user.id}">
+                                                        <input type="hidden" class="form-control input-rounded bg-light" name="workProgress" th:value="${workProgress.id}">
                                                     </div>
-                                                    <button class="btn btn-primary ml-2" type="button">Comment</button>
+                                                    <button type="submit" class="btn btn-primary ml-2" >Comment</button>
                                                 </form>
                                             </div>
                                             <div class="list-comment mt-3">
-                                                <div class="comment-item d-flex justify-content-start">
+                                                <div class="comment-item d-flex justify-content-start" th:each="comment : ${comments}">
                                                     <div class="rounded-circle">
                                                         <img src="/view/images/avatar/1.png" alt="avt" style="width: 40px; height: 40px; object-fit: cover;">
                                                     </div>
                                                     <div class="ml-3 item-content-cmt">
                                                         <div class="before-edit-cmt">
                                                             <div class="bg-light px-2 py-1" style="border-radius: 15px;">
-                                                                <span class="text-black" style="font-weight: 500;">Hoàng Tuấn Anh</span>
-                                                                <p class="text-black-50" style="margin-bottom: 5px;">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
+                                                                <span class="text-black" style="font-weight: 500;" th:text="${comment.employee.lastName}">Hoàng Tuấn Anh</span>
+                                                                <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
                                                             </div>
                                                             <div class="d-flex">
                                                                 <span class="ml-2" style="font-size: 90%;line-height:1.8">Thời gian comment</span>
@@ -269,7 +271,7 @@
                                                             </form>
                                                             <button class="ml-2 btn-cancel-edit-cmt" style="font-size: 90%;"><strong>Hủy</strong></button>
                                                         </div>
-                                                    </div>    
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

@@ -194,7 +194,7 @@
 								<a th:href="@{'/leader-task-list'(projectId=${project.id})}" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
 							</div>
 							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
-								<p>Last updated 3 min ago</p>
+								<p th:id="|lastUpdate${project.id}|">Last updated 3 min ago</p>
 							</div>
 						</div>
 					</div>
@@ -238,5 +238,29 @@
 		<script src="/view/vendor/global/global.min.js"></script>
 		<script src="/view/js/quixnav-init.js"></script>
 		<script src="/view/js/custom.min.js"></script>
+		<script type="text/javascript" th:inline="javascript">
+			$('document').ready(function () {
+				var data = [[${projects}]];
+				var projects = data['page']['content'];
+				for (let i = 0; i < projects.length; i++) {
+					var idProject = projects[i]['id'];
+					if(projects[i]['updateDate'] == null){
+						document.getElementById("lastUpdate"+idProject).innerText="N/A";
+					}else{
+						var updateDate = new Date(projects[i]['updateDate']);
+						var now = new Date();
+						const diffTime = Math.abs(now - updateDate);
+						const days = Math.floor(diffTime / (24*60*60*1000));
+						const daysms = diffTime % (24*60*60*1000);
+						const hours = Math.floor(daysms / (60*60*1000));
+						const hoursms = diffTime % (60*60*1000);
+						const minutes = Math.floor(hoursms / (60*1000));
+						const minutesms = diffTime % (60*1000);
+						const sec = Math.floor(minutesms / 1000);
+						document.getElementById("lastUpdate"+idProject).innerText="Last update: "+days + " day " + hours + " hours " + minutes + " min " + sec+" s ago";
+					}
+				}
+			});
+		</script>
 	</body>
 </html>

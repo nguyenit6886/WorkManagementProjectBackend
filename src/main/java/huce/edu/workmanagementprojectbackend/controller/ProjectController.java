@@ -31,7 +31,7 @@ public class ProjectController {
   private IAssignmentDepartmentService iAssignmentDepartmentService;
 
   @ResponseBody
-  @GetMapping("/getdata_project")
+  @GetMapping("/get_project")
   public Map<String,Object> getOne(@RequestParam("projectId")int projectId){
     Map<String,Object> map = new LinkedHashMap<>();
     map.put("project",iProjectService.getObjectById(projectId));
