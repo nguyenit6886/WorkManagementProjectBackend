@@ -8,7 +8,10 @@ import huce.edu.workmanagementprojectbackend.repository.TaskRepository;
 import huce.edu.workmanagementprojectbackend.repository.WorkProgressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,6 +81,28 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
   @Override
   public Paged<WorkProgressEntity> getPage(int pageNumber) {
     return null;
+  }
+
+  @Override
+  public int insertImage(MultipartFile[] multipartFiles, WorkProgressEntity workProgress) {
+    try{
+      Path currentPath = Paths.get(".");
+      Path absolutePath = currentPath.toAbsolutePath();
+      String imagePath = absolutePath + "/src/main/resources/static/files/" + workProgress.getId();
+      Path path = Paths.get(imagePath);
+      if(!java.nio.file.Files.exists(path)){
+        java.nio.file.Files.createDirectories(path);
+      }
+      for(MultipartFile multipartFile : multipartFiles){
+        path = Paths.get(imagePath + "/" + multipartFile.getOriginalFilename());
+        byte[] bytes = multipartFile.getBytes();
+        java.nio.file.Files.write(path,bytes);
+      }
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override

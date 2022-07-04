@@ -3,6 +3,7 @@ package huce.edu.workmanagementprojectbackend.services.workprogress;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,4 +27,6 @@ public interface IWorkProgressService extends IFunctionService<WorkProgressEntit
 
   @Override
   Paged<WorkProgressEntity> getPage(int pageNumber);
+
+  int insertImage(MultipartFile[] multipartFiles, WorkProgressEntity workProgress);
 }

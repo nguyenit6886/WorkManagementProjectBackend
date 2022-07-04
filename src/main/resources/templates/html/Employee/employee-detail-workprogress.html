@@ -204,32 +204,15 @@
                 
                                                 <div class="card-listFile">
                                                     <h4 class="m-2">Danh sách tệp đính kèm</h4>
-                                                    <div class="row px-2">
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                    
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
+                                                    <div class="row px-2" th:if="${files != null}" th:each="file : ${files}">
+                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;" >
+                                                            <a th:href="@{${'/files/' + workProgress.id + '/' + file}}" th:text="${file}"></a>
+<!--                                                            <img class="card-img-top pos" src="/view/images/avatar/NV.jpg" alt="...">-->
+<!--                                                            <div class="card-img-overlay d-flex align-items-start">-->
+<!--                                                                <div>-->
+<!--                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -238,7 +221,7 @@
             
                                         <div class="col-md-2">
                                             <div class="custom-file text-white mb-5">
-                                                <input type="file" class="custom-file-input">
+                                                <input type="file" name="files" class="custom-file-input" multiple>
                                                 <label class="custom-file-label">Đính kèm tệp</label>
                                             </div>
                                             <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;">

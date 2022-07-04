@@ -10,8 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Controller
 public class WorkProgressController {
@@ -47,6 +51,10 @@ public class WorkProgressController {
     WorkProgressEntity workProgress = iWorkProgressService.getObjectById(workProgressId);
     model.addAttribute("workProgress",workProgress);
     model.addAttribute("comments",iCommentService.getCommentByWorkProgress(workProgress));
+    if(workProgress.getFileName() != null){
+      String[] files = workProgress.getFileName().split(";");
+      model.addAttribute("files",files);
+    }
     return "/html/Employee/employee-detail-workprogress";
   }
 
@@ -67,7 +75,8 @@ public class WorkProgressController {
   }
 
   @RequestMapping("/save_workprogress")
-  public String addWorkProgress(@ModelAttribute("workProgress") WorkProgressEntity workProgress) {
+  public String addWorkProgress(@ModelAttribute("workProgress") WorkProgressEntity workProgress,
+                                @RequestParam("files") MultipartFile[] multipartFiles) {
     if(workProgress.getId() != 0){
       workProgress.setUpdateDate(new Date());
       iWorkProgressService.updateObject(workProgress);
@@ -75,7 +84,14 @@ public class WorkProgressController {
       workProgress.setCreateDate(new Date());
       workProgress.setActive(true);
       workProgress.setEmployee(iEmployeeService.getObjectById(LoginController.CREATE_USER_ID));
+      StringBuilder fileName = new StringBuilder();
+      for(MultipartFile multipartFile : multipartFiles){
+        fileName.append(multipartFile.getOriginalFilename());
+        fileName.append(";");
+      }
+      workProgress.setFileName(fileName.toString());
       iWorkProgressService.insertObject(workProgress);
+      iWorkProgressService.insertImage(multipartFiles, workProgress);
     }
     return "redirect:/employee_workprogress_by_task?taskId="+workProgress.getTask().getId();
   }

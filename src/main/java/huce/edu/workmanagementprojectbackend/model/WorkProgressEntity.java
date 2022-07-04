@@ -31,6 +31,9 @@ public class WorkProgressEntity {
   @Column(name = "content")
   private String content;
 
+  @Column(name = "file_name")
+  private String fileName;
+
   @Column(name = "create_date")
   private Date createDate;
 
