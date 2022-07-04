@@ -58,4 +58,17 @@ public class CommentController {
       iCommentService.insertObject(comment);
     }
   }
+
+  @RequestMapping("/delete_comment")
+  public String deleteComment(@RequestParam("commentId")int commentId) {
+    iCommentService.deleteObject(commentId);
+    CommentEntity comment = iCommentService.getObjectById(commentId);
+    if(comment.getEmployee().getPosition() == 0){
+      return "redirect:/manager_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
+    }else if(comment.getEmployee().getPosition() == 1){
+      return "redirect:/leader_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
+    }else{
+      return "redirect:/employee_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
+    }
+  }
 }

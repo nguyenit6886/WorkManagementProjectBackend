@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.services.comment;
 
 import huce.edu.workmanagementprojectbackend.model.CommentEntity;
+import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.repository.CommentReponsitory;
@@ -39,12 +40,31 @@ public class CommentServiceImpl implements ICommentService{
 
   @Override
   public int updateObject(CommentEntity commentEntity) {
-    return 0;
+    try{
+      CommentEntity commentEntityUpdated = repository.findById(commentEntity.getId()).get();
+      if (commentEntityUpdated.getUpdateDate() != commentEntity.getUpdateDate())
+        commentEntityUpdated.setUpdateDate(commentEntity.getUpdateDate());
+      if (!commentEntityUpdated.getContent().equals(commentEntity.getContent()))
+        commentEntityUpdated.setContent(commentEntity.getContent());
+      repository.save(commentEntityUpdated);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
   public int deleteObject(int id) {
-    return 0;
+    try{
+      CommentEntity commentEntityUpdated = repository.findById(id).get();
+      commentEntityUpdated.setActive(false);
+      repository.save(commentEntityUpdated);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
