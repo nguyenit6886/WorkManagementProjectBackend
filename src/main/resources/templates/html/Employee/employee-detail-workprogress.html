@@ -180,7 +180,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form th:action="@{/save_workprogress}" method="post" enctype="multipart/form-data">
+                            <form th:action="@{/save_workprogress}" enctype="multipart/form-data">
                                 <input type="hidden" name="id" th:value="${workProgress.id}">
                                 <input type="hidden" name="task" th:value="${workProgress.task.id}">
                                 <div class="card-header pb-0 col-md-10">
@@ -206,7 +206,11 @@
                                                     <h4 class="m-2">Danh sách tệp đính kèm</h4>
                                                     <div class="row px-2" th:if="${files != null}" th:each="file : ${files}">
                                                         <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;" >
-                                                            <a th:href="@{${'/files/' + workProgress.id + '/' + file}}" th:text="${file}"></a>
+                                                            <th:block>
+                                                                <a th:href="@{${'/files/' + workProgress.id + '/' + file}}" th:text="${file}"></a>
+                                                            </th:block>
+<!--                                                            <a th:href="@{${'/photos/' + workProgress.id + '/' + file}}" th:text="${file}"></a>-->
+
 <!--                                                            <img class="card-img-top pos" src="/view/images/avatar/NV.jpg" alt="...">-->
 <!--                                                            <div class="card-img-overlay d-flex align-items-start">-->
 <!--                                                                <div>-->
