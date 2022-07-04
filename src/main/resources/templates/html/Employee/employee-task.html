@@ -11,170 +11,172 @@
 </head>
 <body>
 
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
+<!--*******************
+    Preloader start
+********************-->
+<div id="preloader">
+    <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
     </div>
-    <!--*******************
-        Preloader end
-    ********************-->
+</div>
+<!--*******************
+    Preloader end
+********************-->
 
+
+<!--**********************************
+    Main wrapper start
+***********************************-->
+<div id="main-wrapper">
 
     <!--**********************************
-        Main wrapper start
+        Nav header start
     ***********************************-->
-    <div id="main-wrapper">
+    <div class="nav-header">
+        <a href="employee-index.html" class="brand-logo">
+            <img class="logo-abbr" src="/view/images/logo.png" alt="">
+            <img class="logo-compact" src="/view/images/logo-text.png" alt="">
+            <img class="brand-title" src="/view/images/logo-text.png" alt="">
+        </a>
 
-        <!--**********************************
-            Nav header start
-        ***********************************-->
-        <div class="nav-header">
-            <a href="employee-index.html" class="brand-logo">
-                <img class="logo-abbr" src="/view/images/logo.png" alt="">
-                <img class="logo-compact" src="/view/images/logo-text.png" alt="">
-                <img class="brand-title" src="/view/images/logo-text.png" alt="">
-            </a>
-
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span>
-                    <span class="line"></span>
-                </div>
+        <div class="nav-control">
+            <div class="hamburger">
+                <span class="line"></span><span class="line"></span>
+                <span class="line"></span>
             </div>
         </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
+    </div>
+    <!--**********************************
+        Nav header end
+    ***********************************-->
 
-        <!--**********************************
-            Header start
-        ***********************************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="search_bar dropdown">
+    <!--**********************************
+        Header start
+    ***********************************-->
+    <div class="header">
+        <div class="header-content">
+            <nav class="navbar navbar-expand">
+                <div class="collapse navbar-collapse justify-content-between">
+                    <div class="header-left">
+                        <div class="search_bar dropdown">
                                 <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
                                     <i class="mdi mdi-magnify"></i>
                                 </span>
-                                <div class="dropdown-menu p-0 m-0">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                    </form>
-                                </div>
+                            <div class="dropdown-menu p-0 m-0">
+                                <form>
+                                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                </form>
                             </div>
                         </div>
-
-                        <ul class="navbar-nav header-right">
-                            <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                    </ul>
-                                    <a class="all-notification" href="#">See all notifications <i
-                                            class="ti-arrow-right"></i></a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-account"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="/view/profile.html" class="dropdown-item">
-                                        <i class="icon-user"></i>
-                                        <span class="ml-2">Profile</span>
-                                    </a>
-                                    <a href="/logout" class="dropdown-item">
-                                        <i class="icon-key"></i>
-                                        <span class="ml-2">Logout</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
-                </nav>
-            </div>
-        </div>
-        <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
 
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
-        <div class="quixnav">
-            <div class="quixnav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li>
-                        <a href="employee-index.html" aria-expanded="false">
-                            <i class="icon icon-home"></i>
-                            <span class="nav-text">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-label first">Management</li>
-                    <li>
-                        <a href="employee_task" aria-expanded="false">
-                            <i class="fa fa-tasks"></i>
-                            <span class="nav-text">Task</span>
-                        </a>
-                    </li>
-                    <li class="nav-label first">System</li>
-                    <li>
-                        <a href="/logout" aria-expanded="false">
-                            <i class="fa fa-sign-out"></i>
-                            <span class="nav-text">Logout</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                    <ul class="navbar-nav header-right">
+                        <li class="nav-item dropdown notification_dropdown">
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                <i class="mdi mdi-bell"></i>
+                                <div class="pulse-css"></div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <ul class="list-unstyled">
+                                    <li class="media dropdown-item">
+                                        <span class="success"><i class="ti-user"></i></span>
+                                        <div class="media-body">
+                                            <a href="#">
+                                                <p><strong>Martin</strong> has added a <strong>customer</strong>
+                                                    Successfully
+                                                </p>
+                                            </a>
+                                        </div>
+                                        <span class="notify-time">3:20 am</span>
+                                    </li>
+                                </ul>
+                                <a class="all-notification" href="#">See all notifications <i
+                                        class="ti-arrow-right"></i></a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown header-profile">
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                <i class="mdi mdi-account"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="/view/profile.html" class="dropdown-item">
+                                    <i class="icon-user"></i>
+                                    <span class="ml-2">Profile</span>
+                                </a>
+                                <a href="/logout" class="dropdown-item">
+                                    <i class="icon-key"></i>
+                                    <span class="ml-2">Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-        <!--**********************************
-            Sidebar end
-        ***********************************-->
+    </div>
+    <!--**********************************
+        Header end ti-comment-alt
+    ***********************************-->
 
-        <!--**********************************
-            Content body start
-        ***********************************-->
-        <div class="content-body ">
-            <div class="container-fluid">
-				<div class="row page-titles mx-0">
-					<div class="col-sm-6 p-md-0">
-						<div class="welcome-text">
-							<h4>Hi, welcome back!</h4>
-							<span class="mb-0">Employee</span>
-						</div>
-					</div>
-					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">Task</a></li>
-						</ol>
-					</div>
-				</div>
-				<div class="row mx-3">
-					<h2>Project 1</h2>
-				</div>
-				<div class="row mt-3">
-					<div class="col-xl-4 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks}">
+    <!--**********************************
+        Sidebar start
+    ***********************************-->
+    <div class="quixnav">
+        <div class="quixnav-scroll">
+            <ul class="metismenu" id="menu">
+                <li>
+                    <a href="employee-index.html" aria-expanded="false">
+                        <i class="icon icon-home"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-label first">Management</li>
+                <li>
+                    <a href="employee_task" aria-expanded="false">
+                        <i class="fa fa-tasks"></i>
+                        <span class="nav-text">Task</span>
+                    </a>
+                </li>
+                <li class="nav-label first">System</li>
+                <li>
+                    <a href="/logout" aria-expanded="false">
+                        <i class="fa fa-sign-out"></i>
+                        <span class="nav-text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--**********************************
+        Sidebar end
+    ***********************************-->
+
+    <!--**********************************
+        Content body start
+    ***********************************-->
+    <div class="content-body ">
+        <div class="container-fluid">
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h4>Hi, welcome back!</h4>
+                        <span class="mb-0">Employee</span>
+                    </div>
+                </div>
+                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Task</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row task-list">
+                <div class="row mx-3">
+                    <h2>Project 1</h2>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-xl-4 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks}">
                         <a th:href="@{'/employee_workprogress_by_task'(taskId=${task.id})}">
                             <div class="card text-white bg-info">
                                 <div class="card-header">
@@ -199,49 +201,84 @@
                                 </div>
                             </div>
                         </a>
-					</div>
-				</div>
-			</div>
-        </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p> 
+                    </div>
+                </div>
             </div>
+            <div class="row task-list">
+                <div class="row mx-3">
+                    <h2>Project 1</h2>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-xl-4 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks}">
+                        <a th:href="@{'/employee_workprogress_by_task'(taskId=${task.id})}">
+                            <div class="card text-white bg-info">
+                                <div class="card-header">
+                                    <h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
+                                </div>
+                                <div class="card-body mb-0">
+                                    <p class="card-text" th:text="${task.content}">Mô tả công việc</p>
+                                    <th:block th:switch="${task.workProgressLevel}">
+                                        <div th:case="0">
+                                            <h6 class="text-white mb-1">Chưa tiến hành</h6>
+                                        </div>
+                                        <div th:case="1">
+                                            <h6 class="text-white mb-1">Đang tiến hành</h6>
+                                        </div>
+                                        <div th:case="2">
+                                            <h6 class="text-white mb-1">Hoàn thành</h6>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <div class="card-footer bg-transparent border-0 text-white">
+                                    Last updated 3 min ago
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
-
-
     </div>
     <!--**********************************
-        Main wrapper end
+        Content body end
+    ***********************************-->
+
+
+    <!--**********************************
+        Footer start
+    ***********************************-->
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
+            <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p>
+        </div>
+    </div>
+    <!--**********************************
+        Footer end
     ***********************************-->
 
     <!--**********************************
-        Scripts
+       Support ticket button start
     ***********************************-->
-    <!-- Required vendors -->
-    <script src="/view/vendor/global/global.min.js"></script>
-    <script src="/view/js/quixnav-init.js"></script>
-    <script src="/view/js/custom.min.js"></script>
+
+    <!--**********************************
+       Support ticket button end
+    ***********************************-->
+
+
+</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<!--**********************************
+    Scripts
+***********************************-->
+<!-- Required vendors -->
+<script src="/view/vendor/global/global.min.js"></script>
+<script src="/view/js/quixnav-init.js"></script>
+<script src="/view/js/custom.min.js"></script>
 </body>
 
 </html>
