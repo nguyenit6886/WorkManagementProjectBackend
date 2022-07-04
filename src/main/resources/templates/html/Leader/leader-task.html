@@ -8,6 +8,7 @@
 	<!-- Favicon icon -->
 	<!-- <link rel="icon" type="image/png" sizes="16x16" href="../../../static/view/images/favicon.png" /> -->
 	<link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="/view/vendor/select2/css/select2.min.css" rel="stylesheet">
 	<link href="/view/css/style.css" rel="stylesheet" />
 </head>
 <body>
@@ -185,7 +186,7 @@ Preloader end
 						</div>
 						<div class="card-body mb-0">
 							<div class="d-flex justify-content-between">
-								<p class="card-text text-truncate" th:text="${task.content}">Mô tả công việc</p>
+								<p class="card-text text-white text-truncate mb-1" th:text="${task.content}">Mô tả công việc</p>
 								<a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
 							</div>
 							<th:block th:switch="${task.workProgressLevel}">
@@ -258,6 +259,15 @@ Preloader end
 									<div class="form-group col-lg-4">
 										<label>Ngày kết thúc dự kiến</label>
 										<input id="txtEndDate" type="date" name="endDate" class="form-control">
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-12">
+										<label>Thành viên tham gia</label>
+										<select class="form-control multi-select" name="employees" multiple="multiple">
+											<option value="1">Tên nhân viên 1</option>
+											<option value="2">Tên nhân viên 2</option>
+										</select>
 									</div>
 								</div>
 								<div class="form-row">
@@ -338,6 +348,10 @@ Scripts
 <!-- Sweet alert -->
 <script src="/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="/view/js/plugins-init/sweetalert.init.js"></script>
+
+<!-- Select multiple -->
+<script src="/view/vendor/select2/js/select2.full.min.js"></script>
+<script src="/view/js/plugins-init/select2-init.js"></script>
 
 <script type="text/javascript" th:inline="javascript">
 	$('document').ready(function (){
