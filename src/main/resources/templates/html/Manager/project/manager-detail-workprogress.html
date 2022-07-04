@@ -87,15 +87,15 @@
                                         <span class="success"><i class="ti-user"></i></span>
                                         <div class="media-body">
                                             <a href="#">
-                                                <p><strong>Martin</strong> has added a <strong>customer</strong>
-                                                    Successfully
+                                                <p><strong>Martin</strong> đã thêm một <strong>khách hàng</strong>
+                                                    Thành công!
                                                 </p>
                                             </a>
                                         </div>
                                         <span class="notify-time">3:20 am</span>
                                     </li>
                                 </ul>
-                                <a class="all-notification" href="#">See all notifications <i class="ti-arrow-right"></i></a>
+                                <a class="all-notification" href="#">Xem tất cả thông báo<i class="ti-arrow-right"></i></a>
                             </div>
                         </li>
                         <li class="nav-item dropdown header-profile">
@@ -105,11 +105,11 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="../../profile.html" class="dropdown-item">
                                     <i class="icon-user"></i>
-                                    <span class="ml-2">Profile</span>
+                                    <span class="ml-2">Hồ sơ</span>
                                 </a>
                                 <a href="/logout" class="dropdown-item">
                                     <i class="icon-key"></i>
-                                    <span class="ml-2">Logout</span>
+                                    <span class="ml-2">Đăng xuất</span>
                                 </a>
                             </div>
                         </li>
@@ -128,34 +128,34 @@
     <div class="quixnav">
         <div class="quixnav-scroll">
             <ul class="metismenu" id="menu">
-                <li class="nav-label first">Management</li>
+                <li class="nav-label first">Quản lý</li>
                 <li>
                     <a href="department_manager" aria-expanded="false">
                         <i class="fa fa-sitemap"></i>
-                        <span class="nav-text">Department</span>
+                        <span class="nav-text">Phòng ban</span>
                     </a>
                 </li>
                 <li>
                     <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                         <i class="icon icon-users-mm-2"></i>
-                        <span class="nav-text">Employee</span>
+                        <span class="nav-text">Nhân viên</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="employee_manager">List of employees</a></li>
-                        <li><a href="add_employee">Add new</a></li>
+                        <li><a href="employee_manager">Danh sách nhân viên</a></li>
+                        <li><a href="add_employee">Thêm mới</a></li>
                     </ul>
                 </li>
                 <li class="mm-active">
                     <a href="project_manager" class="mm-active" aria-expanded="false">
                         <i class="icon icon-app-store"></i>
-                        <span class="nav-text">Project</span>
+                        <span class="nav-text">Dự án</span>
                     </a>
                 </li>
-                <li class="nav-label first">System</li>
+                <li class="nav-label first">Hệ thống</li>
                 <li>
                     <a href="/logout" aria-expanded="false">
                         <i class="fa fa-sign-out"></i>
-                        <span class="nav-text">Logout</span>
+                        <span class="nav-text">Đăng xuất</span>
                     </a>
                 </li>
             </ul>
@@ -173,17 +173,17 @@
             <div class="row page-titles mx-0">
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
-                        <h4>Hi, welcome back!</h4>
+                        <h4>Chào mừng trở lại!</h4>
                         <p class="mb-0" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}">Manager</p>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="manager">Management</a></li>
-                        <li class="breadcrumb-item"><a href="project_manager">Project</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Task</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Work Progress</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Detail</a></li>
+                        <li class="breadcrumb-item"><a href="manager">Quản lý</a></li>
+                        <li class="breadcrumb-item"><a href="project_manager">Dự án</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Nhiệm vụ</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Tiến độ công việc</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Chi tiết</a></li>
                     </ol>
                 </div>
             </div>
@@ -251,9 +251,9 @@
                                             <form th:action="@{/save_comment}" class="d-inline-flex w-100 ml-3" style="align-items: center;" id="addCommentForm">
                                                 <input type="hidden" name="workProgress" th:value="${workProgress.id}">
                                                 <div class="w-100">
-                                                    <input type="text" name="content" class="form-control input-rounded bg-light" placeholder="input-rounded">
+                                                    <input type="text" name="content" class="form-control input-rounded bg-light" placeholder="Nhập bình luận">
                                                 </div>
-                                                <button class="btn btn-primary ml-2" type="submit" form="addCommentForm">Comment</button>
+                                                <button class="btn btn-primary ml-2" type="submit" form="addCommentForm">Bình luận</button>
                                             </form>
                                         </div>
                                         <div class="list-comment mt-3" th:each="comment : ${comments}">
@@ -311,12 +311,12 @@
     <!--**********************************
         Footer start
     ***********************************-->
-    <div class="footer">
-        <div class="copyright">
-            <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-            <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p>
-        </div>
-    </div>
+<!--    <div class="footer">-->
+<!--        <div class="copyright">-->
+<!--            <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>-->
+<!--            <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p>-->
+<!--        </div>-->
+<!--    </div>-->
     <!--**********************************
         Footer end
     ***********************************-->

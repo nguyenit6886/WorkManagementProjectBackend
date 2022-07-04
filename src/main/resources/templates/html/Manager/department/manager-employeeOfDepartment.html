@@ -87,14 +87,14 @@
                                             <span class="success"><i class="ti-user"></i></span>
                                             <div class="media-body">
                                                 <a href="#">
-                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
+                                                    <p><strong>Martin</strong> đã thêm một <strong>khách hàng</strong> Thành công!
                                                     </p>
                                                 </a>
                                             </div>
                                             <span class="notify-time">3:20 am</span>
                                         </li>
                                     </ul>
-                                    <a class="all-notification" href="#">See all notifications <i
+                                    <a class="all-notification" href="#">SXem tất cả thông báo<i
                                             class="ti-arrow-right"></i></a>
                                 </div>
                             </li>
@@ -105,11 +105,11 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="../../profile.html" class="dropdown-item">
                                         <i class="icon-user"></i>
-                                        <span class="ml-2">Profile</span>
+                                        <span class="ml-2">Hồ sơ</span>
                                     </a>
                                     <a href="/logout" class="dropdown-item">
                                         <i class="icon-key"></i>
-                                        <span class="ml-2">Logout</span>
+                                        <span class="ml-2">Đăng xuất</span>
                                     </a>
                                 </div>
                             </li>
@@ -128,34 +128,34 @@
         <div class="quixnav">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Management</li>
+                    <li class="nav-label first">Quản lý</li>
                     <li class="mm-active">
                         <a href="department_manager" class="mm-active" aria-expanded="false">
                             <i class="fa fa-sitemap"></i>
-                            <span class="nav-text">Department</span>
+                            <span class="nav-text">Phòng ban</span>
                         </a>
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon icon-users-mm-2"></i>
-                            <span class="nav-text">Employee</span>
+                            <span class="nav-text">Nhân viên</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="employee_manager">List of employees</a></li>
-                            <li><a href="add_employee">Add new</a></li>
+                            <li><a href="employee_manager">Danh sách nhân viên</a></li>
+                            <li><a href="add_employee">Thêm mới</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="project_manager" aria-expanded="false">
                             <i class="icon icon-app-store"></i>
-                            <span class="nav-text">Project</span>
+                            <span class="nav-text">Dự án</span>
                         </a>
                     </li>
-                    <li class="nav-label first">System</li>
+                    <li class="nav-label first">Hệ thống</li>
                     <li>
                         <a href="/logout" aria-expanded="false">
                             <i class="fa fa-sign-out"></i>
-                            <span class="nav-text">Logout</span>
+                            <span class="nav-text">Đăng xuất</span>
                         </a>
                     </li>
                 </ul>
@@ -173,15 +173,15 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>Hi, welcome back!</h4>
+                            <h4>Chào mừng trở lại!</h4>
                             <p class="mb-0" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}">Manager</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="manager">Management</a></li>
-                            <li class="breadcrumb-item"><a href="department_manager">Department</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Employee</a></li>
+                            <li class="breadcrumb-item"><a href="manager">Quản lý</a></li>
+                            <li class="breadcrumb-item"><a href="department_manager">Phòng ban</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Nhân viên</a></li>
                         </ol>
                     </div>
                 </div>
@@ -190,19 +190,19 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">List Employee of Department</h4>
+                                <h4 class="card-title">Danh sách nhân viên phòng ban</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Img</th>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Department</th>
-                                                <th>Start date</th>
-                                                <th>Action</th>
+                                                <th>Ảnh</th>
+                                                <th>Tên</th>
+                                                <th>Chức vụ</th>
+                                                <th>Phòng ban</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -223,12 +223,12 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Img</th>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Department</th>
-                                                <th>Start date</th>
-                                                <th>Action</th>
+                                                <th>Ảnh</th>
+                                                <th>Tên</th>
+                                                <th>Chức vụ</th>
+                                                <th>Phòng ban</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -247,12 +247,12 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p> 
-            </div>
-        </div>
+<!--        <div class="footer">-->
+<!--            <div class="copyright">-->
+<!--                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>-->
+<!--                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p> -->
+<!--            </div>-->
+<!--        </div>-->
         <!--**********************************
             Footer end
         ***********************************-->
