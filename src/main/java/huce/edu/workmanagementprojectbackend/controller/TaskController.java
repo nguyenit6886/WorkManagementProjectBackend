@@ -44,10 +44,11 @@ public class TaskController {
   @RequestMapping("/employee_task")
   public String showTaskListPage(Model model,
                                  HttpSession session){
-    EmployeeEntity employee = iEmployeeService.getObjectById(LoginController.CREATE_USER_ID);
-    model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
+    EmployeeEntity employee = iEmployeeService.getObjectById(((EmployeeEntity) session.getAttribute("user")).getId());
+//    model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
     Map<ProjectEntity,List<TaskEntity>> map = iAssignmentService.getTaskByEmployee(employee)
                                                                 .stream().collect(Collectors.groupingBy(w -> w.getProject()));
+    model.addAttribute("map",map);
     model.addAttribute("user",session.getAttribute("user"));
     return "/html/Employee/employee-task";
   }
