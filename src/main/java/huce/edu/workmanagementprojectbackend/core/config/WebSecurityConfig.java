@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/login")
                 .defaultSuccessUrl("/loginSuccessfully")//đây Khi đăng nhập thành công
-                .failureUrl("/login?error=Sai ten dang nhap hoac mat khau")
+                .failureUrl("/login?error=Username or password is incorrect, please try again!")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login").invalidateHttpSession(true);
