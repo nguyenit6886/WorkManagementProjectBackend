@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,11 +42,13 @@ public class TaskController {
   }
 
   @RequestMapping("/employee_task")
-  public String showTaskListPage(Model model){
-    EmployeeEntity employee = iEmployeeService.getObjectById(LoginController.CREATE_USER_ID);
-    model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
+  public String showTaskListPage(Model model,
+                                 HttpSession session){
+    EmployeeEntity employee = iEmployeeService.getObjectById(((EmployeeEntity) session.getAttribute("user")).getId());
+//    model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
     Map<ProjectEntity,List<TaskEntity>> map = iAssignmentService.getTaskByEmployee(employee)
                                                                 .stream().collect(Collectors.groupingBy(w -> w.getProject()));
+    model.addAttribute("map",map);
     return "/html/Employee/employee-task";
   }
 
