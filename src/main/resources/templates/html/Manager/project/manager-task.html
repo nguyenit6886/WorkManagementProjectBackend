@@ -60,7 +60,7 @@ Preloader end
 								</span>
                         <div class="dropdown-menu p-0 m-0">
                             <form>
-                                <input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
+                                <input class="form-control" type="search" placeholder="Tìm kiếm" aria-label="Search"/>
                             </form>
                         </div>
                     </div>
@@ -79,15 +79,15 @@ Preloader end
                                     <div class="media-body">
                                         <a href="#">
                                             <p>
-                                                <strong>Martin</strong> has added a
-                                                <strong>customer</strong> Successfully
+                                                <strong>Martin</strong> đã thêm một
+                                                <strong>khách hàng</strong> Thành công!
                                             </p>
                                         </a>
                                     </div>
                                     <span class="notify-time">3:20 am</span>
                                 </li>
                             </ul>
-                            <a class="all-notification" href="#">See all notifications <i class="ti-arrow-right"></i></a>
+                            <a class="all-notification" href="#">Xem tất cả thông báo<i class="ti-arrow-right"></i></a>
                         </div>
                     </li>
                     <li class="nav-item dropdown header-profile">
@@ -97,11 +97,11 @@ Preloader end
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="./profile.html" class="dropdown-item">
                                 <i class="icon-user"></i>
-                                <span class="ml-2">Profile</span>
+                                <span class="ml-2">Hồ sơ</span>
                             </a>
                             <a href="/logout" class="dropdown-item">
                                 <i class="icon-key"></i>
-                                <span class="ml-2">Logout</span>
+                                <span class="ml-2">Đăng xuất</span>
                             </a>
                         </div>
                     </li>
@@ -123,37 +123,37 @@ Preloader end
             <li>
                 <a href="manager" aria-expanded="false">
                     <i class="icon icon-home"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Bảng điều khiển</span>
                 </a>
             </li>
-            <li class="nav-label first">Management</li>
+            <li class="nav-label first">Quản lý</li>
             <li>
                 <a href="department_manager" aria-expanded="false">
                     <i class="fa fa-sitemap"></i>
-                    <span class="nav-text">Department</span>
+                    <span class="nav-text">Phòng ban</span>
                 </a>
             </li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon icon-users-mm-2"></i>
-                    <span class="nav-text">Employee</span>
+                    <span class="nav-text">Nhân viên</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="employee_manager">List of employees</a></li>
-                    <li><a href="add_employee">Add new</a></li>
+                    <li><a href="employee_manager">Danh sách nhân viên</a></li>
+                    <li><a href="add_employee">Thêm mới</a></li>
                 </ul>
             </li>
             <li class="mm-active">
                 <a href="project_manager" class="mm-active" aria-expanded="false">
                     <i class="icon icon-app-store"></i>
-                    <span class="nav-text">Project</span>
+                    <span class="nav-text">Dự án</span>
                 </a>
             </li>
-            <li class="nav-label first">System</li>
+            <li class="nav-label first">Hệ thống</li>
             <li>
                 <a href="/logout" aria-expanded="false">
                     <i class="fa fa-sign-out"></i>
-                    <span class="nav-text">Logout</span>
+                    <span class="nav-text">Đăng xuất</span>
                 </a>
             </li>
         </ul>
@@ -171,26 +171,26 @@ Preloader end
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Hi, welcome back!</h4>
-                    <span class="mb-0">Manager</span>
+                    <h4>Chào mừng trở lại!</h4>
+                    <span class="mb-0">Quản lý</span>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="manager">Department</a></li>
-                    <li class="breadcrumb-item"><a href="project_manager">Project</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Task</a></li>
+                    <li class="breadcrumb-item"><a href="manager">Phòng ban</a></li>
+                    <li class="breadcrumb-item"><a href="project_manager">Dự án</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Nhiệm vụ</a></li>
                 </ol>
             </div>
         </div>
 
-        <h3>Project 1</h3>
+        <h3>Dự án 1</h3>
         <div class="row">
             <div class="col-xl-4 col-xxl-4 col-lg-6 col-sm-6" th:each="task : ${tasks.page}">
                 <a th:href="@{'/manager_workprogress_by_task'(taskId=${task.id})}">
                     <div class="card text-white bg-info">
                         <div class="card-header">
-                            <h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
+                            <h5 class="card-title text-white" th:text="${task.title}">Nhiệm vụ 1</h5>
                             <span class="text-danger" th:text="|Deadline: ${task.deadline}|">Deadline</span>
                         </div>
                         <div class="card-body mb-0">
@@ -212,7 +212,7 @@ Preloader end
                             <a href="#" class="btn btn-dark btn-card mt-2">Đánh giá kết quả</a>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-white">
-                            Last updated 3 min ago
+                            Cập nhật lần cuối 3p trước
                         </div>
                     </div>
                 </a>
@@ -221,10 +221,10 @@ Preloader end
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center" th:if="${tasks.page.totalPages > 1}">
                 <li class="page-item" th:classappend="${!tasks.paging.isPrevEnabled()? 'disabled' : ''}">
-                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=1'}" >First</a>
+                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=1'}" >Đầu</a>
                 </li>
                 <li class="page-item" th:classappend="${!tasks.paging.isPrevEnabled()? 'disabled' : ''}">
-                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.paging.pageNumber - 1 > 0 ? tasks.paging.pageNumber - 1 : 1}}" >Previous</a>
+                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.paging.pageNumber - 1 > 0 ? tasks.paging.pageNumber - 1 : 1}}" >Trước</a>
                 </li>
                 <th:block th:each="item : ${tasks.paging.getItems()}">
                     <li class="page-item" th:classappend="${item.index == tasks.paging.pageNumber? 'active' : ''}"
@@ -237,10 +237,10 @@ Preloader end
                     </li>
                 </th:block>
                 <li class="page-item" th:classappend="${!tasks.paging.isNextEnabled()? 'disabled' : ''}">
-                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.paging.pageNumber + 1 <= tasks.page.totalPages ? tasks.paging.pageNumber + 1 : tasks.page.totalPages}}">Next</a>
+                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.paging.pageNumber + 1 <= tasks.page.totalPages ? tasks.paging.pageNumber + 1 : tasks.page.totalPages}}">Sau</a>
                 </li>
                 <li class="page-item" th:classappend="${!tasks.paging.isNextEnabled()? 'disabled' : ''}">
-                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.page.totalPages}}" >Last</a>
+                    <a class="page-link" th:href="@{'manager-task-list?projectId='+${projectId}+'&pageNumber=' + ${tasks.page.totalPages}}" >Cuối</a>
                 </li>
             </ul>
         </nav>

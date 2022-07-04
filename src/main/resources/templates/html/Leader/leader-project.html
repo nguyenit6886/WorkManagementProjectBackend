@@ -68,7 +68,7 @@
 										<input
 											class="form-control"
 											type="search"
-											placeholder="Search"
+											placeholder="Tìm kiếm"
 											aria-label="Search"
 										/>
 									</form>
@@ -94,8 +94,8 @@
 											<div class="media-body">
 												<a href="#">
 													<p>
-														<strong>Martin</strong> has added a
-														<strong>customer</strong> Successfully
+														<strong>Martin</strong> đã thêm một
+														<strong>khách hàng</strong> Thành công!
 													</p>
 												</a>
 											</div>
@@ -103,7 +103,7 @@
 										</li>
 									</ul>
 									<a class="all-notification" href="#"
-										>See all notifications <i class="ti-arrow-right"></i
+										>Xem tất cả thông báo<i class="ti-arrow-right"></i
 									></a>
 								</div>
 							</li>
@@ -119,11 +119,11 @@
 								<div class="dropdown-menu dropdown-menu-right">
 									<a href="../profile.html" class="dropdown-item">
 										<i class="icon-user"></i>
-										<span class="ml-2">Profile</span>
+										<span class="ml-2">Hồ sơ</span>
 									</a>
 									<a href="/logout" class="dropdown-item">
 										<i class="icon-key"></i>
-										<span class="ml-2">Logout</span>
+										<span class="ml-2">Đăng xuất</span>
 									</a>
 								</div>
 							</li>
@@ -145,21 +145,21 @@
 					<li>
 						<a href="leader-index.html" aria-expanded="false">
 							<i class="icon icon-home"></i>
-							<span class="nav-text">Dashboard</span>
+							<span class="nav-text">Bảng điều khiển</span>
 						</a>
 					</li>
-					<li class="nav-label first">Management</li>
+					<li class="nav-label first">Quản lý</li>
 					<li>
 						<a href="leader_manager" aria-expanded="false">
 							<i class="icon icon-app-store"></i>
-							<span class="nav-text">Project</span>
+							<span class="nav-text">Dự án</span>
 						</a>
 					</li>
-					<li class="nav-label first">System</li>
+					<li class="nav-label first">Hệ thống</li>
 					<li>
 						<a href="/logout" aria-expanded="false">
 							<i class="fa fa-sign-out"></i>
-							<span class="nav-text">Logout</span>
+							<span class="nav-text">Đăng xuất</span>
 						</a>
 					</li>
 				</ul>
@@ -177,14 +177,14 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>Hi, welcome back!</h4>
-							<span class="ml-1" th:if="${user != null}" th:text="${user.lastName}">Leader</span>
+							<h4>Chào mừng trở lại!</h4>
+							<span class="ml-1" th:if="${user != null}" th:text="${user.lastName}">Nhóm trưởng</span>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
-								<a href="javascript:void(0)">Project</a>
+								<a href="javascript:void(0)">Dự án</a>
 							</li>
 						</ol>
 					</div>
@@ -193,14 +193,14 @@
 					<div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6" th:each="project : ${projects.page}">
 						<div class="card text-white bg-primary">
 							<div class="card-header">
-								<h5 class="card-title text-white" th:text="${project.title}">Project 1</h5>
+								<h5 class="card-title text-white" th:text="${project.title}">Dự án 1</h5>
 							</div>
 							<div class="card-body mb-0">
 								<p class="card-text" th:text="${project.content}">Mô tả dự án</p>
 								<a th:href="@{'/leader-task-list'(projectId=${project.id})}" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
 							</div>
 							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
-								<p>Last updated 3 min ago</p>
+								<p>Cập nhật lần cuối 3p trước</p>
 							</div>
 						</div>
 					</div>
@@ -208,10 +208,10 @@
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center" th:if="${projects.page.totalPages > 1}">
 						<li class="page-item" th:classappend="${!projects.paging.isPrevEnabled()? 'disabled' : ''}">
-							<a class="page-link" th:href="@{'leader_manager?pageNumber=1'}" >First</a>
+							<a class="page-link" th:href="@{'leader_manager?pageNumber=1'}" >Đầu</a>
 						</li>
 						<li class="page-item" th:classappend="${!projects.paging.isPrevEnabled()? 'disabled' : ''}">
-							<a class="page-link" th:href="@{'leader_manager?pageNumber=' + ${projects.paging.pageNumber - 1 > 0 ? projects.paging.pageNumber - 1 : 1}}" >Previous</a>
+							<a class="page-link" th:href="@{'leader_manager?pageNumber=' + ${projects.paging.pageNumber - 1 > 0 ? projects.paging.pageNumber - 1 : 1}}" >Trước</a>
 						</li>
 						<th:block th:each="item : ${projects.paging.getItems()}">
 							<li class="page-item" th:classappend="${item.index == projects.paging.pageNumber? 'active' : ''}"
@@ -224,10 +224,10 @@
 							</li>
 						</th:block>
 						<li class="page-item" th:classappend="${!projects.paging.isNextEnabled()? 'disabled' : ''}">
-							<a class="page-link" th:href="@{'leader_manager?pageNumber=' + ${projects.paging.pageNumber + 1 <= projects.page.totalPages ? projects.paging.pageNumber + 1 : projects.page.totalPages}}">Next</a>
+							<a class="page-link" th:href="@{'leader_manager?pageNumber=' + ${projects.paging.pageNumber + 1 <= projects.page.totalPages ? projects.paging.pageNumber + 1 : projects.page.totalPages}}">Sau</a>
 						</li>
 						<li class="page-item" th:classappend="${!projects.paging.isNextEnabled()? 'disabled' : ''}">
-							<a class="page-link" th:href="@{'leader_manager?pageNumber=' + ${projects.page.totalPages}}" >Last</a>
+							<a class="page-link" th:href="@{'leader_manager?pageNumber=' + ${projects.page.totalPages}}" >Cuối</a>
 						</li>
 					</ul>
 				</nav>

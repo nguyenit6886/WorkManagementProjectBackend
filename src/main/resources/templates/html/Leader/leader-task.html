@@ -61,7 +61,7 @@ Preloader end
 								</span>
 						<div class="dropdown-menu p-0 m-0">
 							<form>
-								<input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
+								<input class="form-control" type="search" placeholder="Tìm kiếm" aria-label="Search"/>
 							</form>
 						</div>
 					</div>
@@ -85,8 +85,8 @@ Preloader end
 									<div class="media-body">
 										<a href="#">
 											<p>
-												<strong>Martin</strong> has added a
-												<strong>customer</strong> Successfully
+												<strong>Martin</strong> đã thêm một
+												<strong>khách hàng</strong> Thành công!
 											</p>
 										</a>
 									</div>
@@ -94,7 +94,7 @@ Preloader end
 								</li>
 							</ul>
 							<a class="all-notification" href="#"
-							>See all notifications <i class="ti-arrow-right"></i
+							>Xem tất cả thông báo<i class="ti-arrow-right"></i
 							></a>
 						</div>
 					</li>
@@ -105,11 +105,11 @@ Preloader end
 						<div class="dropdown-menu dropdown-menu-right">
 							<a href="./profile.html" class="dropdown-item">
 								<i class="icon-user"></i>
-								<span class="ml-2">Profile</span>
+								<span class="ml-2">Hồ sơ</span>
 							</a>
 							<a href="/logout" class="dropdown-item">
 								<i class="icon-key"></i>
-								<span class="ml-2">Logout</span>
+								<span class="ml-2">Đăng xuất</span>
 							</a>
 						</div>
 					</li>
@@ -131,21 +131,21 @@ Preloader end
 			<li>
 				<a href="leader-index.html" aria-expanded="false">
 					<i class="icon icon-home"></i>
-					<span class="nav-text">Dashboard</span>
+					<span class="nav-text">Bảng điều khiển</span>
 				</a>
 			</li>
-			<li class="nav-label first">Management</li>
+			<li class="nav-label first">Quản lý</li>
 			<li>
 				<a href="leader_manager" aria-expanded="false">
 					<i class="icon icon-app-store"></i>
-					<span class="nav-text">Project</span>
+					<span class="nav-text">Dự án</span>
 				</a>
 			</li>
-			<li class="nav-label first">System</li>
+			<li class="nav-label first">Hệ thống</li>
 			<li>
 				<a href="/logout" aria-expanded="false">
 					<i class="fa fa-sign-out"></i>
-					<span class="nav-text">Logout</span>
+					<span class="nav-text">Đăng xuất</span>
 				</a>
 			</li>
 		</ul>
@@ -163,30 +163,30 @@ Preloader end
 		<div class="row page-titles mx-0">
 			<div class="col-sm-6 p-md-0">
 				<div class="welcome-text">
-					<h4>Hi, welcome back!</h4>
-					<span class="mb-0" th:if="${user != null}" th:text="${user.lastName}">Leader</span>
+					<h4>Chào mừng trở lại!</h4>
+					<span class="mb-0" th:if="${user != null}" th:text="${user.lastName}">Nhóm trưởng</span>
 				</div>
 			</div>
 			<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
-						<a href="javascript:void(0)">Project</a>
+						<a href="javascript:void(0)">Dự án</a>
 					</li>
 					<li class="breadcrumb-item active">
-						<a href="javascript:void(0)">Task</a>
+						<a href="javascript:void(0)">Nhiệm vụ</a>
 					</li>
 				</ol>
 			</div>
 		</div>
 		<div class="row px-3">
-			<h2 id="projectTitle">Example Project</h2>
+			<h2 id="projectTitle">Tên dự án</h2>
 		</div>
 		<div class="row mt-3">
 			<div class="col-xl-6 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks}">
 				<a href="./leader-workprogress.html">
 					<div class="card text-white bg-info">
 						<div class="card-header">
-							<h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
+							<h5 class="card-title text-white" th:text="${task.title}">Nhiệm vụ 1</h5>
 							<span class="text-danger" th:text="|Deadline: ${task.deadline}|">Deadline</span>
 						</div>
 						<div class="card-body mb-0">
@@ -209,9 +209,9 @@ Preloader end
 						</div>
 						<div class="card-footer bg-transparent border-0 text-white">
 							<div class="d-flex justify-content-between">
-								<p>Last updated 3 min ago</p>
+								<p>Cập nhật lần cuối 3p trước</p>
 								<div class="action">
-									<a th:href="@{'/get_task'(taskId=${task.id})}" class="btn btn-primary">Update</a>
+									<a th:href="@{'/get_task'(taskId=${task.id})}" class="btn btn-primary">Cập nhật</a>
 									<a th:href="@{'/delete_task'(taskId=${task.id})}" class="btn btn-danger">Xóa</a>
 								</div>
 							</div>
@@ -241,7 +241,7 @@ Preloader end
 									</div>
 									<div class="form-group col-md-4">
 										<label>Thuộc dự án</label>
-										<p id="txtProjectTitle" class="mt-1 text-black">Project_Name</p>
+										<p id="txtProjectTitle" class="mt-1 text-black">Tên dự án</p>
 										<input type="hidden" name="project" id="objectProject" th:value="${projectId}">
 									</div>
 									<div class="form-group col-md-4">
@@ -280,7 +280,7 @@ Preloader end
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
 							<input type="submit" name="submit" value="Save changes" class="btn btn-primary">
 						</div>
 					</form>
@@ -294,7 +294,7 @@ Preloader end
                             <span class="btn-icon-left text-primary">
                                 <i class="fa fa-plus color-primary"></i>
 						    </span>
-					<span>Thêm Công việc</span>
+					<span>Thêm công việc</span>
 				</button>
 			</div>
 		</div>

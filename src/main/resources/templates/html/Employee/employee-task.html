@@ -66,7 +66,7 @@
                                 </span>
                                 <div class="dropdown-menu p-0 m-0">
                                     <form>
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                        <input class="form-control" type="search" placeholder="Tìm kiếm" aria-label="Search">
                                     </form>
                                 </div>
                             </div>
@@ -84,14 +84,14 @@
                                             <span class="success"><i class="ti-user"></i></span>
                                             <div class="media-body">
                                                 <a href="#">
-                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
+                                                    <p><strong>Martin</strong> đã thêm một <strong>khách hàng</strong> Thành công!
                                                     </p>
                                                 </a>
                                             </div>
                                             <span class="notify-time">3:20 am</span>
                                         </li>
                                     </ul>
-                                    <a class="all-notification" href="#">See all notifications <i
+                                    <a class="all-notification" href="#">Xem tất cả thông báo<i
                                             class="ti-arrow-right"></i></a>
                                 </div>
                             </li>
@@ -102,11 +102,11 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="/view/profile.html" class="dropdown-item">
                                         <i class="icon-user"></i>
-                                        <span class="ml-2">Profile</span>
+                                        <span class="ml-2">Hồ sơ</span>
                                     </a>
                                     <a href="/logout" class="dropdown-item">
                                         <i class="icon-key"></i>
-                                        <span class="ml-2">Logout</span>
+                                        <span class="ml-2">Đăng xuất</span>
                                     </a>
                                 </div>
                             </li>
@@ -128,21 +128,21 @@
                     <li>
                         <a href="employee-index.html" aria-expanded="false">
                             <i class="icon icon-home"></i>
-                            <span class="nav-text">Dashboard</span>
+                            <span class="nav-text">Bảng điều khiển</span>
                         </a>
                     </li>
-                    <li class="nav-label first">Management</li>
+                    <li class="nav-label first">Quản lý</li>
                     <li>
                         <a href="employee_task" aria-expanded="false">
                             <i class="fa fa-tasks"></i>
-                            <span class="nav-text">Task</span>
+                            <span class="nav-text">Nhiệm vụ</span>
                         </a>
                     </li>
-                    <li class="nav-label first">System</li>
+                    <li class="nav-label first">Hệ thống</li>
                     <li>
                         <a href="/logout" aria-expanded="false">
                             <i class="fa fa-sign-out"></i>
-                            <span class="nav-text">Logout</span>
+                            <span class="nav-text">Đăng xuất</span>
                         </a>
                     </li>
                 </ul>
@@ -160,25 +160,25 @@
 				<div class="row page-titles mx-0">
 					<div class="col-sm-6 p-md-0">
 						<div class="welcome-text">
-							<h4>Hi, welcome back!</h4>
-							<span class="mb-0">Employee</span>
+							<h4>Chào mừng trở lại!</h4>
+							<span class="mb-0">Nhân viên</span>
 						</div>
 					</div>
 					<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item active"><a href="javascript:void(0)">Task</a></li>
+							<li class="breadcrumb-item active"><a href="javascript:void(0)">Nhiệm vụ</a></li>
 						</ol>
 					</div>
 				</div>
 				<div class="row mx-3">
-					<h2>Project 1</h2>
+					<h2>Dự án 1</h2>
 				</div>
 				<div class="row mt-3">
 					<div class="col-xl-4 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks}">
                         <a th:href="@{'/employee_workprogress_by_task'(taskId=${task.id})}">
                             <div class="card text-white bg-info">
                                 <div class="card-header">
-                                    <h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
+                                    <h5 class="card-title text-white" th:text="${task.title}">Nhiệm vụ 1</h5>
                                 </div>
                                 <div class="card-body mb-0">
                                     <p class="card-text" th:text="${task.content}">Mô tả công việc</p>
@@ -195,8 +195,7 @@
                                     </th:block>
                                 </div>
                                 <div class="card-footer bg-transparent border-0 text-white">
-                                    Last updated 3 min ago
-                                </div>
+                                    Cập nhật lần cuối 3p trước                                </div>
                             </div>
                         </a>
 					</div>
@@ -211,12 +210,12 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p> 
-            </div>
-        </div>
+<!--        <div class="footer">-->
+<!--            <div class="copyright">-->
+<!--                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>-->
+<!--                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p> -->
+<!--            </div>-->
+<!--        </div>-->
         <!--**********************************
             Footer end
         ***********************************-->

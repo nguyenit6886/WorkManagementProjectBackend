@@ -25,30 +25,30 @@
                                     <h5 class="text-center mb-4" th:if="${error != null}" th:text="${error}"></h5>
                                     <form th:action="@{/j_spring_security_check}" method="post">
                                         <div class="form-group">
-                                            <label><strong>Username</strong></label>
-                                            <input type="text" class="form-control" name="username">
+                                            <label><strong>Tài khoản</strong></label>
+                                            <input type="text" class="form-control" name="Tài khoản">
                                         </div>
                                         <div class="form-group">
-                                            <label><strong>Password</strong></label>
-                                            <input type="password" class="form-control" name="password">
+                                            <label><strong>Mật khẩu</strong></label>
+                                            <input type="password" class="form-control" name="Mật khẩu">
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
                                                 <div class="form-check ml-2">
                                                     <input class="form-check-input" type="checkbox" id="basic_checkbox_1">
-                                                    <label class="form-check-label" for="basic_checkbox_1">Remember me</label>
+                                                    <label class="form-check-label" for="basic_checkbox_1">Ghi nhớ</label>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <a href="page-forgot-password.html">Forgot Password?</a>
+                                                <a href="page-forgot-password.html">Quên mật khẩu?</a>
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign me in</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href="./page-register.html">Sign up</a></p>
+                                        <p>Chưa có tài khoản? <a class="text-primary" href="./page-register.html">Đăng kí</a></p>
                                     </div>
                                 </div>
                             </div>
