@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,22 +42,26 @@ public class TaskController {
   }
 
   @RequestMapping("/employee_task")
-  public String showTaskListPage(Model model){
+  public String showTaskListPage(Model model,
+                                 HttpSession session){
     EmployeeEntity employee = iEmployeeService.getObjectById(LoginController.CREATE_USER_ID);
     model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
     Map<ProjectEntity,List<TaskEntity>> map = iAssignmentService.getTaskByEmployee(employee)
                                                                 .stream().collect(Collectors.groupingBy(w -> w.getProject()));
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Employee/employee-task";
   }
 
   @RequestMapping("/leader-task-list")
   public String showTaskListPage(@RequestParam("projectId") int projectId,
                                  @RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
-                                 Model model){
+                                 Model model,
+                                 HttpSession session){
     Paged<TaskEntity> taskEntities = iTaskService.getPageByProjectId(projectId, pageNumber);
     model.addAttribute("tasks", taskEntities);
     model.addAttribute("projectId", projectId);
     model.addAttribute("employees",iEmployeeService.getAll());
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Leader/leader-task";
   }
 
@@ -108,10 +113,12 @@ public class TaskController {
   @RequestMapping("/manager-task-list")
   public String showTaskListManagerPage(@RequestParam("projectId") int projectId,
                                         @RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
-                                        Model model){
+                                        Model model,
+                                        HttpSession session){
     //List<TaskEntity> taskEntities = iTaskService.getAllTasksByProjectId(projectId);
     model.addAttribute("tasks", iTaskService.getPageByProjectId(projectId, pageNumber));
     model.addAttribute("projectId", projectId);
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/project/manager-task";
   }
 

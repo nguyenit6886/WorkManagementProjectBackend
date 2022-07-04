@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
@@ -17,8 +18,10 @@ public class DepartmentController {
 
   @RequestMapping("/department_manager")
   public String showDepartmentManagerPage(@RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
-                                          Model model){
+                                          Model model,
+                                          HttpSession session){
     model.addAttribute("departments",iDepartmentService.getPage(pageNumber));
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/department/manager-department";
   }
 

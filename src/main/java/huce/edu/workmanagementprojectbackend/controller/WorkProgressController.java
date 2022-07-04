@@ -30,26 +30,32 @@ public class WorkProgressController {
 
   @RequestMapping("/employee_workprogress_by_task")
   public String showEmployeeWorkProgressListPage(@RequestParam("taskId")int taskId,
-                                                 Model model){
+                                                 Model model,
+                                                 HttpSession session){
     model.addAttribute("workProgresss",iWorkProgressService.getObjectsByTask(taskId));
     model.addAttribute("taskId",taskId);
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Employee/employee-workprogress";
   }
 
   @RequestMapping("/manager_workprogress_by_task")
   public String showManagerWorkProgressListPage(@RequestParam("taskId")int taskId,
-                                                Model model){
+                                                Model model,
+                                                HttpSession session){
     model.addAttribute("workProgresss",iWorkProgressService.getObjectsByTask(taskId));
     model.addAttribute("taskId",taskId);
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/project/manager-workprogress";
   }
 
   @RequestMapping("/leader_workprogress_by_task")
   public String showLeaderWorkProgressListPage(@RequestParam("taskId")int taskId,
                                                @RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
-                                                Model model){
+                                               Model model,
+                                               HttpSession session){
     model.addAttribute("workProgresses",iWorkProgressService.getPageByTaskId(taskId,pageNumber));
     model.addAttribute("taskId",taskId);
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Leader/leader-workprogress";
   }
 
@@ -70,26 +76,32 @@ public class WorkProgressController {
 
   @RequestMapping("/employee_detail_workprogress")
   public String showEmployeeDetailWorkProgressPage(@RequestParam("workProgressId")int workProgressId,
-                                           Model model){
+                                                   Model model,
+                                                   HttpSession session){
     WorkProgressEntity workProgress = iWorkProgressService.getObjectById(workProgressId);
     model.addAttribute("workProgress",workProgress);
     model.addAttribute("comments",iCommentService.getCommentByWorkProgress(workProgress));
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Employee/employee-detail-workprogress";
   }
 
   @RequestMapping("/manager_detail_workprogress")
   public String showManagerDetailWorkProgressPage(@RequestParam("workProgressId")int workProgressId,
-                                           Model model){
+                                                  Model model,
+                                                  HttpSession session){
     WorkProgressEntity workProgress = iWorkProgressService.getObjectById(workProgressId);
     model.addAttribute("workProgress",workProgress);
     model.addAttribute("comments",iCommentService.getCommentByWorkProgress(workProgress));
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/project/manager-detail-workprogress";
   }
 
   @RequestMapping("/add_workprogress")
   public String showAddWorkProgressPage(@RequestParam("taskId")int taskId,
-                                        Model model){
+                                        Model model,
+                                        HttpSession session){
     model.addAttribute("taskId",taskId);
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Employee/employee-detail-workprogress-add";
   }
 
