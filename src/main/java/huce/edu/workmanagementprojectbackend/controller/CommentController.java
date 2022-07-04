@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -31,15 +34,27 @@ public class CommentController {
     return "redirect:/manager_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
   }
 
-  private void addCommentAction(CommentEntity comment){
+  @RequestMapping("/save_comment")
+  public String addComment(@ModelAttribute("comment")CommentEntity comment) {
+    addCommentAction(comment);
+    if(comment.getEmployee().getPosition() == 0){
+      return "redirect:/manager_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
+    }else if(comment.getEmployee().getPosition() == 1){
+      return "redirect:/leader_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
+    }else{
+      return "redirect:/employee_detail_workprogress?workProgressId="+comment.getWorkProgress().getId();
+    }
+  }
+
+  public void addCommentAction(CommentEntity comment){
     if(comment.getId() != 0){
       comment.setUpdateDate(new Date());
       iCommentService.updateObject(comment);
     }else{
       comment.setCreateDate(new Date());
       comment.setActive(true);
-      comment.setEmployee(iEmployeeService.getObjectById(LoginController.CREATE_USER_ID));
-      comment.setCreateUser(LoginController.CREATE_USER_ID);
+      comment.setEmployee(iEmployeeService.getObjectById(comment.getEmployee().getId()));
+      comment.setCreateUser(comment.getEmployee().getId());
       iCommentService.insertObject(comment);
     }
   }
