@@ -206,7 +206,7 @@ Preloader end
 							<div class="d-flex justify-content-between">
 								<p th:id="|lastUpdate${task.id}|">Last updated 3 min ago</p>
 								<div class="action">
-									<a th:href="@{'/get_task'(taskId=${task.id})}" class="btn btn-primary">Update</a>
+									<a th:href="@{'/get_assignment'(taskId=${task.id})}" class="btn btn-primary">Update</a>
 									<a th:href="@{'/delete_task'(taskId=${task.id})}" class="btn btn-danger">Xóa</a>
 								</div>
 							</div>
@@ -264,9 +264,10 @@ Preloader end
 								<div class="form-row">
 									<div class="form-group col-md-12">
 										<label>Thành viên tham gia</label>
-										<select class="form-control multi-select" name="employees" multiple="multiple">
-											<option value="1">Tên nhân viên 1</option>
-											<option value="2">Tên nhân viên 2</option>
+										<select class="form-control multi-select" name="employees" multiple="multiple" id="employees">
+											<option th:each="employee : ${employees}"
+													th:value="${employee.id}"
+													th:text="${employee.firstName + ' ' + employee.lastName + ' (Phòng: ' + employee.department.name} + ')'"/>
 										</select>
 									</div>
 								</div>
@@ -364,7 +365,8 @@ Scripts
 		$('.action .btn-primary').on('click',function (event){
 			event.preventDefault();
 			var href = $(this).attr('href');
-			$.get(href, function(task){
+			$.get(href, function(data){
+				var task = data["task"];
 				$('#txtId').val(task.id);
 				$('#txtTitle').val(task.title);
 				$('#txtProjectTitle').text(task.project.title);
@@ -374,6 +376,12 @@ Scripts
 				$('#txtContent').val(task.content);
 				$('#txtNote').val(task.note);
 				$('#slProgress').val(task.workProgressLevel);
+
+				var employeeIds = data["assignments"].map(function(assignment){
+					return assignment.employee.id;
+				});
+
+				$('#employees').val(employeeIds).change();
 			});
 			$('#exampleModalCenter').modal();
 		})
@@ -396,6 +404,7 @@ Scripts
 			var projectTitle = document.getElementById("projectTitle").innerText;
 			console.log(projectTitle);
 			$('#txtProjectTitle').text(projectTitle);
+			$('#employees').val([]).change();
 		})
 	})
 </script>

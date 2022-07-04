@@ -309,7 +309,7 @@
 
             $.ajax({url: "/get_task?taskId="+taskId, success: function(task){
                     $('#taskTitle').text("Tiến độ nhiệm vụ: "+task.title);
-                }});
+            }});
 
             for (let i = 0; i < workProgresses.length; i++) {
                 var employee = workProgresses[i].employee;

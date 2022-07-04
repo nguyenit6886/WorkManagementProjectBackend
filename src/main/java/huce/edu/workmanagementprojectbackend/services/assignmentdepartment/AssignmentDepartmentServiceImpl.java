@@ -74,7 +74,7 @@ public class AssignmentDepartmentServiceImpl implements IAssignmentDepartmentSer
   }
 
   @Override
-  public List<AssignmentDepartmentEntity> getAssignmentDepartmentByProjectAvtive(ProjectEntity project) {
+  public List<AssignmentDepartmentEntity> getAssignmentDepartmentByProjectActive(ProjectEntity project) {
     try{
       return repository.findAllByProjectActive(project.getId());
     }catch (Exception e){

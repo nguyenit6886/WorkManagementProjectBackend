@@ -1,5 +1,6 @@
 package huce.edu.workmanagementprojectbackend.services.assignment;
 
+import huce.edu.workmanagementprojectbackend.model.AssignmentDepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.AssignmentEntity;
 import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
@@ -29,4 +30,8 @@ public interface IAssignmentService extends IFunctionService<AssignmentEntity> {
 
   @Override
   Paged<AssignmentEntity> getPage(int pageNumber);
+
+  List<AssignmentEntity> getAssignmentByTask(TaskEntity task);
+
+  List<AssignmentEntity> getAssignmentByTaskActive(TaskEntity task);
 }

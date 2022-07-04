@@ -35,7 +35,7 @@ public class ProjectController {
   public Map<String,Object> getOne(@RequestParam("projectId")int projectId){
     Map<String,Object> map = new LinkedHashMap<>();
     map.put("project",iProjectService.getObjectById(projectId));
-    map.put("assignments",iAssignmentDepartmentService.getAssignmentDepartmentByProjectAvtive(iProjectService.getObjectById(projectId)));
+    map.put("assignments",iAssignmentDepartmentService.getAssignmentDepartmentByProjectActive(iProjectService.getObjectById(projectId)));
     return map;
   }
 
@@ -99,21 +99,6 @@ public class ProjectController {
   public String deleteEmployee(@RequestParam("projectId")int projectId) {
     iProjectService.deleteObject(projectId);
     return "redirect:/project_manager";
-  }
-
-  @RequestMapping("/project1")
-  public String showProject1(){
-    return "/html/Manager/project/manager-task";
-  }
-
-  @RequestMapping("/project2")
-  public String showProject2(){
-    return "manager-detail-workprogress";
-  }
-
-  @RequestMapping("/project3")
-  public String showProject3(){
-    return "/html/Manager/project/manager-workprogress";
   }
 
   private void addAssignmentDepartmentByProject(ProjectEntity project, DepartmentEntity department){

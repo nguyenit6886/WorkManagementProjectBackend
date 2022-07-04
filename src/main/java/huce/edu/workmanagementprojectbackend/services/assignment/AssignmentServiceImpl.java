@@ -1,5 +1,6 @@
 package huce.edu.workmanagementprojectbackend.services.assignment;
 
+import huce.edu.workmanagementprojectbackend.model.AssignmentDepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.AssignmentEntity;
 import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
@@ -29,12 +30,29 @@ public class AssignmentServiceImpl implements IAssignmentService{
 
   @Override
   public int insertObject(AssignmentEntity assignmentEntity) {
-    return 0;
+    try{
+      repository.save(assignmentEntity);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
   public int updateObject(AssignmentEntity assignmentEntity) {
-    return 0;
+    try{
+      AssignmentEntity assignmentUpdated = repository.findById(assignmentEntity.getId()).get();
+      if (assignmentUpdated.getUpdateDate() != assignmentEntity.getUpdateDate())
+        assignmentUpdated.setUpdateDate(assignmentEntity.getUpdateDate());
+      if (assignmentUpdated.isActive() != assignmentEntity.isActive())
+        assignmentUpdated.setActive(assignmentEntity.isActive());
+      repository.save(assignmentUpdated);
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override
@@ -50,5 +68,25 @@ public class AssignmentServiceImpl implements IAssignmentService{
   @Override
   public Paged<AssignmentEntity> getPage(int pageNumber) {
     return null;
+  }
+
+  @Override
+  public List<AssignmentEntity> getAssignmentByTask(TaskEntity task) {
+    try{
+      return repository.findAllByTask(task.getId());
+    }catch (Exception e){
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  @Override
+  public List<AssignmentEntity> getAssignmentByTaskActive(TaskEntity task) {
+    try{
+      return repository.findAllByTaskActive(task.getId());
+    }catch (Exception e){
+      e.printStackTrace();
+      return null;
+    }
   }
 }
