@@ -88,7 +88,7 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
     try{
       Path currentPath = Paths.get(".");
       Path absolutePath = currentPath.toAbsolutePath();
-      String imagePath = absolutePath + "/src/main/resources/static/files/" + workProgress.getId();
+      String imagePath = absolutePath + "/src/main/webapp/static/upload/" + workProgress.getId();
       Path path = Paths.get(imagePath);
       if(!java.nio.file.Files.exists(path)){
         java.nio.file.Files.createDirectories(path);
