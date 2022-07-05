@@ -236,9 +236,9 @@
                                                 <label class="custom-file-label">Đính kèm tệp</label>
                                             </div>
                                             <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;">
-                                                <option th:value="${workProgress.workProgressLevel}" th:text="${workProgress.workProgressLevel}" selected>Tiến độ công việc</option>
-                                                <option>Hoàn thành</option>
-                                                <option>Đang tiến hành</option>
+                                                <option value="0" th:selected="${workProgress.workProgressLevel==0}">Chưa tiến hành</option>
+                                                <option value="1" th:selected="${workProgress.workProgressLevel==1}">Đang tiến hành</option>
+                                                <option value="2" th:selected="${workProgress.workProgressLevel==2}">Hoàn thành</option>
                                             </select>
                                             <input type="submit" name="submit" value="Save" class="btn btn-primary text-white mt-5 workprogress-input">
                                             <button type="button" id="btn-update" class="btn btn-primary text-white mt-5 workprogress-old">Chỉnh sửa</button>
