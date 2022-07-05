@@ -3,6 +3,8 @@
 
     $('#btn-update').click(function(){
         $('.workprogress-input').css("display", "block");
+        $('.custom-file').css("display", "block");
+        $('#inputState').removeAttr("disabled");
         $('.workprogress-old').css("display", "none");
     });
 

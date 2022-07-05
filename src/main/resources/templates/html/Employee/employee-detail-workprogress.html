@@ -235,7 +235,7 @@
                                                 <input type="file" class="custom-file-input">
                                                 <label class="custom-file-label">Đính kèm tệp</label>
                                             </div>
-                                            <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;">
+                                            <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;" disabled>
                                                 <option value="0" th:selected="${workProgress.workProgressLevel==0}">Chưa tiến hành</option>
                                                 <option value="1" th:selected="${workProgress.workProgressLevel==1}">Đang tiến hành</option>
                                                 <option value="2" th:selected="${workProgress.workProgressLevel==2}">Hoàn thành</option>

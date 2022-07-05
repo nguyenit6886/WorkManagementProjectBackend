@@ -6,7 +6,7 @@ input.workprogress-input[type="text"] {
     display: none;
 }
 
-input.workprogress-input {
+input.workprogress-input, .custom-file {
     display: none;
 }
 
