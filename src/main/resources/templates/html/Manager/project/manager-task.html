@@ -192,29 +192,27 @@ Preloader end
                                 <p class="card-text text-white text-truncate" th:text="${task.content}">Mô tả công việc</p>
                                 <a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
                             </div>
-                            <div class="card-body mb-0 pt-1">
-                                <p class="text-white mb-3">Tiến độ</p>
-                                <th:block th:switch="${task.workProgressLevel}">
-                                    <div th:case="'0'">
-                                        <h4 class="card-title text-white" >Chưa tiến hành</h4>
-                                    </div>
-                                    <div th:case="'1'">
-                                        <h4 class="card-title text-white" >Đang tiến hành</h4>
-                                    </div>
-                                    <div th:case="'2'">
-                                        <h4 class="card-title text-white" >Hoàn thành</h4>
-                                    </div>
-                                </th:block>
-                                <div class="progress mb-3">
-                                    <div
-                                            class="progress-bar bg-danger progress-bar-striped"
-                                            th:aria-valuenow="${task.workProgressLevel}"
-                                            aria-valuemin="0"
-                                            aria-valuemax="2"
-                                            style="height: 10px"
-                                            role="progressbar"
-                                    >
-                                    </div>
+                            <p class="text-white mb-3">Tiến độ</p>
+                            <th:block th:switch="${task.workProgressLevel}">
+                                <div th:case="'0'">
+                                    <h4 class="card-title text-white" >Chưa tiến hành</h4>
+                                </div>
+                                <div th:case="'1'">
+                                    <h4 class="card-title text-white" >Đang tiến hành</h4>
+                                </div>
+                                <div th:case="'2'">
+                                    <h4 class="card-title text-white" >Hoàn thành</h4>
+                                </div>
+                            </th:block>
+                            <div class="progress mb-3">
+                                <div
+                                        class="progress-bar bg-danger progress-bar-striped"
+                                        th:aria-valuenow="${task.workProgressLevel}"
+                                        aria-valuemin="0"
+                                        aria-valuemax="2"
+                                        style="height: 10px"
+                                        role="progressbar"
+                                >
                                 </div>
                             </div>
                             <a href="#" class="btn btn-dark btn-card mt-2">Đánh giá kết quả</a>
