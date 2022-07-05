@@ -279,14 +279,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="after-edit-cmt">
-                                                        <form th:action="@{/save_comment}" class="d-inline-flex w-100" style="align-items: center;" id="updateCommentForm">
+                                                        <form th:action="@{/save_comment}" class="d-inline-flex w-100" style="align-items: center;" id="updateCommentForm" method="post">
                                                             <input type="hidden" name="id" th:value="${comment.id}">
                                                             <input type="hidden" name="employee" th:value="${comment.employee.id}">
                                                             <input type="hidden" name="workProgress" th:value="${comment.workProgress.id}">
                                                             <div class="w-100">
                                                                 <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded" name="content" th:value="${comment.content}">
                                                             </div>
-                                                            <button class="btn btn-primary ml-2" type="submit" form="updateCommentForm">Comment</button>
+                                                            <input class="btn btn-primary ml-2" type="submit" value="Bình luận">
                                                         </form>
                                                         <button class="ml-2 btn-cancel-edit-cmt" style="font-size: 90%;"><strong>Hủy</strong></button>
                                                     </div>
