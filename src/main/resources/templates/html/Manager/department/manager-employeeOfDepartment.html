@@ -39,7 +39,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="manager" class="brand-logo">
+            <a href="#" class="brand-logo">
                 <img class="logo-abbr" src="/view/images/logo.png" alt="">
                 <img class="logo-compact" src="/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -61,19 +61,19 @@
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="search_bar dropdown">
-                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                                <div class="dropdown-menu p-0 m-0">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Tìm kiếm" aria-label="Search">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="collapse navbar-collapse justify-content-end">
+<!--                        <div class="header-left">-->
+<!--                            <div class="search_bar dropdown">-->
+<!--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">-->
+<!--                                    <i class="mdi mdi-magnify"></i>-->
+<!--                                </span>-->
+<!--                                <div class="dropdown-menu p-0 m-0">-->
+<!--                                    <form>-->
+<!--                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
@@ -128,12 +128,6 @@
         <div class="quixnav" style="position: fixed">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li>
-                        <a href="manager" aria-expanded="false">
-                            <i class="icon icon-home"></i>
-                            <span class="nav-text">Bảng điều khiển</span>
-                        </a>
-                    </li>
                     <li class="nav-label first">Quản lý</li>
                     <li class="mm-active">
                         <a href="department_manager" class="mm-active" aria-expanded="false">
@@ -180,7 +174,7 @@
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Chào mừng trở lại!</h4>
-                            <p class="mb-0">Quản lý</p>
+                            <p class="mb-0" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}">Manager</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -200,7 +194,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example2" class="display" style="width:100%">
+                                    <table id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Ảnh</th>
@@ -215,7 +209,7 @@
                                             <tr th:each="employee : ${employees}">
                                                 <td><img class="" src="/view/images/avatar/4.png" alt="..."></td>
                                                 <td th:text="${employee.firstName} + ' ' + ${employee.lastName}">Tiger Nixon</td>
-                                                <td th:text="${employee.position}">Kiến trúc sư hệ thống</td>
+                                                <td th:text="${employee.position}">System Architect</td>
                                                 <td th:text="${employee.department.name}">Edinburgh</td>
                                                 <td th:text="${employee.createDate}">2011/04/25</td>
                                                 <td>

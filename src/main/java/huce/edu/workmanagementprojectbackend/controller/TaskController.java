@@ -1,8 +1,7 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
-import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
-import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
-import huce.edu.workmanagementprojectbackend.model.TaskEntity;
+import huce.edu.workmanagementprojectbackend.model.*;
+import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.services.assignment.IAssignmentService;
 import huce.edu.workmanagementprojectbackend.services.employee.IEmployeeService;
 import huce.edu.workmanagementprojectbackend.services.task.ITaskService;
@@ -11,9 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -34,20 +32,37 @@ public class TaskController {
     return iTaskService.getAll();
   }
 
+  @ResponseBody
+  @GetMapping("/get_assignment")
+  public Map<String,Object> getOne(@RequestParam("taskId")int taskId){
+    Map<String,Object> map = new LinkedHashMap<>();
+    map.put("task",iTaskService.getObjectById(taskId));
+    map.put("assignments",iAssignmentService.getAssignmentByTaskActive(iTaskService.getObjectById(taskId)));
+    return map;
+  }
+
   @RequestMapping("/employee_task")
-  public String showTaskListPage(Model model){
-    EmployeeEntity employee = iEmployeeService.getObjectById(LoginController.CREATE_USER_ID);
-    model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
+  public String showTaskListPage(Model model,
+                                 HttpSession session){
+    EmployeeEntity employee = iEmployeeService.getObjectById(((EmployeeEntity) session.getAttribute("user")).getId());
+//    model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
     Map<ProjectEntity,List<TaskEntity>> map = iAssignmentService.getTaskByEmployee(employee)
                                                                 .stream().collect(Collectors.groupingBy(w -> w.getProject()));
+    model.addAttribute("map",map);
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Employee/employee-task";
   }
 
   @RequestMapping("/leader-task-list")
-  public String showTaskListPage(@RequestParam("projectId") int projectId, Model model){
-    List<TaskEntity> taskEntities = iTaskService.getAllTasksByProjectId(projectId);
+  public String showTaskListPage(@RequestParam("projectId") int projectId,
+                                 @RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
+                                 Model model,
+                                 HttpSession session){
+    Paged<TaskEntity> taskEntities = iTaskService.getPageByProjectId(projectId, pageNumber);
     model.addAttribute("tasks", taskEntities);
     model.addAttribute("projectId", projectId);
+    model.addAttribute("employees",iEmployeeService.getAll());
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Leader/leader-task";
   }
 
@@ -58,11 +73,31 @@ public class TaskController {
   }
 
   @RequestMapping("/save_task")
-  public String saveTask(@ModelAttribute("task") TaskEntity task){
+  public String saveTask(@ModelAttribute("task") TaskEntity task,
+                         @RequestParam("employees") EmployeeEntity[] employees){
     if(task.getId() != 0){
       iTaskService.updateObject(task);
+      List<AssignmentEntity> list = iAssignmentService.getAssignmentByTask(task);
+      for(AssignmentEntity ae : list){
+        if(!Arrays.asList(employees).contains(ae.getEmployee())){
+          if(ae.isActive()) ae.setActive(false);
+        }else{
+          if(!ae.isActive()) ae.setActive(true);
+        }
+        ae.setUpdateDate(new Date());
+        iAssignmentService.updateObject(ae);
+      }
+      for(EmployeeEntity employee : employees){
+        if(!list.stream().map(AssignmentEntity::getEmployee).collect(Collectors.toList()).contains(employee)){
+          addAssignmentByTask(task, employee);
+        }
+      }
     }else{
+      task.setCreateUser(LoginController.CREATE_USER_ID);
       iTaskService.insertObject(task);
+      for(EmployeeEntity employee : employees){
+        addAssignmentByTask(task, employee);
+      }
     }
     String url = "/leader-task-list?projectId="+task.getProject().getId();
     return "redirect:"+url;
@@ -79,10 +114,22 @@ public class TaskController {
   @RequestMapping("/manager-task-list")
   public String showTaskListManagerPage(@RequestParam("projectId") int projectId,
                                         @RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
-                                        Model model){
+                                        Model model,
+                                        HttpSession session){
     //List<TaskEntity> taskEntities = iTaskService.getAllTasksByProjectId(projectId);
     model.addAttribute("tasks", iTaskService.getPageByProjectId(projectId, pageNumber));
     model.addAttribute("projectId", projectId);
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/project/manager-task";
+  }
+
+  private void addAssignmentByTask(TaskEntity task, EmployeeEntity employee){
+    AssignmentEntity ae = new AssignmentEntity();
+    ae.setTask(task);
+    ae.setEmployee(employee);
+    ae.setCreateDate(new Date());
+    ae.setActive(true);
+    ae.setCreateUser(LoginController.CREATE_USER_ID);
+    iAssignmentService.insertObject(ae);
   }
 }

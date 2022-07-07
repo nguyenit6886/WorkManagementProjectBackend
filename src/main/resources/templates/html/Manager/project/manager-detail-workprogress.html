@@ -9,6 +9,7 @@
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <link href="/view/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 
 <body>
@@ -37,7 +38,7 @@
         Nav header start
     ***********************************-->
     <div class="nav-header">
-        <a href="manager" class="brand-logo">
+        <a href="#" class="brand-logo">
             <img class="logo-abbr" src="/view/images/logo.png" alt="">
             <img class="logo-compact" src="/view/images/logo-text.png" alt="">
             <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -60,19 +61,19 @@
     <div class="header">
         <div class="header-content">
             <nav class="navbar navbar-expand">
-                <div class="collapse navbar-collapse justify-content-between">
-                    <div class="header-left">
-                        <div class="search_bar dropdown">
-                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                            <div class="dropdown-menu p-0 m-0">
-                                <form>
-                                    <input class="form-control" type="search" placeholder="Tìm kiếm" aria-label="Search">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <div class="collapse navbar-collapse justify-content-end">
+<!--                    <div class="header-left">-->
+<!--                        <div class="search_bar dropdown">-->
+<!--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">-->
+<!--                                    <i class="mdi mdi-magnify"></i>-->
+<!--                                </span>-->
+<!--                            <div class="dropdown-menu p-0 m-0">-->
+<!--                                <form>-->
+<!--                                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <ul class="navbar-nav header-right">
                         <li class="nav-item dropdown notification_dropdown">
@@ -127,12 +128,6 @@
     <div class="quixnav" style="position: fixed">
         <div class="quixnav-scroll">
             <ul class="metismenu" id="menu">
-                <li>
-                    <a href="manager" aria-expanded="false">
-                        <i class="icon icon-home"></i>
-                        <span class="nav-text">Bảng điều khiển</span>
-                    </a>
-                </li>
                 <li class="nav-label first">Quản lý</li>
                 <li>
                     <a href="department_manager" aria-expanded="false">
@@ -179,7 +174,7 @@
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
                         <h4>Chào mừng trở lại!</h4>
-                        <p class="mb-0">Quản lý</p>
+                        <p class="mb-0" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}">Manager</p>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -196,7 +191,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header pb-0 col-md-12">
-                            <h3 class="workprogress-old" th:text="${workProgress.title}">Tên tiến độ công việc</h3>
+                            <h3 class="workprogress-old" th:text="${workProgress.title}">Tên Work Progress</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -253,7 +248,7 @@
                                     <div class="p-2 border border-primary">
                                         <div class="d-flex">
                                             <img src="/view/images/avatar/1.png" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
-                                            <form th:action="@{/save_manager_comment}" class="d-inline-flex w-100 ml-3" style="align-items: center;" id="addCommentForm">
+                                            <form th:action="@{/save_comment}" class="d-inline-flex w-100 ml-3" style="align-items: center;" id="addCommentForm">
                                                 <input type="hidden" name="workProgress" th:value="${workProgress.id}">
                                                 <div class="w-100 d-flex">
                                                     <input type="text" name="content" class="form-control input-rounded bg-light w-90" placeholder="Nhập bình luận">
@@ -266,9 +261,35 @@
                                                 <div class="rounded-circle">
                                                     <img src="/view/images/avatar/1.png" alt="avt" style="width: 40px; height: 40px; object-fit: cover;">
                                                 </div>
-                                                <div class="ml-3 px-2 py-1 bg-light" style="border-radius: 15px;">
-                                                    <span class="text-black" style="font-weight: 500;" th:text="${comment.employee.firstName} + ' ' + ${comment.employee.lastName}">Hoàng Tuấn Anh</span>
-                                                    <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
+                                                <div class="ml-3 item-content-cmt">
+                                                    <div class="before-edit-cmt">
+                                                        <div class="bg-light px-2 py-1" style="border-radius: 15px;">
+                                                            <span class="text-black" style="font-weight: 500;" th:text="${comment.employee.firstName} + ' ' + ${comment.employee.lastName}">Hoàng Tuấn Anh</span>
+                                                            <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <span class="ml-2" style="font-size: 90%;line-height:1.8" th:text="${comment.updateDate == null ? comment.createDate : comment.updateDate}">Thời gian comment</span>
+                                                            <div class="action ml-2">
+                                                                <span class="mr-1" style="font-size: 7px;position: relative;top:-2px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                                                <div th:if="${comment.employee.id == user.id}">
+                                                                    <button class="btn-edit-cmt mr-1" style="font-size: 90%;"><strong>Chỉnh sửa</strong></button>
+                                                                    <a th:href="@{'/delete_comment'(commentId=${comment.id})}" style="font-size: 90%;"><strong>Xóa</strong></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="after-edit-cmt">
+                                                        <form th:action="@{/save_comment}" class="d-inline-flex w-100" style="align-items: center;" id="updateCommentForm" method="post">
+                                                            <input type="hidden" name="id" th:value="${comment.id}">
+                                                            <input type="hidden" name="employee" th:value="${comment.employee.id}">
+                                                            <input type="hidden" name="workProgress" th:value="${comment.workProgress.id}">
+                                                            <div class="w-100">
+                                                                <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded" name="content" th:value="${comment.content}">
+                                                            </div>
+                                                            <input class="btn btn-primary ml-2" type="submit" value="Bình luận">
+                                                        </form>
+                                                        <button class="ml-2 btn-cancel-edit-cmt" style="font-size: 90%;"><strong>Hủy</strong></button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -321,6 +342,8 @@
 <script src="/view/vendor/global/global.min.js"></script>
 <script src="/view/js/quixnav-init.js"></script>
 <script src="/view/js/custom.min.js"></script>
+
+<script src="/view/js/custom/form-workprogress.custom.js"></script>
 </body>
 
 </html>

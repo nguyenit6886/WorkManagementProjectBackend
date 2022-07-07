@@ -4,9 +4,12 @@ import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.paging.Paged;
+import huce.edu.workmanagementprojectbackend.paging.Paging;
 import huce.edu.workmanagementprojectbackend.repository.TaskRepository;
 import huce.edu.workmanagementprojectbackend.repository.WorkProgressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -78,6 +81,12 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
   @Override
   public Paged<WorkProgressEntity> getPage(int pageNumber) {
     return null;
+  }
+
+  @Override
+  public Paged<WorkProgressEntity> getPageByTaskId(int taskId, int pageNumber){
+    Page<WorkProgressEntity> postPage = repository.findAllWorkProgressByProjectId(taskId, PageRequest.of(pageNumber - 1, Paging.PAGE_SIZE));
+    return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, Paging.PAGE_SIZE));
   }
 
   @Override

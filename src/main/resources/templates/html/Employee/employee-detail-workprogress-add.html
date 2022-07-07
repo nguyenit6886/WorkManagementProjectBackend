@@ -37,7 +37,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="employee-index.html" class="brand-logo">
+            <a href="#" class="brand-logo">
                 <img class="logo-abbr" src="/view/images/logo.png" alt="">
                 <img class="logo-compact" src="/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -60,20 +60,20 @@
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="search_bar dropdown">
-                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                                <div class="dropdown-menu p-0 m-0">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Tìm kiếm"
-                                            aria-label="Search">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="collapse navbar-collapse justify-content-end">
+<!--                        <div class="header-left">-->
+<!--                            <div class="search_bar dropdown">-->
+<!--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">-->
+<!--                                    <i class="mdi mdi-magnify"></i>-->
+<!--                                </span>-->
+<!--                                <div class="dropdown-menu p-0 m-0">-->
+<!--                                    <form>-->
+<!--                                        <input class="form-control" type="search" placeholder="Search"-->
+<!--                                            aria-label="Search">-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
@@ -129,12 +129,6 @@
         <div class="quixnav" style="position: fixed">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li>
-                        <a href="employee-index.html" aria-expanded="false">
-                            <i class="icon icon-home"></i>
-                            <span class="nav-text">Bảng điều khiển</span>
-                        </a>
-                    </li>
                     <li class="nav-label first">Quản lý</li>
                     <li>
                         <a href="employee_task" aria-expanded="false">
@@ -164,8 +158,8 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>Chào mừng trở lại!</h4>
-                            <p class="mb-0">Nhân viên</p>
+                            <<h4>Chào mừng trở lại!</h4>
+                            <p class="mb-0" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}">Employee</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -241,9 +235,9 @@
                                                 <label class="custom-file-label">Đính kèm tệp</label>
                                             </div>
                                             <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;">
-                                                <option selected="">Tiến độ công việc</option>
-                                                <option value="2">Hoàn thành</option>
+                                                <option value="0">Chưa tiến hành</option>
                                                 <option value="1">Đang tiến hành</option>
+                                                <option value="2">Hoàn thành</option>
                                             </select>
                                             <input type="submit" name="submit" value="Add" class="btn btn-primary text-white mt-5">
                                         </div>

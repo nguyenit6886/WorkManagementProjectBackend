@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
@@ -20,14 +21,18 @@ public class EmployeeController {
   private IDepartmentService iDepartmentService;
 
   @RequestMapping("/employee_manager")
-  public String showEmployeeManagerPage(Model model){
+  public String showEmployeeManagerPage(Model model,
+                                        HttpSession session){
     model.addAttribute("employees",iEmployeeService.getAll());
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/employee/manager-employee";
   }
 
   @RequestMapping("/add_employee")
-  public String showAddEmployeePage(Model model){
+  public String showAddEmployeePage(Model model,
+                                    HttpSession session){
     model.addAttribute("departments",iDepartmentService.getAll());
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/employee/manager-employee-add";
   }
 
@@ -46,9 +51,11 @@ public class EmployeeController {
 
   @RequestMapping("/update_employee")
   public String showUpdateEmployeePage(@RequestParam("employeeId")int employeeId,
-                                       Model model){
+                                       Model model,
+                                       HttpSession session){
     model.addAttribute("employee",iEmployeeService.getObjectById(employeeId));
     model.addAttribute("departments",iDepartmentService.getAll());
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/employee/manager-employee-update";
   }
 
@@ -60,8 +67,10 @@ public class EmployeeController {
 
   @RequestMapping("/employees_of_department")
   public String showEmployeesOfDepartmentPage(@RequestParam("departmentId")int departmentId,
-                                              Model model){
+                                              Model model,
+                                              HttpSession session){
     model.addAttribute("employees",iEmployeeService.getObjectsByDepartment(departmentId));
+    model.addAttribute("user",session.getAttribute("user"));
     return "/html/Manager/department/manager-employeeOfDepartment";
   }
 }

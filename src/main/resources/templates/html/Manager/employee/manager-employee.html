@@ -38,7 +38,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="manager" class="brand-logo">
+            <a href="#" class="brand-logo">
                 <img class="logo-abbr" src="/view/images/logo.png" alt="">
                 <img class="logo-compact" src="/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -60,19 +60,19 @@
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="search_bar dropdown">
-                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                                <div class="dropdown-menu p-0 m-0">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Tìm kiếm" aria-label="Search">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="collapse navbar-collapse justify-content-end">
+<!--                        <div class="header-left">-->
+<!--                            <div class="search_bar dropdown">-->
+<!--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">-->
+<!--                                    <i class="mdi mdi-magnify"></i>-->
+<!--                                </span>-->
+<!--                                <div class="dropdown-menu p-0 m-0">-->
+<!--                                    <form>-->
+<!--                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
@@ -127,12 +127,6 @@
         <div class="quixnav" style="position: fixed">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li>
-                        <a href="manager" aria-expanded="false">
-                            <i class="icon icon-home"></i>
-                            <span class="nav-text">Bảng điều khiển</span>
-                        </a>
-                    </li>
                     <li class="nav-label first">Quản lý</li>
                     <li>
                         <a href="department_manager" aria-expanded="false">
@@ -179,7 +173,7 @@
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Chào mừng trở lại!</h4>
-                            <span class="mb-0" th:if="${user != null}" th:text="${user.lastName}">Quản lý</span>
+                            <span class="mb-0" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}">Manager</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -213,7 +207,7 @@
                                         <tbody>
                                             <tr th:each="employee : ${employees}">
                                                 <td th:text="${employee.firstName} + ' ' + ${employee.lastName}">Tiger Nixon</td>
-                                                <td th:text="${employee.birthday}">Kiến trúc sư hệ thống</td>
+                                                <td th:text="${employee.birthday}">System Architect</td>
                                                 <td th:text="${employee.email}">Edinburgh</td>
                                                 <td th:text="${employee.address}">61</td>
                                                 <td th:text="${employee.phone}">2011/04/25</td>
@@ -236,7 +230,7 @@
 <!--                                                <th>Full name</th>-->
 <!--                                                <th>Birth day</th>-->
 <!--                                                <th>Email</th>-->
-<!--                                                <th>Địa chỉ</th>-->
+<!--                                                <th>Address</th>-->
 <!--                                                <th>Phone</th>-->
 <!--                                                <th>Position</th>-->
 <!--                                                <th>Note</th>-->
@@ -252,10 +246,10 @@
 <!--                <nav aria-label="Page navigation example">-->
 <!--                    <ul class="pagination justify-content-center" th:if="${employees.page.totalPages > 1}">-->
 <!--                        <li class="page-item" th:classappend="${!employees.paging.isPrevEnabled()? 'disabled' : ''}">-->
-<!--                            <a class="page-link" th:href="@{'employee_manager?pageNumber=1'}" >Đầu</a>-->
+<!--                            <a class="page-link" th:href="@{'employee_manager?pageNumber=1'}" >First</a>-->
 <!--                        </li>-->
 <!--                        <li class="page-item" th:classappend="${!employees.paging.isPrevEnabled()? 'disabled' : ''}">-->
-<!--                            <a class="page-link" th:href="@{'employee_manager?pageNumber=' + ${employees.paging.pageNumber - 1 > 0 ? employees.paging.pageNumber - 1 : 1}}" >Trước</a>-->
+<!--                            <a class="page-link" th:href="@{'employee_manager?pageNumber=' + ${employees.paging.pageNumber - 1 > 0 ? employees.paging.pageNumber - 1 : 1}}" >Previous</a>-->
 <!--                        </li>-->
 <!--                        <th:block th:each="item : ${employees.paging.getItems()}">-->
 <!--                            <li class="page-item" th:classappend="${item.index == employees.paging.pageNumber? 'active' : ''}"-->
@@ -268,10 +262,10 @@
 <!--                            </li>-->
 <!--                        </th:block>-->
 <!--                        <li class="page-item" th:classappend="${!employees.paging.isNextEnabled()? 'disabled' : ''}">-->
-<!--                            <a class="page-link" th:href="@{'employee_manager?pageNumber=' + ${employees.paging.pageNumber + 1 <= employees.page.totalPages ? employees.paging.pageNumber + 1 : employees.page.totalPages}}">Sau</a>-->
+<!--                            <a class="page-link" th:href="@{'employee_manager?pageNumber=' + ${employees.paging.pageNumber + 1 <= employees.page.totalPages ? employees.paging.pageNumber + 1 : employees.page.totalPages}}">Next</a>-->
 <!--                        </li>-->
 <!--                        <li class="page-item" th:classappend="${!employees.paging.isNextEnabled()? 'disabled' : ''}">-->
-<!--                            <a class="page-link" th:href="@{'employee_manager?pageNumber=' + ${employees.page.totalPages}}" >Cuối</a>-->
+<!--                            <a class="page-link" th:href="@{'employee_manager?pageNumber=' + ${employees.page.totalPages}}" >Last</a>-->
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </nav>-->

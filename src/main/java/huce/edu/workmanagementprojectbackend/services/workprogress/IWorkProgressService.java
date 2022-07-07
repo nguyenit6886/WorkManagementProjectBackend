@@ -1,5 +1,6 @@
 package huce.edu.workmanagementprojectbackend.services.workprogress;
 
+import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
@@ -26,4 +27,6 @@ public interface IWorkProgressService extends IFunctionService<WorkProgressEntit
 
   @Override
   Paged<WorkProgressEntity> getPage(int pageNumber);
+
+  Paged<WorkProgressEntity> getPageByTaskId(int taskId, int pageNumber);
 }

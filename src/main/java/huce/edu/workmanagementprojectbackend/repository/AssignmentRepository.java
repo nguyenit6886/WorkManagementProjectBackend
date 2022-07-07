@@ -11,4 +11,10 @@ import java.util.List;
 public interface AssignmentRepository extends JpaRepository<AssignmentEntity, Integer> {
   @Query("Select a from AssignmentEntity a where a.active = true")
   List<AssignmentEntity> findAllActive();
+
+  @Query("Select a from AssignmentEntity a where a.task.id = ?1")
+  List<AssignmentEntity> findAllByTask(int taskId);
+
+  @Query("Select a from AssignmentEntity a where a.active = true and a.task.id = ?1")
+  List<AssignmentEntity> findAllByTaskActive(int taskId);
 }

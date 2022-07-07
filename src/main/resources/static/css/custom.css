@@ -6,7 +6,7 @@ input.workprogress-input[type="text"] {
     display: none;
 }
 
-input.workprogress-input {
+input.workprogress-input, .custom-file {
     display: none;
 }
 
@@ -18,4 +18,20 @@ textarea.workprogress-input {
     resize: none;
     white-space: pre-line;
     display: none;
+}
+
+/* Edit Comment Work Progress */
+.after-edit-cmt {
+    display: none;
+}
+
+.btn-edit-cmt, .btn-cancel-edit-cmt {
+    border: none;
+    color: #BDBDC7;
+    background-color: #fff;
+}
+
+.btn-edit-cmt:hover, .btn-cancel-edit-cmt:hover {
+    color: #593bdb;
+    text-decoration: inherit;
 }

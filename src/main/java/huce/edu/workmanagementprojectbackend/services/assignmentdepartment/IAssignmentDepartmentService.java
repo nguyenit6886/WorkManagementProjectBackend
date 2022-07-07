@@ -25,7 +25,7 @@ public interface IAssignmentDepartmentService extends IFunctionService<Assignmen
 
   List<AssignmentDepartmentEntity> getAssignmentDepartmentByProject(ProjectEntity project);
 
-  List<AssignmentDepartmentEntity> getAssignmentDepartmentByProjectAvtive(ProjectEntity project);
+  List<AssignmentDepartmentEntity> getAssignmentDepartmentByProjectActive(ProjectEntity project);
 
   @Override
   Paged<AssignmentDepartmentEntity> getPage(int pageNumber);

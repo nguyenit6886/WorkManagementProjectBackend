@@ -37,7 +37,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="./leader-index.html" class="brand-logo">
+            <a href="#" class="brand-logo">
                 <img class="logo-abbr" src="/view/images/logo.png" alt="">
                 <img class="logo-compact" src="/view/images/logo-text.png" alt="">
                 <img class="brand-title" src="/view/images/logo-text.png" alt="">
@@ -60,20 +60,20 @@
         <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="search_bar dropdown">
-                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-                                    <i class="mdi mdi-magnify"></i>
-                                </span>
-                                <div class="dropdown-menu p-0 m-0">
-                                    <form>
-                                        <input class="form-control" type="search" placeholder="Tìm kiếm"
-                                            aria-label="Search">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="collapse navbar-collapse justify-content-end">
+<!--                        <div class="header-left">-->
+<!--                            <div class="search_bar dropdown">-->
+<!--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">-->
+<!--                                    <i class="mdi mdi-magnify"></i>-->
+<!--                                </span>-->
+<!--                                <div class="dropdown-menu p-0 m-0">-->
+<!--                                    <form>-->
+<!--                                        <input class="form-control" type="search" placeholder="Search"-->
+<!--                                            aria-label="Search">-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
@@ -129,12 +129,6 @@
         <div class="quixnav" style="position: fixed">
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li>
-                        <a href="leader-index.html" aria-expanded="false">
-                            <i class="icon icon-home"></i>
-                            <span class="nav-text">Bảng điều khiển</span>
-                        </a>
-                    </li>
                     <li class="nav-label first">Quản lý</li>
                     <li>
 						<a href="leader_manager" aria-expanded="false">
@@ -165,7 +159,7 @@
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Chào mừng trở lại!</h4>
-                            <p class="mb-0">Nhóm trưởng</p>
+                            <p class="mb-0" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}">Leader</p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -177,123 +171,43 @@
                     </div>
                 </div>
 
-                <h3>Danh sách tiến độ công việc</h3>
+                <h3 id="taskTitle">Danh sách tiến độ công việc</h3>
                 <div class="row">
-                    <div class="col-md-6">
-                        <a href="./leader-detail.workprogress.html">
+                    <div class="col-md-6" th:each="workProgress : ${workProgresses.page}">
+                        <a th:href="@{'/leader_detail_workprogress'(workProgressId=${workProgress.id})}">
                             <div class="card text-white bg-primary">
                                 <div class="card-header d-flex justify-content-between pt-1">
-                                    <h4 class="card-title text-white">Tiến độ công việc 1</h4>
-                                    <p class="mt-3" style="color:#BDBDC7">Tạo bởi Employee-Name</p>
+                                    <h4 class="card-title text-white" th:text="${workProgress.title}">Work Progress 1</h4>
+                                    <p th:id="|Creator${workProgress.id}|" class="mt-3" style="color:#BDBDC7" >Created by Employee-Name</p>
                                 </div>
                                 <div class="card-body mb-0 pt-1">
                                     <p class="text-white mb-3">Tiến độ</p>
+                                    <th:block th:switch="${workProgress.workProgressLevel}">
+                                        <div th:case="'0'">
+                                            <h4 class="card-title text-white" >Chưa tiến hành</h4>
+                                        </div>
+                                        <div th:case="'1'">
+                                            <h4 class="card-title text-white" >Đang tiến hành</h4>
+                                        </div>
+                                        <div th:case="'2'">
+                                            <h4 class="card-title text-white" >Hoàn thành</h4>
+                                        </div>
+                                    </th:block>
                                     <div class="progress mb-3">
                                         <div
                                             class="progress-bar bg-danger progress-bar-striped"
-                                            aria-valuenow="85"
+                                            th:aria-valuenow="${workProgress.workProgressLevel}"
                                             aria-valuemin="0"
-                                            aria-valuemax="100"
-                                            style="width: 85%; height: 10px"
+                                            aria-valuemax="2"
+                                            style="height: 10px"
                                             role="progressbar"
                                         >
-                                            <span class="sr-only">85% Hoàn thành (thành công)</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-transparent border-1 text-white py-0">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <p class="pt-3" style="color:#BDBDC7">Cập nhật lần cuối 3p trước bởi Employee-Update</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="./leader-detail.workprogress.html">
-                            <div class="card text-white bg-primary">
-                                <div class="card-header d-flex justify-content-between pt-1">
-                                    <h4 class="card-title text-white">Tiến độ công việc 1</h4>
-                                    <p class="mt-3" style="color:#BDBDC7">Tạo bởi Employee-Name</p>
-                                </div>
-                                <div class="card-body mb-0 pt-1">
-                                    <p class="text-white mb-3">Tiến độ</p>
-                                    <div class="progress mb-3">
-                                        <div
-                                            class="progress-bar bg-danger progress-bar-striped"
-                                            aria-valuenow="85"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                            style="width: 85%; height: 10px"
-                                            role="progressbar"
-                                        >
-                                            <span class="sr-only">85% Hoàn thành (thành công)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-transparent border-1 text-white py-0">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="pt-3" style="color:#BDBDC7">Cập nhật lần cuối 3p trước Employee-Update</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="./leader-detail.workprogress.html">
-                            <div class="card text-white bg-primary">
-                                <div class="card-header d-flex justify-content-between pt-1">
-                                    <h4 class="card-title text-white">Tiến độ công việc 1</h4>
-                                    <p class="mt-3" style="color:#BDBDC7">Tạo bởi Employee-Name</p>
-                                </div>
-                                <div class="card-body mb-0 pt-1">
-                                    <p class="text-white mb-3">Tiến độ</p>
-                                    <div class="progress mb-3">
-                                        <div
-                                            class="progress-bar bg-danger progress-bar-striped"
-                                            aria-valuenow="85"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                            style="width: 85%; height: 10px"
-                                            role="progressbar"
-                                        >
-                                            <span class="sr-only">85% Hoàn thành (thành công)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-transparent border-1 text-white py-0">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="pt-3" style="color:#BDBDC7">Cập nhật lần cuối 3p trước bởi Employee-Update</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="./leader-detail.workprogress.html">
-                            <div class="card text-white bg-primary">
-                                <div class="card-header d-flex justify-content-between pt-1">
-                                    <h4 class="card-title text-white">Tiến độ công việc 1</h4>
-                                    <p class="mt-3" style="color:#BDBDC7">Tạo bởi Employee-Name</p>
-                                </div>
-                                <div class="card-body mb-0 pt-1">
-                                    <p class="text-white mb-3">Tiến độ</p>
-                                    <div class="progress mb-3">
-                                        <div
-                                            class="progress-bar bg-danger progress-bar-striped"
-                                            aria-valuenow="85"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                            style="width: 85%; height: 10px"
-                                            role="progressbar"
-                                        >
-                                            <span class="sr-only">85% Hoàn thành (thành công)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-transparent border-1 text-white py-0">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="pt-3" style="color:#BDBDC7">Cập nhật lần cuối 3p trước bởi Employee-Update</p>
+                                        <p th:id="|lastUpdate${workProgress.id}|" class="pt-3" style="color:#BDBDC7">Last updated 3 min ago by Employee-Update</p>
                                     </div>
                                 </div>
                             </div>
@@ -302,6 +216,33 @@
                 </div>
             </div>
         </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" th:if="${workProgresses.page.totalPages > 1}">
+                <li class="page-item" th:classappend="${!workProgresses.paging.isPrevEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'/leader_workprogress_by_task?taskId='+${taskId}+'&pageNumber=1'}" >First</a>
+                </li>
+                <li class="page-item" th:classappend="${!workProgresses.paging.isPrevEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'/leader_workprogress_by_task?taskId='+${taskId}+'&pageNumber=' + ${workProgresses.paging.pageNumber - 1 > 0 ? workProgresses.paging.pageNumber - 1 : 1}}" >Previous</a>
+                </li>
+                <th:block th:each="item : ${workProgresses.paging.getItems()}">
+                    <li class="page-item" th:classappend="${item.index == workProgresses.paging.pageNumber? 'active' : ''}"
+                        th:if="${item.pageItemType.name() == 'PAGE'}">
+                        <a class="page-link" th:href="@{'/leader_workprogress_by_task?taskId='+${taskId}+'&pageNumber=' + ${item.index}}"
+                           th:text="${item.index}"></a>
+                    </li>
+                    <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+                </th:block>
+                <li class="page-item" th:classappend="${!workProgresses.paging.isNextEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'/leader_workprogress_by_task?taskId='+${taskId}+'&pageNumber=' + ${workProgresses.paging.pageNumber + 1 <= workProgresses.page.totalPages ? workProgresses.paging.pageNumber + 1 : workProgresses.page.totalPages}}">Next</a>
+                </li>
+                <li class="page-item" th:classappend="${!workProgresses.paging.isNextEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'/leader_workprogress_by_task?taskId='+${taskId}+'&pageNumber=' + ${workProgresses.page.totalPages}}" >Last</a>
+                </li>
+            </ul>
+        </nav>
         <!--**********************************
             Content body end
         ***********************************-->
@@ -341,6 +282,70 @@
     <script src="/view/vendor/global/global.min.js"></script>
     <script src="/view/js/quixnav-init.js"></script>
     <script src="/view/js/custom.min.js"></script>
+
+    <script src="/view/js/custom/progress-bar.custom.js"></script>
+    
+    <script type="text/javascript" th:inline="javascript">
+        $('document').ready(function () {
+            var data = [[${workProgresses}]];
+            var taskId = [[${taskId}]];
+            var workProgresses = data['page']['content'];
+            for (let i = 0; i < workProgresses.length; i++) {
+                var idProgress = workProgresses[i]['id'];
+                if(workProgresses[i]['updateDate'] == null){
+                    document.getElementById("lastUpdate"+idProgress).innerText="Last update: N/A";
+                }else{
+                    var updateDate = new Date(workProgresses[i]['updateDate']);
+                    var now = new Date();
+                    const diffTime = Math.abs(now - updateDate);
+                    const days = Math.floor(diffTime / (24*60*60*1000));
+                    const daysms = diffTime % (24*60*60*1000);
+                    const hours = Math.floor(daysms / (60*60*1000));
+                    const hoursms = diffTime % (60*60*1000);
+                    const minutes = Math.floor(hoursms / (60*1000));
+                    const minutesms = diffTime % (60*1000);
+                    const sec = Math.floor(minutesms / 1000);
+                    document.getElementById("lastUpdate"+idProgress).innerText="Last update: "+days + " day " + hours + " hours " + minutes + " min " + sec+" s ago";
+                }
+            }
+
+            $.ajax({url: "/get_task?taskId="+taskId, success: function(task){
+                    $('#taskTitle').text("Tiến độ nhiệm vụ: "+task.title);
+            }});
+
+            for (let i = 0; i < workProgresses.length; i++) {
+                var employee = workProgresses[i].employee;
+                console.log(employee);
+                console.log(document.getElementById("Creator"+workProgresses[i].id));
+                document.getElementById("Creator"+workProgresses[i].id).innerText="Tạo bởi: "+employee.firstName+" "+employee.lastName;
+            }
+        });
+    </script>
+
+    <script type="text/javascript" th:inline="javascript">
+        $('document').ready(function () {
+            var data = [[${tasks}]];
+            var tasks = data['page']['content'];
+            for (let i = 0; i < tasks.length; i++) {
+                var idTask = tasks[i]['id'];
+                if(tasks[i]['updateDate'] == null){
+                    document.getElementById("lastUpdate"+idTask).innerText="Last update: N/A";
+                }else{
+                    var updateDate = new Date(tasks[i]['updateDate']);
+                    var now = new Date();
+                    const diffTime = Math.abs(now - updateDate);
+                    const days = Math.floor(diffTime / (24*60*60*1000));
+                    const daysms = diffTime % (24*60*60*1000);
+                    const hours = Math.floor(daysms / (60*60*1000));
+                    const hoursms = diffTime % (60*60*1000);
+                    const minutes = Math.floor(hoursms / (60*1000));
+                    const minutesms = diffTime % (60*1000);
+                    const sec = Math.floor(minutesms / 1000);
+                    document.getElementById("lastUpdate"+idTask).innerText="Last update: "+days + " day " + hours + " hours " + minutes + " min " + sec+" s ago";
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
