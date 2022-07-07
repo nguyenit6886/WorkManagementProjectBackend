@@ -202,6 +202,7 @@
                                             style="height: 10px"
                                             role="progressbar"
                                         >
+                                            <span class="sr-only">85% Hoàn thành (thành công)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -284,7 +285,7 @@
     <script src="/view/js/custom.min.js"></script>
 
     <script src="/view/js/custom/progress-bar.custom.js"></script>
-    
+
     <script type="text/javascript" th:inline="javascript">
         $('document').ready(function () {
             var data = [[${workProgresses}]];

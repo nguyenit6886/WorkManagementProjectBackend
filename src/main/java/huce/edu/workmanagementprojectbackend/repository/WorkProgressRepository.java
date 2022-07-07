@@ -15,6 +15,6 @@ public interface WorkProgressRepository extends JpaRepository<WorkProgressEntity
   @Query("Select w from WorkProgressEntity w where w.active = true")
   List<WorkProgressEntity> findAllActive();
 
-  @Query("Select t from WorkProgressEntity t where t.active = true and t.task.id = :#{#taskId}")
+  @Query("Select t from WorkProgressEntity t where t.active = true and t.task.id = :#{#taskId} order by t.createDate desc")
   Page<WorkProgressEntity> findAllWorkProgressByProjectId(int taskId, Pageable pageable);
 }
