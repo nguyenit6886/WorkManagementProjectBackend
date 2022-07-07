@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -82,6 +83,10 @@ public class WorkProgressController {
     model.addAttribute("workProgress",workProgress);
     model.addAttribute("comments",iCommentService.getCommentByWorkProgress(workProgress));
     model.addAttribute("user",session.getAttribute("user"));
+    if(workProgress.getFileName() != null){
+      String[] files = workProgress.getFileName().split(";");
+      model.addAttribute("files",files);
+    }
     return "/html/Employee/employee-detail-workprogress";
   }
 
@@ -106,17 +111,33 @@ public class WorkProgressController {
   }
 
   @RequestMapping("/save_workprogress")
-  public String addWorkProgress(@ModelAttribute("workProgress") WorkProgressEntity workProgress) {
+  public String addWorkProgress(@ModelAttribute("workProgress") WorkProgressEntity workProgress,
+                                @RequestParam("files") MultipartFile[] multipartFiles) {
+    int workProgressId;
     if(workProgress.getId() != 0){
       workProgress.setUpdateDate(new Date());
-      iWorkProgressService.updateObject(workProgress);
+      StringBuilder fileName = new StringBuilder();
+      for(MultipartFile multipartFile : multipartFiles){
+        fileName.append(multipartFile.getOriginalFilename());
+        fileName.append(";");
+      }
+      workProgress.setFileName(fileName.toString());
+      workProgressId = iWorkProgressService.updateObject(workProgress);
+      iWorkProgressService.insertFile(multipartFiles, workProgress);
     }else{
       workProgress.setCreateDate(new Date());
       workProgress.setActive(true);
       workProgress.setEmployee(iEmployeeService.getObjectById(LoginController.CREATE_USER_ID));
-      iWorkProgressService.insertObject(workProgress);
+      StringBuilder fileName = new StringBuilder();
+      for(MultipartFile multipartFile : multipartFiles){
+        fileName.append(multipartFile.getOriginalFilename());
+        fileName.append(";");
+      }
+      workProgress.setFileName(fileName.toString());
+      workProgressId =  iWorkProgressService.insertObject(workProgress);
+      iWorkProgressService.insertFile(multipartFiles, workProgress);
     }
-    return "redirect:/employee_workprogress_by_task?taskId="+workProgress.getTask().getId();
+    return "redirect:/employee_detail_workprogress?workProgressId="+workProgressId;
   }
 
   @RequestMapping("/delete_workprogress")

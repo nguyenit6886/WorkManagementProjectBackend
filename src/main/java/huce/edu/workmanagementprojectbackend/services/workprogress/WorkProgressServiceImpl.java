@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +40,7 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
   @Override
   public int insertObject(WorkProgressEntity workProgressEntity) {
     try{
-      repository.save(workProgressEntity);
-      return 200;
+      return repository.save(workProgressEntity).getId();
     }catch (Exception e){
       e.printStackTrace();
       return 400;
@@ -57,8 +59,9 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
         departmentEntityUpdated.setTitle(workProgressEntity.getTitle());
       if (departmentEntityUpdated.getContent() != workProgressEntity.getContent())
         departmentEntityUpdated.setContent(workProgressEntity.getContent());
-      repository.save(departmentEntityUpdated);
-      return 200;
+      if (departmentEntityUpdated.getFileName() != workProgressEntity.getFileName())
+        departmentEntityUpdated.setFileName(workProgressEntity.getFileName());
+      return repository.save(departmentEntityUpdated).getId();
     }catch (Exception e){
       e.printStackTrace();
       return 400;
@@ -81,6 +84,28 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
   @Override
   public Paged<WorkProgressEntity> getPage(int pageNumber) {
     return null;
+  }
+
+  @Override
+  public int insertFile(MultipartFile[] multipartFiles, WorkProgressEntity workProgress) {
+    try{
+      Path currentPath = Paths.get(".");
+      Path absolutePath = currentPath.toAbsolutePath();
+      String imagePath = absolutePath + "/src/main/webapp/static/upload/" + workProgress.getId();
+      Path path = Paths.get(imagePath);
+      if(!java.nio.file.Files.exists(path)){
+        java.nio.file.Files.createDirectories(path);
+      }
+      for(MultipartFile multipartFile : multipartFiles){
+        path = Paths.get(imagePath + "/" + multipartFile.getOriginalFilename());
+        byte[] bytes = multipartFile.getBytes();
+        java.nio.file.Files.write(path,bytes);
+      }
+      return 200;
+    }catch (Exception e){
+      e.printStackTrace();
+      return 400;
+    }
   }
 
   @Override

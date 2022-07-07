@@ -4,6 +4,7 @@ import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.paging.Paged;
 import huce.edu.workmanagementprojectbackend.services.IFunctionService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,4 +30,6 @@ public interface IWorkProgressService extends IFunctionService<WorkProgressEntit
   Paged<WorkProgressEntity> getPage(int pageNumber);
 
   Paged<WorkProgressEntity> getPageByTaskId(int taskId, int pageNumber);
+
+  int insertFile(MultipartFile[] multipartFiles, WorkProgressEntity workProgress);
 }

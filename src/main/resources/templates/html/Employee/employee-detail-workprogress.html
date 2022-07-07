@@ -165,7 +165,7 @@
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Nhiệm vụ</a></li>
+                            <li class="breadcrumb-item"><a href="employee_task">Nhiệm vụ</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Tiến độ công việc</a></li>
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">Chi tiết</a></li>
                         </ol>
@@ -174,7 +174,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form th:action="@{/save_workprogress}" method="post" enctype="multipart/form-data">
+                            <form th:action="@{/save_workprogress}" enctype="multipart/form-data" method="post">
                                 <input type="hidden" name="id" th:value="${workProgress.id}">
                                 <input type="hidden" name="task" th:value="${workProgress.task.id}">
                                 <div class="card-header pb-0 col-md-10">
@@ -198,32 +198,9 @@
                 
                                                 <div class="card-listFile">
                                                     <h4 class="m-2">Danh sách tệp đính kèm</h4>
-                                                    <div class="row px-2">
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                    
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
+                                                    <div class="row px-2" th:if="${files != null}" th:each="file : ${files}">
+                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;" >
+                                                            <a th:href="@{${'/static/upload/' + workProgress.id + '/' + file}}" th:text="${file}"></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -232,7 +209,7 @@
             
                                         <div class="col-md-2">
                                             <div class="custom-file text-white mb-5">
-                                                <input type="file" class="custom-file-input">
+                                                <input type="file" name="files" class="custom-file-input" multiple="multiple">
                                                 <label class="custom-file-label">Đính kèm tệp</label>
                                             </div>
                                             <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;" disabled>
