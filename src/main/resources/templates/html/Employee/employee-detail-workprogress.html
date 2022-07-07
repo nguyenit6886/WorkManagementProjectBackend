@@ -187,7 +187,7 @@
                                             <div class="border border-primary p-2">
                                                 <div class="card-content">
                                                     <div class="card-text m-2">
-                                                        <p class="text-black workprogress-old" th:text="${workProgress.content}">
+                                                        <p class="text-black workprogress-old" th:text="${workProgress.content==''? '(Chưa có nội dung)' : workProgress.content}">
                                                             Content: Thiết kế form task khi nhấn vào 1 task sẽ hiện list task nhỏ của
                                                             từng dự án
                                                             khi kích vào từng task nhỏ sẽ xem đk content , tiến độ làm việc, comment
