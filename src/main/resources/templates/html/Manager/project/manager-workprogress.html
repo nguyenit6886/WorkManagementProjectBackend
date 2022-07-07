@@ -186,21 +186,32 @@
                 </div>
             </div>
 
-            <h3>Danh sách tiến độ công việc</h3>
+            <h3 id="taskTitle" >Danh sách tiến độ công việc</h3>
             <div class="row">
-                <div class="col-md-6" th:each="workProgress : ${workProgresss}">
+                <div class="col-md-6" th:each="workProgress : ${workProgresss.page}">
                     <a th:href="@{'/manager_detail_workprogress'(workProgressId=${workProgress.id})}">
                         <div class="card text-white bg-primary">
                             <div class="card-header d-flex justify-content-between pt-1">
                                 <h4 class="card-title text-white" th:text="${workProgress.title}">Tiến độ công việc 1</h4>
-                                <p class="mt-3" style="color:#BDBDC7">Tạo bởi Employee-Name</p>
+                                <p th:id="|Creator${workProgress.id}|"class="mt-3" style="color:#BDBDC7">Tạo bởi Employee-Name</p>
                             </div>
                             <div class="card-body mb-0 pt-1">
-                                <p class="text-white mb-3" th:text="${workProgress.workProgressLevel}">Tiến độ</p>
+                                <p class="text-white mb-3">Tiến độ: </p>
+                                <th:block th:switch="${workProgress.workProgressLevel}">
+                                    <div th:case="'0'" style="display: inline-block">
+                                        <h4 class="card-title text-white" >Chưa tiến hành</h4>
+                                    </div>
+                                    <div th:case="'1'" style="display: inline-block">
+                                        <h4 class="card-title text-white" >Đang tiến hành</h4>
+                                    </div>
+                                    <div th:case="'2'" style="display: inline-block">
+                                        <h4 class="card-title text-white" >Hoàn thành</h4>
+                                    </div>
+                                </th:block>
                             </div>
                             <div class="card-footer bg-transparent border-1 text-white py-0">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <p class="pt-3" style="color:#BDBDC7">Cập nhật lần cuối 3p trước bởi Employee-Update</p>
+                                    <p th:id="|lastUpdate${workProgress.id}|" class="pt-3" style="color:#BDBDC7">Cập nhật lần cuối 3p trước </p>
                                 </div>
                             </div>
                         </div>
@@ -209,6 +220,33 @@
             </div>
         </div>
     </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center" th:if="${workProgresss.page.totalPages > 1}">
+            <li class="page-item" th:classappend="${!workProgresss.paging.isPrevEnabled()? 'disabled' : ''}">
+                <a class="page-link" th:href="@{'/manager_workprogress_by_task?taskId='+${taskId}+'&pageNumber=1'}" >First</a>
+            </li>
+            <li class="page-item" th:classappend="${!workProgresss.paging.isPrevEnabled()? 'disabled' : ''}">
+                <a class="page-link" th:href="@{'/manager_workprogress_by_task?taskId='+${taskId}+'&pageNumber=' + ${workProgresss.paging.pageNumber - 1 > 0 ? workProgresss.paging.pageNumber - 1 : 1}}" >Previous</a>
+            </li>
+            <th:block th:each="item : ${workProgresss.paging.getItems()}">
+                <li class="page-item" th:classappend="${item.index == workProgresss.paging.pageNumber? 'active' : ''}"
+                    th:if="${item.pageItemType.name() == 'PAGE'}">
+                    <a class="page-link" th:href="@{'/manager_workprogress_by_task?taskId='+${taskId}+'&pageNumber=' + ${item.index}}"
+                       th:text="${item.index}"></a>
+                </li>
+                <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                    <a class="page-link" href="#">...</a>
+                </li>
+            </th:block>
+            <li class="page-item" th:classappend="${!workProgresss.paging.isNextEnabled()? 'disabled' : ''}">
+                <a class="page-link" th:href="@{'/manager_workprogress_by_task?taskId='+${taskId}+'&pageNumber=' + ${workProgresss.paging.pageNumber + 1 <= workProgresss.page.totalPages ? workProgresss.paging.pageNumber + 1 : workProgresss.page.totalPages}}">Next</a>
+            </li>
+            <li class="page-item" th:classappend="${!workProgresss.paging.isNextEnabled()? 'disabled' : ''}">
+                <a class="page-link" th:href="@{'/manager_workprogress_by_task?taskId='+${taskId}+'&pageNumber=' + ${workProgresss.page.totalPages}}" >Last</a>
+            </li>
+        </ul>
+    </nav>
     <!--**********************************
         Content body end
     ***********************************-->
@@ -248,6 +286,63 @@
 <script src="/view/vendor/global/global.min.js"></script>
 <script src="/view/js/quixnav-init.js"></script>
 <script src="/view/js/custom.min.js"></script>
+
+<script type="text/javascript" th:inline="javascript">
+    $('document').ready(function () {
+        var data = [[${workProgresss}]];
+        var taskId = [[${taskId}]];
+        var workProgresss = data['page']['content'];
+        for (let i = 0; i < workProgresss.length; i++) {
+            var idProgress = workProgresss[i]['id'];
+            if(workProgresss[i]['updateDate'] == null){
+                let createDateStr = workProgresss[i]['createDate'];
+                createDateStr = createDateStr.replace("T"," ");
+                createDateStr = createDateStr.substring(0,16);
+                document.getElementById("lastUpdate"+idProgress).innerText="Tạo lúc: "+ createDateStr;
+            }else{
+                var updateDate = new Date(workProgresss[i]['updateDate']);
+                var now = new Date();
+                const diffTime = Math.abs(now - updateDate);
+                const days = Math.floor(diffTime / (24*60*60*1000));
+                const daysms = diffTime % (24*60*60*1000);
+                const hours = Math.floor(daysms / (60*60*1000));
+                const hoursms = diffTime % (60*60*1000);
+                const minutes = Math.floor(hoursms / (60*1000));
+                const minutesms = diffTime % (60*1000);
+                const sec = Math.floor(minutesms / 1000);
+                var text="Cập nhật lần cuối: ";
+                if(days != 0){
+                    text+= days;
+                    text+= " days ";
+                }
+                if(hours != 0){
+                    text += hours;
+                    text += " hours "
+                }
+                if(minutes != 0){
+                    text += minutes;
+                    text += " minutes "
+                }
+                if(sec != 0){
+                    text += sec;
+                    text += "s "
+                }
+                text += "ago";
+                document.getElementById("lastUpdate"+idProgress).innerText=text;
+            }
+        }
+
+        $.ajax({url: "/get_task?taskId="+taskId, success: function(task){
+                console.log(task);
+                $('#taskTitle').text("Tiến độ nhiệm vụ: "+task.title);
+            }});
+
+        for (let i = 0; i < workProgresss.length; i++) {
+            var employee = workProgresss[i].employee;
+            document.getElementById("Creator"+workProgresss[i].id).innerText="Tạo bởi: "+employee.firstName+" "+employee.lastName;
+        }
+    });
+</script>
 </body>
 
 </html>

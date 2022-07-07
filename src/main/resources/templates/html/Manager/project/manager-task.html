@@ -185,7 +185,7 @@ Preloader end
                     <div class="card text-white bg-info">
                         <div class="card-header">
                             <h5 class="card-title text-white" th:text="${task.title}">Nhiệm vụ 1</h5>
-                            <span class="text-danger" th:text="|Deadline: ${task.deadline}|">Deadline</span>
+                            <span th:id="|deadline${task.id}|" class="text-danger"></span>
                         </div>
                         <div class="card-body mb-0">
                             <div class="d-flex justify-content-between mb-3">
@@ -205,7 +205,7 @@ Preloader end
                             </th:block>
                             <a href="#" class="btn btn-dark btn-card mt-2">Đánh giá kết quả</a>
                         </div>
-                        <div class="card-footer bg-transparent border-0 text-white">
+                        <div th:id="|lastUpdate${task.id}|" class="card-footer bg-transparent border-0 text-white">
                             Cập nhật lần cuối 3p trước
                         </div>
                     </div>
@@ -251,5 +251,58 @@ Scripts
 <script src="/view/vendor/global/global.min.js"></script>
 <script src="/view/js/quixnav-init.js"></script>
 <script src="/view/js/custom.min.js"></script>
+
+<script type="text/javascript" th:inline="javascript">
+    $('document').ready(function () {
+        var data = [[${tasks}]];
+        var tasks = data['page']['content'];
+        for (let i = 0; i < tasks.length; i++) {
+            var idTask = tasks[i]['id'];
+            console.log(tasks[i]);
+            if(tasks[i]['deadline'] != null){
+                let deadlineStr = tasks[i]['deadline'];
+                deadlineStr = deadlineStr.replace("T"," ");
+                deadlineStr = deadlineStr.substring(0,deadlineStr.length);
+                document.getElementById("deadline"+idTask).innerHTML = "Deadline: "+deadlineStr;
+            }
+            if(tasks[i]['updateDate'] == null){
+                let createDateStr = tasks[i]['createDate'];
+                createDateStr = createDateStr.replace("T"," ");
+                createDateStr = createDateStr.substring(0,16);
+                document.getElementById("lastUpdate"+idTask).innerText="Tạo lúc: "+ createDateStr;
+            }else{
+                var updateDate = new Date(tasks[i]['updateDate']);
+                var now = new Date();
+                const diffTime = Math.abs(now - updateDate);
+                const days = Math.floor(diffTime / (24*60*60*1000));
+                const daysms = diffTime % (24*60*60*1000);
+                const hours = Math.floor(daysms / (60*60*1000));
+                const hoursms = diffTime % (60*60*1000);
+                const minutes = Math.floor(hoursms / (60*1000));
+                const minutesms = diffTime % (60*1000);
+                const sec = Math.floor(minutesms / 1000);
+                var text="Cập nhật lần cuối: ";
+                if(days != 0){
+                    text+= days;
+                    text+= " days ";
+                }
+                if(hours != 0){
+                    text += hours;
+                    text += " hours "
+                }
+                if(minutes != 0){
+                    text += minutes;
+                    text += " minutes "
+                }
+                if(sec != 0){
+                    text += sec;
+                    text += "s "
+                }
+                text += "ago";
+                document.getElementById("lastUpdate"+idTask).innerText=text;
+            }
+        }
+    });
+</script>
 </body>
 </html>

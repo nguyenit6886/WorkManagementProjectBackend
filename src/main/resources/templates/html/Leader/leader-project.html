@@ -245,7 +245,10 @@
 				for (let i = 0; i < projects.length; i++) {
 					var idProject = projects[i]['id'];
 					if(projects[i]['updateDate'] == null){
-						document.getElementById("lastUpdate"+idProject).innerText="N/A";
+						let createDateStr = projects[i]['createDate'];
+						createDateStr = createDateStr.replace("T"," ");
+						createDateStr = createDateStr.substring(0,16);
+						document.getElementById("lastUpdate"+idProject).innerText="Tạo lúc: "+ createDateStr;
 					}else{
 						var updateDate = new Date(projects[i]['updateDate']);
 						var now = new Date();
@@ -257,7 +260,25 @@
 						const minutes = Math.floor(hoursms / (60*1000));
 						const minutesms = diffTime % (60*1000);
 						const sec = Math.floor(minutesms / 1000);
-						document.getElementById("lastUpdate"+idProject).innerText="Last update: "+days + " day " + hours + " hours " + minutes + " min " + sec+" s ago";
+						var text="Cập nhật lần cuối: ";
+						if(days != 0){
+							text+= days;
+							text+= " days ";
+						}
+						if(hours != 0){
+							text += hours;
+							text += " hours "
+						}
+						if(minutes != 0){
+							text += minutes;
+							text += " minutes "
+						}
+						if(sec != 0){
+							text += sec;
+							text += "s "
+						}
+						text += "ago";
+						document.getElementById("lastUpdate"+idProject).innerText=text;
 					}
 				}
 			});
