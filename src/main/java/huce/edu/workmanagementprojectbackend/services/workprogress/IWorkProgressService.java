@@ -28,5 +28,5 @@ public interface IWorkProgressService extends IFunctionService<WorkProgressEntit
   @Override
   Paged<WorkProgressEntity> getPage(int pageNumber);
 
-  int insertImage(MultipartFile[] multipartFiles, WorkProgressEntity workProgress);
+  int insertFile(MultipartFile[] multipartFiles, WorkProgressEntity workProgress);
 }

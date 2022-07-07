@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 @Controller
 public class WorkProgressController {
@@ -77,9 +74,17 @@ public class WorkProgressController {
   @RequestMapping("/save_workprogress")
   public String addWorkProgress(@ModelAttribute("workProgress") WorkProgressEntity workProgress,
                                 @RequestParam("files") MultipartFile[] multipartFiles) {
+    int workProgressId;
     if(workProgress.getId() != 0){
       workProgress.setUpdateDate(new Date());
-      iWorkProgressService.updateObject(workProgress);
+      StringBuilder fileName = new StringBuilder();
+      for(MultipartFile multipartFile : multipartFiles){
+        fileName.append(multipartFile.getOriginalFilename());
+        fileName.append(";");
+      }
+      workProgress.setFileName(fileName.toString());
+      workProgressId = iWorkProgressService.updateObject(workProgress);
+      iWorkProgressService.insertFile(multipartFiles, workProgress);
     }else{
       workProgress.setCreateDate(new Date());
       workProgress.setActive(true);
@@ -90,10 +95,10 @@ public class WorkProgressController {
         fileName.append(";");
       }
       workProgress.setFileName(fileName.toString());
-      iWorkProgressService.insertObject(workProgress);
-      iWorkProgressService.insertImage(multipartFiles, workProgress);
+      workProgressId =  iWorkProgressService.insertObject(workProgress);
+      iWorkProgressService.insertFile(multipartFiles, workProgress);
     }
-    return "redirect:/employee_workprogress_by_task?taskId="+workProgress.getTask().getId();
+    return "redirect:/employee_detail_workprogress?workProgressId="+workProgressId;
   }
 
   @RequestMapping("/delete_workprogress")

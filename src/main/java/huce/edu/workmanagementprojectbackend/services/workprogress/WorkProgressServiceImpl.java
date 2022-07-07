@@ -37,8 +37,7 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
   @Override
   public int insertObject(WorkProgressEntity workProgressEntity) {
     try{
-      repository.save(workProgressEntity);
-      return 200;
+      return repository.save(workProgressEntity).getId();
     }catch (Exception e){
       e.printStackTrace();
       return 400;
@@ -57,8 +56,9 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
         departmentEntityUpdated.setTitle(workProgressEntity.getTitle());
       if (departmentEntityUpdated.getContent() != workProgressEntity.getContent())
         departmentEntityUpdated.setContent(workProgressEntity.getContent());
-      repository.save(departmentEntityUpdated);
-      return 200;
+      if (departmentEntityUpdated.getFileName() != workProgressEntity.getFileName())
+        departmentEntityUpdated.setFileName(workProgressEntity.getFileName());
+      return repository.save(departmentEntityUpdated).getId();
     }catch (Exception e){
       e.printStackTrace();
       return 400;
@@ -84,7 +84,7 @@ public class WorkProgressServiceImpl implements IWorkProgressService{
   }
 
   @Override
-  public int insertImage(MultipartFile[] multipartFiles, WorkProgressEntity workProgress) {
+  public int insertFile(MultipartFile[] multipartFiles, WorkProgressEntity workProgress) {
     try{
       Path currentPath = Paths.get(".");
       Path absolutePath = currentPath.toAbsolutePath();
