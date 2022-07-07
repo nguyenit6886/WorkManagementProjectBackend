@@ -43,7 +43,7 @@ public class CoreController {
         session.setAttribute("user",employeeService.getEmployeeByUsername(loginedUser.getUsername()));
         switch (grantedAuthorityList.get(0).getAuthority()){
             case "ROLE_MANAGER":
-                return "redirect:/manager";
+                return "redirect:/project_manager";
             case "ROLE_LEADER":
                 return "redirect:/leader_manager";
             case "ROLE_EMPLOYEE":
