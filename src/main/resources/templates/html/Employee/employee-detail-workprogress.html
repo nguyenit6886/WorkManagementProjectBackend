@@ -262,7 +262,7 @@
                                                 </form>
                                             </div>
                                             <div class="list-comment mt-3" th:each="comment : ${comments}">
-                                                <div class="comment-item d-flex justify-content-start">
+                                                <div class="comment-item mb-2 d-flex justify-content-start">
                                                     <div class="rounded-circle">
                                                         <img src="/view/images/avatar/1.png" alt="avt" style="width: 40px; height: 40px; object-fit: cover;">
                                                     </div>
@@ -275,7 +275,7 @@
                                                             <div class="d-flex">
                                                                 <span class="ml-2" style="font-size: 90%;line-height:1.8" th:text="${comment.updateDate == null ? comment.createDate : comment.updateDate}">Thời gian comment</span>
                                                                 <div class="action ml-2">
-                                                                    <span class="mr-1" style="font-size: 7px;position: relative;top:-2px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
+<!--                                                                    <span class="mr-1" style="font-size: 7px;position: relative;top:-2px;"><i class="fa fa-circle" aria-hidden="true"></i></span>-->
                                                                     <div th:if="${comment.employee.id == user.id}">
                                                                         <button class="btn-edit-cmt mr-1" style="font-size: 90%;"><strong>Chỉnh sửa</strong></button>
                                                                         <a th:href="@{'/delete_comment'(commentId=${comment.id})}" style="font-size: 90%;"><strong>Xóa</strong></a>
