@@ -89,4 +89,10 @@ public class ProjectServiceImpl implements IProjectService{
     Page<ProjectEntity> postPage = repository.findAllActive(PageRequest.of(pageNumber - 1, Paging.PAGE_SIZE));
     return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, Paging.PAGE_SIZE));
   }
+
+  @Override
+  public Paged<ProjectEntity> getPageByDepartmentId(int pageNumber, int departmentId) {
+    Page<ProjectEntity> postPage = repository.findAllByDepartmentActive(PageRequest.of(pageNumber - 1, Paging.PAGE_SIZE), departmentId);
+    return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, Paging.PAGE_SIZE));
+  }
 }

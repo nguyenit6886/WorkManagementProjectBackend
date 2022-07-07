@@ -53,7 +53,7 @@ public class ProjectController {
   public String showLeaderManagerPage(@RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
                                       Model model,
                                       HttpSession session){
-    model.addAttribute("projects",iProjectService.getPage(pageNumber));
+    model.addAttribute("projects",iProjectService.getPageByDepartmentId(pageNumber,((EmployeeEntity) session.getAttribute("user")).getDepartment().getId()));
     EmployeeEntity userSession = (EmployeeEntity) session.getAttribute("user");
     if(userSession != null && userSession.getPosition() == AccountRole.ROLE_LEADER.getValue()){
       model.addAttribute("user",userSession);

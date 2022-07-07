@@ -16,4 +16,7 @@ public interface ProjectRepository extends JpaRepository<ProjectEntity, Integer>
 
   @Query("Select p from ProjectEntity p where p.active = true")
   Page<ProjectEntity> findAllActive(Pageable pageable);
+
+  @Query("Select p from ProjectEntity p, AssignmentDepartmentEntity a where p.id = a.project.id and p.active = true and a.active = true and a.department.id = ?1")
+  Page<ProjectEntity> findAllByDepartmentActive(Pageable pageable, int departmentId);
 }

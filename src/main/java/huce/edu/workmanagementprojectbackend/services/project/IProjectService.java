@@ -25,4 +25,6 @@ public interface IProjectService extends IFunctionService<ProjectEntity> {
 
   @Override
   Paged<ProjectEntity> getPage(int pageNumber);
+
+  Paged<ProjectEntity> getPageByDepartmentId(int pageNumber, int departmentId);
 }
