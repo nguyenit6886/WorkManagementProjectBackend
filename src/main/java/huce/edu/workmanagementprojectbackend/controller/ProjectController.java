@@ -45,8 +45,13 @@ public class ProjectController {
                                        HttpSession session){
     model.addAttribute("projects",iProjectService.getPage(pageNumber));
     model.addAttribute("departments",iDepartmentService.getAll());
-    model.addAttribute("user",session.getAttribute("user"));
-    return "/html/Manager/project/manager-project";
+    EmployeeEntity userSession = (EmployeeEntity) session.getAttribute("user");
+    model.addAttribute("user",userSession);
+    if(userSession != null && userSession.getPosition() == AccountRole.ROLE_MANAGER.getValue()){
+      model.addAttribute("user",userSession);
+      return "/html/Manager/project/manager-project";
+    }
+    return "redirect:/login";
   }
 
   @RequestMapping("/leader_manager")

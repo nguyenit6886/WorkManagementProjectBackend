@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface WorkProgressRepository extends JpaRepository<WorkProgressEntity, Integer> {
-  @Query("Select w from WorkProgressEntity w where w.active = true")
+  @Query("Select w from WorkProgressEntity w where w.active = true order by w.createDate desc")
   List<WorkProgressEntity> findAllActive();
 
   @Query("Select t from WorkProgressEntity t where t.active = true and t.task.id = :#{#taskId} order by t.createDate desc")

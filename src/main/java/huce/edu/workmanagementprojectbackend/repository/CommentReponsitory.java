@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CommentReponsitory extends JpaRepository<CommentEntity, Integer> {
-  @Query("Select c from CommentEntity c where c.active = true")
+  @Query("Select c from CommentEntity c where c.active = true order by c.createDate desc")
   List<CommentEntity> findAllActive();
 }
