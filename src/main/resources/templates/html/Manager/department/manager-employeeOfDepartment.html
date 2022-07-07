@@ -197,40 +197,58 @@
                                     <table id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Ảnh</th>
+<!--                                                <th>Ảnh</th>-->
                                                 <th>Tên</th>
+                                                <th>Ngày sinh</th>
+                                                <th>Email</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Số điện thoại</th>
                                                 <th>Chức vụ</th>
-                                                <th>Phòng ban</th>
+<!--                                                <th>Phòng ban</th>-->
                                                 <th>Ngày bắt đầu</th>
-                                                <th>Hành động</th>
+<!--                                                <th>Hành động</th>-->
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr th:each="employee : ${employees}">
-                                                <td><img class="" src="/view/images/avatar/4.png" alt="..."></td>
+<!--                                                <td><img class="" src="/view/images/avatar/4.png" alt="..."></td>-->
                                                 <td th:text="${employee.firstName} + ' ' + ${employee.lastName}">Tiger Nixon</td>
-                                                <td th:text="${employee.position}">System Architect</td>
-                                                <td th:text="${employee.department.name}">Edinburgh</td>
+                                                <td th:text="${employee.birthday}">System Architect</td>
+                                                <td th:text="${employee.email}">Edinburgh</td>
+                                                <td th:text="${employee.address}">61</td>
+                                                <td th:text="${employee.phone}">2011/04/25</td>
+                                                <th:block th:switch="${employee.position}">
+                                                    <div th:case="0">
+                                                        <td>Quản lý</td>
+                                                    </div>
+                                                    <div th:case="1">
+                                                        <td>Trưởng phòng</td>
+                                                    </div>
+                                                    <div th:case="*">
+                                                        <td>Nhân viên</td>
+                                                    </div>
+                                                </th:block>
+<!--                                                <td th:text="${employee.department.name}">Edinburgh</td>-->
                                                 <td th:text="${employee.createDate}">2011/04/25</td>
-                                                <td>
-                                                    <span>
-                                                        <a href="#" class="sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">
-                                                            <i class="fa fa-close color-danger"></i>
-                                                        </a>
-                                                    </span>
-                                                </td>
+<!--                                                <td>-->
+<!--                                                    <span>-->
+<!--                                                        <a href="#" class="sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">-->
+<!--                                                            <i class="fa fa-close color-danger"></i>-->
+<!--                                                        </a>-->
+<!--                                                    </span>-->
+<!--                                                </td>-->
                                             </tr>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Ảnh</th>
-                                                <th>Tên</th>
-                                                <th>Chức vụ</th>
-                                                <th>Phòng ban</th>
-                                                <th>Ngày bắt đầu</th>
-                                                <th>Hành động</th>
-                                            </tr>
-                                        </tfoot>
+<!--                                        <tfoot>-->
+<!--                                            <tr>-->
+<!--                                                <th>Ảnh</th>-->
+<!--                                                <th>Tên</th>-->
+<!--                                                <th>Chức vụ</th>-->
+<!--                                                <th>Phòng ban</th>-->
+<!--                                                <th>Ngày bắt đầu</th>-->
+<!--                                                <th>Hành động</th>-->
+<!--                                            </tr>-->
+<!--                                        </tfoot>-->
                                     </table>
                                 </div>
                             </div>

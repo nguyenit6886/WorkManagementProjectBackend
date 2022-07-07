@@ -200,7 +200,7 @@
                                                 <th>Địa chỉ</th>
                                                 <th>Số điện thoại</th>
                                                 <th>Chức vụ</th>
-                                                <th>Ghi chú</th>
+                                                <th>Phòng ban</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
@@ -211,8 +211,18 @@
                                                 <td th:text="${employee.email}">Edinburgh</td>
                                                 <td th:text="${employee.address}">61</td>
                                                 <td th:text="${employee.phone}">2011/04/25</td>
-                                                <td th:text="${employee.position}">$320,800</td>
-                                                <td th:text="${employee.note}"></td>
+                                                <th:block th:switch="${employee.position}">
+                                                    <div th:case="0">
+                                                        <td>Quản lý</td>
+                                                    </div>
+                                                    <div th:case="1">
+                                                        <td>Trưởng phòng</td>
+                                                    </div>
+                                                    <div th:case="*">
+                                                        <td>Nhân viên</td>
+                                                    </div>
+                                                </th:block>
+                                                <td th:text="${employee.department.name}"></td>
                                                 <td>
                                                     <span>
                                                         <a th:href="@{'/update_employee'(employeeId=${employee.id})}" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
