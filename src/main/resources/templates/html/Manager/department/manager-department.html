@@ -195,7 +195,7 @@
                                     <p class="card-text text-white departmentInput" th:text="${department.note}" id="txtDepartmentNote">Ghi chú phòng ban</p>
                                 </div>
                                 <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
-                                    <p class="text-white">Cập nhật lần cuối 3p trước</p>
+                                    <p th:id="|lastUpdate${department.id}|" class="text-white">Cập nhật lần cuối 3p trước</p>
                                     <div>
                                         <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'openModalFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-primary">Sửa</a>
                                         <a th:href="@{'/delete_department'(departmentId=${department.id})}" class="btn btn-danger">Xóa</a>
@@ -335,6 +335,52 @@
                 document.getElementById('txtNoteDepartmentDialog').value = '';
             }
         };
+    </script>
+
+    <script type="text/javascript" th:inline="javascript">
+        $('document').ready(function () {
+            var data = [[${departments}]];
+            var departments = data['page']['content'];
+            for (let i = 0; i < departments.length; i++) {
+                var idDepartment = departments[i]['id'];
+                if(departments[i]['updateDate'] == null){
+                    let createDateStr = departments[i]['createDate'];
+                    createDateStr = createDateStr.replace("T"," ");
+                    createDateStr = createDateStr.substring(0,16);
+                    document.getElementById("lastUpdate"+idDepartment).innerText="Tạo lúc: "+ createDateStr;
+                }else{
+                    var updateDate = new Date(departments[i]['updateDate']);
+                    var now = new Date();
+                    const diffTime = Math.abs(now - updateDate);
+                    const days = Math.floor(diffTime / (24*60*60*1000));
+                    const daysms = diffTime % (24*60*60*1000);
+                    const hours = Math.floor(daysms / (60*60*1000));
+                    const hoursms = diffTime % (60*60*1000);
+                    const minutes = Math.floor(hoursms / (60*1000));
+                    const minutesms = diffTime % (60*1000);
+                    const sec = Math.floor(minutesms / 1000);
+                    var text="Cập nhật lần cuối: ";
+                    if(days != 0){
+                        text+= days;
+                        text+= " days ";
+                    }
+                    if(hours != 0){
+                        text += hours;
+                        text += " hours "
+                    }
+                    if(minutes != 0){
+                        text += minutes;
+                        text += " minutes "
+                    }
+                    if(sec != 0){
+                        text += sec;
+                        text += "s "
+                    }
+                    text += "ago";
+                    document.getElementById("lastUpdate"+idDepartment).innerText=text;
+                }
+            }
+        });
     </script>
 </body>
 

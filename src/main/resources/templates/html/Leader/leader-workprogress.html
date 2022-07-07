@@ -181,15 +181,15 @@
                                     <p th:id="|Creator${workProgress.id}|" class="mt-3" style="color:#BDBDC7" >Created by Employee-Name</p>
                                 </div>
                                 <div class="card-body mb-0 pt-1">
-<!--                                    <p class="text-white mb-3">Tiến độ</p>-->
+                                    <p class="text-white mb-3" style="display: inline-block" >Tiến độ:</p>
                                     <th:block th:switch="${workProgress.workProgressLevel}">
-                                        <div th:case="'0'">
+                                        <div th:case="'0'" style="display: inline-block">
                                             <h4 class="card-title text-white" >Chưa tiến hành</h4>
                                         </div>
-                                        <div th:case="'1'">
+                                        <div th:case="'1'" style="display: inline-block">
                                             <h4 class="card-title text-white" >Đang tiến hành</h4>
                                         </div>
-                                        <div th:case="'2'">
+                                        <div th:case="'2'" style="display: inline-block">
                                             <h4 class="card-title text-white" >Hoàn thành</h4>
                                         </div>
                                     </th:block>
@@ -294,7 +294,10 @@
             for (let i = 0; i < workProgresses.length; i++) {
                 var idProgress = workProgresses[i]['id'];
                 if(workProgresses[i]['updateDate'] == null){
-                    document.getElementById("lastUpdate"+idProgress).innerText="Last update: N/A";
+                    let createDateStr = workProgresses[i]['createDate'];
+                    createDateStr = createDateStr.replace("T"," ");
+                    createDateStr = createDateStr.substring(0,16);
+                    document.getElementById("lastUpdate"+idProgress).innerText="Tạo lúc: "+ createDateStr;
                 }else{
                     var updateDate = new Date(workProgresses[i]['updateDate']);
                     var now = new Date();
@@ -306,11 +309,30 @@
                     const minutes = Math.floor(hoursms / (60*1000));
                     const minutesms = diffTime % (60*1000);
                     const sec = Math.floor(minutesms / 1000);
-                    document.getElementById("lastUpdate"+idProgress).innerText="Last update: "+days + " day " + hours + " hours " + minutes + " min " + sec+" s ago";
+                    var text="Cập nhật lần cuối: ";
+                    if(days != 0){
+                        text+= days;
+                        text+= " days ";
+                    }
+                    if(hours != 0){
+                        text += hours;
+                        text += " hours "
+                    }
+                    if(minutes != 0){
+                        text += minutes;
+                        text += " minutes "
+                    }
+                    if(sec != 0){
+                        text += sec;
+                        text += "s "
+                    }
+                    text += "ago";
+                    document.getElementById("lastUpdate"+idProgress).innerText=text;
                 }
             }
 
             $.ajax({url: "/get_task?taskId="+taskId, success: function(task){
+                    console.log(task);
                     $('#taskTitle').text("Tiến độ nhiệm vụ: "+task.title);
             }});
 
@@ -323,30 +345,6 @@
         });
     </script>
 
-    <script type="text/javascript" th:inline="javascript">
-        $('document').ready(function () {
-            var data = [[${tasks}]];
-            var tasks = data['page']['content'];
-            for (let i = 0; i < tasks.length; i++) {
-                var idTask = tasks[i]['id'];
-                if(tasks[i]['updateDate'] == null){
-                    document.getElementById("lastUpdate"+idTask).innerText="Last update: N/A";
-                }else{
-                    var updateDate = new Date(tasks[i]['updateDate']);
-                    var now = new Date();
-                    const diffTime = Math.abs(now - updateDate);
-                    const days = Math.floor(diffTime / (24*60*60*1000));
-                    const daysms = diffTime % (24*60*60*1000);
-                    const hours = Math.floor(daysms / (60*60*1000));
-                    const hoursms = diffTime % (60*60*1000);
-                    const minutes = Math.floor(hoursms / (60*1000));
-                    const minutesms = diffTime % (60*1000);
-                    const sec = Math.floor(minutesms / 1000);
-                    document.getElementById("lastUpdate"+idTask).innerText="Last update: "+days + " day " + hours + " hours " + minutes + " min " + sec+" s ago";
-                }
-            }
-        });
-    </script>
 </body>
 
 </html>

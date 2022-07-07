@@ -197,7 +197,7 @@
 								<a th:href="@{'/manager-task-list'(projectId=${project.id})}" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
 							</div>
 							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
-								<p>Cập nhật lần cuối 3p trước</p>
+								<p th:id="|lastUpdate${project.id}|">Cập nhật lần cuối 3p trước</p>
                                 <div class="action">
                                     <a th:href="@{'/get_project'(projectId=${project.id})}" id="updateModal" class="btn btn-info">Cập nhật</a>
                                     <a th:href="@{'/delete_project'(projectId=${project.id})}" class="btn btn-danger">Xóa</a>
@@ -385,6 +385,52 @@
                 $('#exampleModalCenter').modal();
             })
         })
+    </script>
+
+    <script type="text/javascript" th:inline="javascript">
+        $('document').ready(function () {
+            var data = [[${projects}]];
+            var projects = data['page']['content'];
+            for (let i = 0; i < projects.length; i++) {
+                var idProject = projects[i]['id'];
+                if(projects[i]['updateDate'] == null){
+                    let createDateStr = projects[i]['createDate'];
+                    createDateStr = createDateStr.replace("T"," ");
+                    createDateStr = createDateStr.substring(0,16);
+                    document.getElementById("lastUpdate"+idProject).innerText="Tạo lúc: "+ createDateStr;
+                }else{
+                    var updateDate = new Date(projects[i]['updateDate']);
+                    var now = new Date();
+                    const diffTime = Math.abs(now - updateDate);
+                    const days = Math.floor(diffTime / (24*60*60*1000));
+                    const daysms = diffTime % (24*60*60*1000);
+                    const hours = Math.floor(daysms / (60*60*1000));
+                    const hoursms = diffTime % (60*60*1000);
+                    const minutes = Math.floor(hoursms / (60*1000));
+                    const minutesms = diffTime % (60*1000);
+                    const sec = Math.floor(minutesms / 1000);
+                    var text="Cập nhật lần cuối: ";
+                    if(days != 0){
+                        text+= days;
+                        text+= " days ";
+                    }
+                    if(hours != 0){
+                        text += hours;
+                        text += " hours "
+                    }
+                    if(minutes != 0){
+                        text += minutes;
+                        text += " minutes "
+                    }
+                    if(sec != 0){
+                        text += sec;
+                        text += "s "
+                    }
+                    text += "ago";
+                    document.getElementById("lastUpdate"+idProject).innerText=text;
+                }
+            }
+        });
     </script>
 </body>
 

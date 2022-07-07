@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Builder
@@ -30,17 +31,17 @@ public class TaskEntity {
   @Column(name = "work_progress_level")
   private int workProgressLevel;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   @Column(name = "deadline")
-  private Date deadline;
+  private LocalDateTime deadline;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   @Column(name = "begin_date")
-  private Date beginDate;
+  private LocalDateTime beginDate;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   @Column(name = "end_date")
-  private Date endDate;
+  private LocalDateTime endDate;
 
   @Column(name = "create_date")
   private Date createDate;

@@ -6,11 +6,13 @@ import huce.edu.workmanagementprojectbackend.services.assignment.IAssignmentServ
 import huce.edu.workmanagementprojectbackend.services.employee.IEmployeeService;
 import huce.edu.workmanagementprojectbackend.services.task.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -44,12 +46,16 @@ public class TaskController {
   @RequestMapping("/employee_task")
   public String showTaskListPage(Model model,
                                  HttpSession session){
-    EmployeeEntity employee = iEmployeeService.getObjectById(((EmployeeEntity) session.getAttribute("user")).getId());
-//    model.addAttribute("tasks",iAssignmentService.getTaskByEmployee(employee));
-    Map<ProjectEntity,List<TaskEntity>> map = iAssignmentService.getTaskByEmployee(employee)
-                                                                .stream().collect(Collectors.groupingBy(w -> w.getProject()));
+    EmployeeEntity user = (EmployeeEntity) session.getAttribute("user");
+    if(user == null){
+      return "redirect:/login";
+    }
+    EmployeeEntity employee = iEmployeeService.getObjectById(user.getId());
+    List<TaskEntity> taskEntities = iAssignmentService.getTaskByEmployee(employee);
+    Map<ProjectEntity,List<TaskEntity>> map = taskEntities.stream().collect(Collectors.groupingBy(w -> w.getProject()));
+    model.addAttribute("tasks",taskEntities);
     model.addAttribute("map",map);
-    model.addAttribute("user",session.getAttribute("user"));
+    model.addAttribute("user",user);
     return "/html/Employee/employee-task";
   }
 
