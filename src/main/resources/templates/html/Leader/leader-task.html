@@ -186,7 +186,7 @@ Preloader end
 						</div>
 						<div class="card-body mb-0">
 							<div class="d-flex justify-content-between">
-								<p class="card-text text-white text-truncate mb-1" th:text="${task.content}">Mô tả công việc</p>
+								<p class="card-text text-white text-truncate mb-1" th:text="${task.content==''? '(Chưa có nội dung)' : task.content}">Mô tả công việc</p>
 								<a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
 							</div>
 <!--							<p class="text-white mb-3">Tiến độ</p>-->

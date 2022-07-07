@@ -177,7 +177,7 @@
                                         <h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
                                     </div>
                                     <div class="card-body mb-0">
-                                        <p class="card-text" th:text="${task.content}">Mô tả công việc</p>
+                                        <p class="card-text" th:text="${task.content==''? '(Chưa có nội dung)' : task.content}">Mô tả công việc</p>
 <!--                                        <p class="text-white mb-3">Tiến độ</p>-->
                                         <th:block th:switch="${task.workProgressLevel}">
                                             <div th:case="'0'">
