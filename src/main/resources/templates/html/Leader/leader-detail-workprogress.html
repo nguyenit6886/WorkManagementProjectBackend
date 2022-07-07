@@ -259,7 +259,7 @@
                                                                     <span class="mr-1" style="font-size: 7px;position: relative;top:-2px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
                                                                     <div th:if="${comment.employee.id == user.id}">
                                                                         <button class="btn-edit-cmt mr-1" style="font-size: 90%;"><strong>Chỉnh sửa</strong></button>
-                                                                        <a th:href="@{'/delete_comment'(commentId=${comment.id})}" style="font-size: 90%;"><strong>Xóa</strong></a>
+                                                                        <a href="#" th:data-url="@{'/delete_comment'(commentId=${comment.id})}" class="sweet-success-cancel" style="font-size: 90%;"><strong>Xóa</strong></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -328,6 +328,10 @@
     <script src="/view/vendor/global/global.min.js"></script>
     <script src="/view/js/quixnav-init.js"></script>
     <script src="/view/js/custom.min.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/view/js/plugins-init/sweetalert.init.js"></script>
 
     <script src="/view/js/custom/form-workprogress.custom.js"></script>
 </body>
