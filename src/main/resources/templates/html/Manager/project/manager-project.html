@@ -376,11 +376,11 @@
         $('document').ready(function (){
             $('#addModal').on('click',function (event){
                 event.preventDefault();
-                $('#txtTitle').val();
-                $('#txtBeginDate').val();
-                $('#txtDeadline').val();
-                $('#txtContent').val();
-                $('#txtNote').val();
+                $('#txtTitle').val('');
+                $('#txtBeginDate').val('');
+                $('#txtDeadline').val('');
+                $('#txtContent').val('');
+                $('#txtNote').val('');
                 $('#departments').val([]).change();
                 $('#exampleModalCenter').modal();
             })
