@@ -158,7 +158,7 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <<h4>Chào mừng trở lại!</h4>
+                            <h4>Chào mừng trở lại!</h4>
                             <p class="mb-0" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}">Employee</p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="card">
                             <!-- <div class="card-header pb-0">
                                 <h3>Thêm mới Tiến độ công việc</h3>
@@ -180,8 +180,8 @@
                                 <form th:action="@{/save_workprogress}" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="task" th:value="${taskId}">
                                     <div class="row">
-                                        <div class="col-md-10">
-                                            <div class="border border-primary p-2">
+                                        <div class="col-xxl-10 col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="p-2">
                                                 <div class="card-content">
                                                     <div class="m-2">
                                                         <div class="form-group">
@@ -194,52 +194,39 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                
+                                                <hr>
                                                 <div class="card-listFile" style="display: none">
                                                     <h4 class="m-2">Danh sách tệp đính kèm</h4>
-                                                    <div class="row px-2">
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                    
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="card text-white overflow-hidden ml-3" style="width:10rem; height: 10rem;">
-                                                            <img class="card-img-top pos" src="/view/images/avatar/NV1.jpg" alt="...">
-                                                            <div class="card-img-overlay d-flex align-items-start">
-                                                                <div>
-                                                                    <i class="fa fa-window-close close" aria-hidden="true"></i>
-                                                                </div>
+                                                    <div class="d-flex">
+                                                        <div class="mr-2 px-2">
+                                                            <div class="card text-white overflow-hidden ml-3 mb-1" style="text-decoration: underline">
+                                                                <a class="text-danger" href="#">Tên file</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-            
-                                        <div class="d-flex col-md-2" style="flex-direction: column">
-                                            <div class="custom-file text-white mb-5">
-                                                <input type="file" name="files" class="custom-file-input" multiple>
-                                                <label class="custom-file-label">Đính kèm tệp</label>
+
+                                        <div class="col-xxl-2 col-xl-2 col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-xxl-5 mt-xl-5">
+                                            <div class="row">
+                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4" style="margin: 0 auto;">
+                                                    <div class="custom-file text-white w-100">
+                                                        <input type="file" name="files" class="custom-file-input" multiple>
+                                                        <label class="custom-file-label">Đính kèm tệp</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4" style="margin: 0 auto;">
+                                                    <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white w-100" style="text-align: start;">
+                                                        <option value="0">Chưa tiến hành</option>
+                                                        <option value="1">Đang tiến hành</option>
+                                                        <option value="2">Hoàn thành</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin: 0 auto;">
+                                                    <input type="submit" name="submit" value="Lưu" class="btn btn-primary text-white w-100">
+                                                </div>
                                             </div>
-                                            <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;">
-                                                <option value="0">Chưa tiến hành</option>
-                                                <option value="1">Đang tiến hành</option>
-                                                <option value="2">Hoàn thành</option>
-                                            </select>
-                                            <input type="submit" name="submit" value="Add" class="btn btn-primary text-white mt-5">
                                         </div>
                                     </div>
                                 </form>
