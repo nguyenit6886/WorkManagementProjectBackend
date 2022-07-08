@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
 import huce.edu.workmanagementprojectbackend.model.CommentEntity;
+import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.services.comment.ICommentService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +31,11 @@ public class CommentController {
   private IEmployeeService iEmployeeService;
 
   @RequestMapping("/save_comment")
-  public String addComment(@ModelAttribute("comment")CommentEntity comment) {
+  public String addComment(@ModelAttribute("comment")CommentEntity comment,
+                           HttpSession session) {
     if(validateSave(comment)){
+      EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
+      comment.setEmployee(employee);
       addCommentAction(comment);
     }
     if(comment.getEmployee().getPosition() == 0){

@@ -236,7 +236,7 @@
                                                         <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
                                                     </div>
                                                     <div class="d-flex">
-                                                        <span class="ml-2" style="font-size: 90%;line-height:1.8" th:text="${comment.updateDate == null ? comment.createDate : comment.updateDate}">Thời gian comment</span>
+                                                        <span class="ml-2" style="font-size: 90%;line-height:1.8" th:text="${#dates.format((comment.updateDate == null ? comment.createDate : comment.updateDate), 'dd/MM/yyyy HH:mm')}">Thời gian comment</span>
                                                         <div class="action ml-2">
                                                             <div th:if="${comment.employee.id == user.id}">
                                                                 <!-- <span class="mr-1" style="font-size: 7px;position: relative;top:-2px;"><i class="fa fa-circle" aria-hidden="true"></i></span> -->

@@ -213,7 +213,7 @@
                                             <tr th:each="employee : ${employees}">
 <!--                                                <td><img class="" src="/view/images/avatar/4.png" alt="..."></td>-->
                                                 <td th:text="${employee.firstName} + ' ' + ${employee.lastName}">Tiger Nixon</td>
-                                                <td th:text="${employee.birthday}">System Architect</td>
+                                                <td th:text="${#dates.format(employee.birthday, 'dd/MM/yyyy')}">System Architect</td>
                                                 <td th:text="${employee.email}">Edinburgh</td>
                                                 <td th:text="${employee.address}">61</td>
                                                 <td th:text="${employee.phone}">2011/04/25</td>
@@ -229,7 +229,7 @@
                                                     </div>
                                                 </th:block>
 <!--                                                <td th:text="${employee.department.name}">Edinburgh</td>-->
-                                                <td th:text="${employee.createDate}">2011/04/25</td>
+                                                <td th:text="${#dates.format(employee.createDate, 'dd/MM/yyyy HH:mm')}">2011/04/25</td>
 <!--                                                <td>-->
 <!--                                                    <span>-->
 <!--                                                        <a href="#" class="sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">-->
