@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Đồ án tổng hợp</title>
-    <!-- Favicon icon -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
+    <title>Work Management</title>
     <link href="/view/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/custom.css">
 </head>
@@ -62,60 +60,6 @@
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-end">
-<!--                        <div class="header-left">-->
-<!--                            <div class="search_bar dropdown">-->
-<!--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">-->
-<!--                                    <i class="mdi mdi-magnify"></i>-->
-<!--                                </span>-->
-<!--                                <div class="dropdown-menu p-0 m-0">-->
-<!--                                    <form>-->
-<!--                                        <input class="form-control" type="search" placeholder="Search"-->
-<!--                                            aria-label="Search">-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-                        <ul class="navbar-nav header-right">
-                            <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Martin</strong> đã thêm một <strong>khách hàng</strong>
-                                                        Thành công!
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                    </ul>
-                                    <a class="all-notification" href="#">Xem tất cả thông báo <i
-                                            class="ti-arrow-right"></i></a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-account"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="/view/profile.html" class="dropdown-item">
-                                        <i class="icon-user"></i>
-                                        <span class="ml-2">Hồ sơ</span>
-                                    </a>
-                                    <a href="/logout" class="dropdown-item">
-                                        <i class="icon-key"></i>
-                                        <span class="ml-2">Đăng xuất</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </nav>
             </div>
@@ -177,13 +121,13 @@
                             <form th:action="@{/save_workprogress}" enctype="multipart/form-data" method="post">
                                 <input type="hidden" name="id" th:value="${workProgress.id}">
                                 <input type="hidden" name="task" th:value="${workProgress.task.id}">
-                                <div class="card-header pb-0 col-xxl-10 col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card-header pb-0 col-xl-10 col-sm-12 col-xs-12">
                                     <h3 class="workprogress-old" th:text="${workProgress.title}">Tên Tiến độ công việc</h3>
                                     <input type="text" name="title" th:value="${workProgress.title}" class="form-control border-primary workprogress-input" required>
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
-                                        <div class="col-xxl-10 col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-xl-10 col-sm-12 col-xs-12">
                                             <div class="p-2">
                                                 <div class="card-content">
                                                     <div class="card-text m-2">
@@ -209,22 +153,22 @@
                                             </div>
                                         </div>
             
-                                        <div class="col-xxl-2 col-xl-2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-xl-2 col-sm-12 col-xs-12">
                                             <div class="row">
-                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4 custom-file" style="margin: 0 auto;">
+                                                <div class="col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4 custom-file" style="margin: 0 auto;">
                                                     <div class="text-white w-100">
                                                         <input type="file" name="files" class="custom-file-input" multiple="multiple">
                                                         <label class="custom-file-label">Đính kèm tệp</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4" style="margin: 0 auto;">
+                                                <div class="col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4" style="margin: 0 auto;">
                                                     <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white w-100" style="text-align: start;" disabled>
                                                         <option value="0" th:selected="${workProgress.workProgressLevel==0}">Chưa tiến hành</option>
                                                         <option value="1" th:selected="${workProgress.workProgressLevel==1}">Đang tiến hành</option>
                                                         <option value="2" th:selected="${workProgress.workProgressLevel==2}">Hoàn thành</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin: 0 auto;">
+                                                <div class="col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin: 0 auto;">
                                                     <input type="submit" name="submit" value="Lưu" class="btn btn-primary text-white w-100 workprogress-input">
                                                     <button type="button" id="btn-update" class="btn btn-primary text-white w-100 workprogress-old">Chỉnh sửa</button>
                                                 </div>
