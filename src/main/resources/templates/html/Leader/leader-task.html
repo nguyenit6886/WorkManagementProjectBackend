@@ -190,13 +190,13 @@ Preloader end
 								<a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
 							</div>
 							<th:block th:switch="${task.workProgressLevel}">
-								<div th:case="'0'">
+								<div th:case="0">
 									<h6 class="text-white mb-1">Chưa tiến hành</h6>
 								</div>
-								<div th:case="'1'">
+								<div th:case="1">
 									<h6 class="text-white mb-1">Đang tiến hành</h6>
 								</div>
-								<div th:case="'2'">
+								<div th:case="2">
 									<h6 class="text-white mb-1">Hoàn thành</h6>
 								</div>
 							</th:block>
