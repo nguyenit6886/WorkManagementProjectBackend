@@ -210,9 +210,9 @@
                                         <div class="card-listFile">
                                             <h4 class="m-2">Danh sách tệp đính kèm</h4>
                                             <div class="d-flex">
-                                                <div class="mr-2 px-2">
+                                                <div class="mr-2 px-2" th:if="${files != null}" th:each="file : ${files}">
                                                     <div class="card text-white overflow-hidden ml-3 mb-1" style="text-decoration: underline">
-                                                        <a class="text-danger" href="#">Tên file</a>
+                                                        <a class="text-danger" th:href="@{${'/static/upload/' + workProgress.id + '/' + file}}" th:text="${file}"></a>
                                                     </div>
                                                 </div>
                                             </div>

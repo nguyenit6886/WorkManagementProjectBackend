@@ -242,7 +242,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Ngày kết thúc</label>
-                                                <input type="date" class="form-control" name="">
+                                                <input type="date" class="form-control" name="endDate" id="txtEndDate">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Deadline</label>
@@ -364,6 +364,7 @@
                     $('#txtId').val(project.id);
                     $('#txtTitle').val(project.title);
                     $('#txtBeginDate').val((project.beginDate).substring(0, 10));
+                    $('#txtEndDate').val((project.beginDate).substring(0, 10));
                     $('#txtDeadline').val((project.deadline).substring(0, 10));
                     $('#txtContent').val(project.content);
                     $('#txtNote').val(project.note);
@@ -383,6 +384,7 @@
                 event.preventDefault();
                 $('#txtTitle').val('');
                 $('#txtBeginDate').val('');
+                $('#txtEndDate').val('');
                 $('#txtDeadline').val('');
                 $('#txtContent').val('');
                 $('#txtNote').val('');
