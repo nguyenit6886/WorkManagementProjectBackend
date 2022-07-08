@@ -8,12 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class DepartmentController {
+
+  List<String> errors = new ArrayList<>();
 
   @Autowired
   private IDepartmentService iDepartmentService;
@@ -24,26 +25,31 @@ public class DepartmentController {
                                           HttpSession session){
     model.addAttribute("departments",iDepartmentService.getPage(pageNumber));
     model.addAttribute("user",session.getAttribute("user"));
+    if(errors.size() > 0){
+      StringBuilder string = new StringBuilder();
+      for(String error : errors){
+        string.append(error);
+        string.append('\n');
+      }
+      model.addAttribute("error",string);
+      errors.clear();
+    }
     return "/html/Manager/department/manager-department";
   }
 
   @RequestMapping("/save_department")
-  public String addDepartment(@ModelAttribute("department")DepartmentEntity department,
-                              Model model) {
-    Map<String,String> errors = new HashMap<>();
-    errors.put("Name","Tên đã tồn tại");
-    if(errors.keySet().size() > 0){
-      model.addAttribute("error",errors);
-      model.addAttribute("department",department);
-      return "/html/Manager/department/manager-department";
-    }
-    if(department.getId() != 0){
-      department.setUpdateDate(new Date());
-      iDepartmentService.updateObject(department);
+  public String addDepartment(@ModelAttribute("department")DepartmentEntity department) {
+    if(iDepartmentService.getAll().stream().map(DepartmentEntity::getName).collect(Collectors.toList()).contains(department.getName())){
+      errors.add("Tên đã tồn tại");
     }else{
-      department.setCreateDate(new Date());
-      department.setActive(true);
-      iDepartmentService.insertObject(department);
+      if(department.getId() != 0){
+        department.setUpdateDate(new Date());
+        iDepartmentService.updateObject(department);
+      }else{
+        department.setCreateDate(new Date());
+        department.setActive(true);
+        iDepartmentService.insertObject(department);
+      }
     }
     return "redirect:/department_manager";
   }

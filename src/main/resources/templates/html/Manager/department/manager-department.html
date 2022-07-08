@@ -339,13 +339,9 @@
 
     <script type="text/javascript" th:inline="javascript">
         $('document').ready(function () {
-            var errors = [[${error}]];
-            var oldDepartment = [[${department}]];
-            if(errors.size>0){
-                #idModal.modal();
-                #txtTenPhongban = oldDepartment.title;
-                #txtNote = oldDeparment.note;
-                TenError. text =
+            var error = [[${error}]];
+            if(error !== null && error !== ''){
+                alert(error);
             }
             var data = [[${departments}]];
             var departments = data['page']['content'];
