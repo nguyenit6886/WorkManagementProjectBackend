@@ -180,7 +180,7 @@ Preloader end
 		<div class="row mt-3">
 			<div class="col-xl-6 col-xxl-12 col-lg-6 col-sm-6" th:each="task : ${tasks.page}">
 				<a th:href="@{'/leader_workprogress_by_task'(taskId=${task.id})}">
-					<div class="card text-white bg-info">
+					<div class="card text-white bg-primary">
 						<div class="card-header">
 							<h5 class="card-title text-white" th:text="${task.title}">Task 1</h5>
 							<span th:id="|deadline${task.id}|" class="text-danger" th:text="${task.deadline}">Deadline</span>
