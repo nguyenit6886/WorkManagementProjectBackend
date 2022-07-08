@@ -208,6 +208,14 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
+                                            <label>Tên đăng nhập</label>
+                                            <input type="text" class="form-control" placeholder="Tên đăng nhập" name="username" th:value="${employee.username}">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Mật khẩu</label>
+                                            <input type="text" class="form-control" placeholder="Mật khẩu" name="password" th:value="${employee.passwordHash}">
+                                        </div>
+                                        <div class="form-group col-md-6">
                                             <label>Email</label>
                                             <input type="email" class="form-control" placeholder="Email" name="email" th:value="${employee.email}">
                                         </div>
