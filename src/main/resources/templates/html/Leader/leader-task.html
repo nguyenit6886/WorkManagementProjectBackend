@@ -220,7 +220,7 @@ Preloader end
 								<p th:id="|lastUpdate${task.id}|">Last updated 3 min ago</p>
 								<div class="action">
 									<a th:href="@{'/get_assignment'(taskId=${task.id})}" class="btn btn-primary">Cập nhật</a>
-									<a th:href="@{'/delete_task'(taskId=${task.id})}" class="btn btn-danger">Xóa</a>
+									<button type="button" th:data-url="@{'/delete_task'(taskId=${task.id})}" class="btn btn-danger sweet-success-cancel">Xóa</button>
 								</div>
 							</div>
 						</div>

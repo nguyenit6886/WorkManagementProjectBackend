@@ -7,7 +7,9 @@
     <title>Đồ án tổng hợp</title>
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
+    <link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="/view/css/style.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
 </head>
 <body>
 
@@ -205,7 +207,7 @@
                                 <div class="card-footer bg-transparent border-1 text-white py-0">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p th:id="|lastUpdate${workProgress.id}|" class="pt-3" style="color:#BDBDC7">Cập nhật lần cuối 3p trước bởi Employee-Update</p>
-                                        <a th:href="@{'/delete_workprogress'(taskId=${workProgress.task.id},workProgressId=${workProgress.id})}" class="btn btn-danger text-white">Xoá bỏ</a>
+                                        <a href="#" th:data-url="@{'/delete_workprogress'(taskId=${workProgress.task.id},workProgressId=${workProgress.id})}" class="btn btn-danger sweet-success-cancel">Xoá bỏ</a>
                                     </div>
                                 </div>
                             </div>
@@ -290,6 +292,11 @@
     <script src="/view/vendor/global/global.min.js"></script>
     <script src="/view/js/quixnav-init.js"></script>
     <script src="/view/js/custom.min.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/view/js/plugins-init/sweetalert.init.js"></script>
+
     <script src="/view/js/custom/progress-bar.custom.js"></script>
     <script type="text/javascript" th:inline="javascript">
         $('document').ready(function () {

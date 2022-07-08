@@ -11,6 +11,7 @@
     <link href="/view/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="/view/css/style.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
 </head>
 <body>
 
@@ -228,7 +229,7 @@
                                                         <a th:href="@{'/update_employee'(employeeId=${employee.id})}" class="mr-4" data-toggle="tooltip" data-placement="top" title="Sửa">
                                                             <i class="fa fa-pencil color-muted"></i>
                                                         </a>
-                                                        <a th:href="@{'/delete_employee'(employeeId=${employee.id})}" class="btn-delete" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                                        <a href="#" th:data-url="@{'/delete_employee'(employeeId=${employee.id})}" class="sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">
                                                             <i class="fa fa-close color-danger"></i>
                                                         </a>
                                                     </span>
@@ -321,13 +322,13 @@
     <script src="/view/js/quixnav-init.js"></script>
     <script src="/view/js/custom.min.js"></script>
 
-    <!-- Datatable -->
-    <script src="/view/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="/view/js/plugins-init/datatables.init.js"></script>
-
     <!-- Sweet alert -->
     <script src="/view/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/view/js/plugins-init/sweetalert.init.js"></script>
+
+    <!-- Datatable -->
+    <script src="/view/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/view/js/plugins-init/datatables.init.js"></script>
     <script type="text/javascript" th:inline="javascript">
         $('document').ready(function () {
             var error = [[${error}]];
@@ -337,5 +338,6 @@
         });
     </script>
 </body>
+
 
 </html>
