@@ -242,7 +242,7 @@ Preloader end
 								<div class="form-row">
 									<div class="form-group col-md-4">
 										<label>Tên nhiệm vụ</label>
-										<input id="txtTitle" type="text" class="form-control" name="title" placeholder="Tên nhiệm vụ">
+										<input id="txtTitle" type="text" class="form-control" name="title" placeholder="Tên nhiệm vụ" required>
 										<input type="hidden" name="id" id="txtId" value="0">
 									</div>
 									<div class="form-group col-md-4">
@@ -262,15 +262,15 @@ Preloader end
 								<div class="form-row">
 									<div class="form-group col-md-6 col-lg-4">
 										<label>Ngày bắt đầu</label>
-										<input id="txtBeginDate" type="datetime-local" name="beginDate" class="form-control">
+										<input id="txtBeginDate" type="datetime-local" name="beginDate" class="form-control" required>
 									</div>
 									<div class="form-group col-md-6 col-lg-4">
 										<label>Deadline</label>
-										<input id="txtDeadlineDate" type="datetime-local" name="deadline" class="form-control" placeholder="Deadline">
+										<input id="txtDeadlineDate" type="datetime-local" name="deadline" class="form-control" placeholder="Deadline" required>
 									</div>
 									<div class="form-group col-lg-4">
 										<label>Ngày kết thúc dự kiến</label>
-										<input id="txtEndDate" type="datetime-local" name="endDate" class="form-control">
+										<input id="txtEndDate" type="datetime-local" name="endDate" class="form-control" required>
 									</div>
 								</div>
 								<div class="form-row">
@@ -286,7 +286,7 @@ Preloader end
 								<div class="form-row">
 									<div class="form-group col-md-12">
 										<label>Nội dung</label>
-										<textarea id="txtContent" name="content" class="form-control" rows="5"></textarea>
+										<textarea id="txtContent" name="content" class="form-control" rows="5" required></textarea>
 									</div>
 									<div class="form-group col-md-12">
 										<label>Ghi chú</label>

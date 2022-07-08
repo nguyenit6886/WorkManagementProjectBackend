@@ -191,7 +191,7 @@
 						<div class="card text-white bg-primary">
 							<div class="card-header">
 								<h5 class="card-title text-white" th:text="${project.title}">Dự án 1</h5>
-                                <span class="text-white">Ngày kết thúc</span>
+                                <span th:id="|deadline${project.id}|" class="text-white">Ngày kết thúc</span>
 							</div>
 							<div class="card-body mb-0">
 								<p class="card-text text-truncate" th:text="${project.content==''? '(Chưa có nội dung)' : project.content}">Mô tả dự án</p>
@@ -224,7 +224,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Tên dự án</label>
-                                                <input type="text" class="form-control" placeholder="Tên dự án" name="title" id="txtTitle">
+                                                <input type="text" class="form-control" placeholder="Tên dự án" name="title" id="txtTitle" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Thuộc phòng ban</label>
@@ -238,19 +238,19 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label>Ngày bắt đầu</label>
-                                                <input type="date" class="form-control" name="beginDate" id="txtBeginDate">
+                                                <input type="datetime-local" class="form-control" name="beginDate" id="txtBeginDate">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Ngày kết thúc</label>
-                                                <input type="date" class="form-control" name="endDate" id="txtEndDate">
+                                                <input type="datetime-local" class="form-control" name="endDate" id="txtEndDate">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>Deadline</label>
-                                                <input type="date" class="form-control" placeholder="Deadline" name="deadline" id="txtDeadline">
+                                                <input type="datetime-local" class="form-control" placeholder="Deadline" name="deadline" id="txtDeadline">
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label>Nội dung</label>
-                                                <textarea class="form-control" rows="4" form="addProjectModalForm" name="content" id="txtContent"></textarea>
+                                                <textarea class="form-control" rows="4" form="addProjectModalForm" name="content" id="txtContent" required></textarea>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label>Ghi chú</label>
@@ -363,9 +363,9 @@
                     var project = data["project"];
                     $('#txtId').val(project.id);
                     $('#txtTitle').val(project.title);
-                    $('#txtBeginDate').val((project.beginDate).substring(0, 10));
-                    $('#txtEndDate').val((project.beginDate).substring(0, 10));
-                    $('#txtDeadline').val((project.deadline).substring(0, 10));
+                    $('#txtBeginDate').val(project.beginDate);
+                    $('#txtEndDate').val(project.endDate);
+                    $('#txtDeadline').val(project.deadline);
                     $('#txtContent').val(project.content);
                     $('#txtNote').val(project.note);
 
@@ -383,9 +383,9 @@
             $('#addModal').on('click',function (event){
                 event.preventDefault();
                 $('#txtTitle').val('');
-                $('#txtBeginDate').val('');
-                $('#txtEndDate').val('');
-                $('#txtDeadline').val('');
+                $('#txtBeginDate').val(new Date());
+                $('#txtEndDate').val(new Date());
+                $('#txtDeadline').val(new Date());
                 $('#txtContent').val('');
                 $('#txtNote').val('');
                 $('#departments').val([]).change();
@@ -400,10 +400,16 @@
             var projects = data['page']['content'];
             for (let i = 0; i < projects.length; i++) {
                 var idProject = projects[i]['id'];
+                if(projects[i]['deadline'] != null){
+                    const d = new Date(projects[i]['deadline']);
+                    var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+                    var deadlineStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+(d.getMonth() + 1)+"/"+d.getFullYear();
+                    document.getElementById("deadline"+idProject).innerText="Deadline: "+ deadlineStr;
+                }
                 if(projects[i]['updateDate'] == null){
-                    let createDateStr = projects[i]['createDate'];
-                    createDateStr = createDateStr.replace("T"," ");
-                    createDateStr = createDateStr.substring(0,16);
+                    const d = new Date(projects[i]['createDate']);
+                    var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+                    var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
                     document.getElementById("lastUpdate"+idProject).innerText="Tạo lúc: "+ createDateStr;
                 }else{
                     var updateDate = new Date(projects[i]['updateDate']);
