@@ -103,7 +103,7 @@ public class ProjectController {
   }
 
   @RequestMapping("/delete_project")
-  public String deleteEmployee(@RequestParam("projectId")int projectId) {
+  public String deleteProject(@RequestParam("projectId")int projectId) {
     iProjectService.deleteObject(projectId);
     return "redirect:/project_manager";
   }
