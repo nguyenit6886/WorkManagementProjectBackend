@@ -1,12 +1,10 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
 import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
-import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.services.comment.ICommentService;
 import huce.edu.workmanagementprojectbackend.services.employee.IEmployeeService;
 import huce.edu.workmanagementprojectbackend.services.workprogress.IWorkProgressService;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -179,10 +177,18 @@ public class WorkProgressController {
   }
 
   @RequestMapping("/delete_workprogress")
-  public String deleteDepartment(@RequestParam("taskId")int taskId,
-                                 @RequestParam("workProgressId")int workProgressId) {
-    if(validateDelete(workProgressId)){
-      iWorkProgressService.deleteObject(workProgressId);
+  public String deleteWorkProgress(@RequestParam("taskId")int taskId,
+                                   @RequestParam("workProgressId")int workProgressId,
+                                   HttpSession session) {
+    EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
+    if(employee == null){
+      return "redirect:/login";
+    }
+    WorkProgressEntity deleteWorkProgress = iWorkProgressService.getObjectById(workProgressId);
+    if(deleteWorkProgress.getEmployee().getId() == employee.getId()){
+      if(validateDelete(workProgressId)){
+        iWorkProgressService.deleteObject(workProgressId);
+      }
     }
     return "redirect:/employee_workprogress_by_task?taskId="+taskId;
   }

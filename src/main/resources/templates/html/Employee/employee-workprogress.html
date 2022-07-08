@@ -207,7 +207,7 @@
                                 <div class="card-footer bg-transparent border-1 text-white py-0">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p th:id="|lastUpdate${workProgress.id}|" class="pt-3" style="color:#BDBDC7">Cập nhật lần cuối 3p trước bởi Employee-Update</p>
-                                        <a href="#" th:data-url="@{'/delete_workprogress'(taskId=${workProgress.task.id},workProgressId=${workProgress.id})}" class="btn btn-danger sweet-success-cancel">Xoá bỏ</a>
+                                        <a href="#" th:data-url="@{'/delete_workprogress'(taskId=${workProgress.task.id},workProgressId=${workProgress.id})}" class="btn btn-danger sweet-success-cancel" th:if="${user.id == workProgress.employee.id}">Xoá bỏ</a>
                                     </div>
                                 </div>
                             </div>
