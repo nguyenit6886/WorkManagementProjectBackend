@@ -245,9 +245,9 @@
 				for (let i = 0; i < projects.length; i++) {
 					var idProject = projects[i]['id'];
 					if(projects[i]['updateDate'] == null){
-						let createDateStr = projects[i]['createDate'];
-						createDateStr = createDateStr.replace("T"," ");
-						createDateStr = createDateStr.substring(0,16);
+						const d = new Date(projects[i]['createDate']);
+						var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+						var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
 						document.getElementById("lastUpdate"+idProject).innerText="Tạo lúc: "+ createDateStr;
 					}else{
 						var updateDate = new Date(projects[i]['updateDate']);

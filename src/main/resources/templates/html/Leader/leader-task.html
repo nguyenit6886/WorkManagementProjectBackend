@@ -189,15 +189,14 @@ Preloader end
 								<p class="card-text text-white text-truncate mb-1" th:text="${task.content==''? '(Chưa có nội dung)' : task.content}">Mô tả công việc</p>
 								<a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
 							</div>
-<!--							<p class="text-white mb-3">Tiến độ</p>-->
 							<th:block th:switch="${task.workProgressLevel}">
-								<div th:case="'0'">
+								<div th:case="0">
 									<h4 class="card-title text-white" >Chưa tiến hành</h4>
 								</div>
-								<div th:case="'1'">
+								<div th:case="1">
 									<h4 class="card-title text-white" >Đang tiến hành</h4>
 								</div>
-								<div th:case="'2'">
+								<div th:case="2">
 									<h4 class="card-title text-white" >Hoàn thành</h4>
 								</div>
 							</th:block>
@@ -428,15 +427,15 @@ Scripts
 		for (let i = 0; i < tasks.length; i++) {
 			var idTask = tasks[i]['id'];
 			if(tasks[i]['deadline'] != null){
-				let deadlineStr = tasks[i]['deadline'] ;
-				deadlineStr = deadlineStr.replace("T"," ");
-				deadlineStr = deadlineStr.substring(0,deadlineStr.length);
-				document.getElementById("deadline"+idTask).innerHTML = "Deadline: "+deadlineStr;
+				const d = new Date(tasks[i]['deadline']);
+				var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+				var deadlineStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+				document.getElementById("deadline"+idTask).innerText="Deadline: "+ deadlineStr;
 			}
 			if(tasks[i]['updateDate'] == null){
-				let createDateStr = tasks[i]['createDate'];
-				createDateStr = createDateStr.replace("T"," ");
-				createDateStr = createDateStr.substring(0,16);
+				const d = new Date(tasks[i]['createDate']);
+				var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+				var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
 				document.getElementById("lastUpdate"+idTask).innerText="Tạo lúc: "+ createDateStr;
 			}else{
 				var updateDate = new Date(tasks[i]['updateDate']);

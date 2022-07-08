@@ -257,9 +257,9 @@
             for (let i = 0; i < tasks.length; i++) {
                 var idTask = tasks[i]['id'];
                 if(tasks[i]['updateDate'] == null){
-                    let createDateStr = tasks[i]['createDate'];
-                    createDateStr = createDateStr.replace("T"," ");
-                    createDateStr = createDateStr.substring(0,16);
+                    const d = new Date(tasks[i]['createDate']);
+                    var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+                    var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
                     document.getElementById("lastUpdate"+idTask).innerText="Tạo lúc: "+ createDateStr;
                 }else{
                     var updateDate = new Date(tasks[i]['updateDate']);

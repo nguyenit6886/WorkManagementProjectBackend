@@ -299,9 +299,9 @@
             for (let i = 0; i < workProgresss.length; i++) {
                 var idProgress = workProgresss[i]['id'];
                 if(workProgresss[i]['updateDate'] == null){
-                    let createDateStr = workProgresss[i]['createDate'];
-                    createDateStr = createDateStr.replace("T"," ");
-                    createDateStr = createDateStr.substring(0,16);
+                    const d = new Date(workProgresss[i]['createDate']);
+                    var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+                    var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
                     document.getElementById("lastUpdate"+idProgress).innerText="Tạo lúc: "+ createDateStr;
                 }else{
                     var updateDate = new Date(workProgresss[i]['updateDate']);
