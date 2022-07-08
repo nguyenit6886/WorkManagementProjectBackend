@@ -22,15 +22,6 @@ public class AssignmentEntity {
   @ManyToOne
   private EmployeeEntity employee;
 
-  @Column(name = "deadline")
-  private Date deadline;
-
-  @Column(name = "begin_date")
-  private Date beginDate;
-
-  @Column(name = "end_date")
-  private Date endDate;
-
   @Column(name = "create_date")
   private Date createDate;
 
