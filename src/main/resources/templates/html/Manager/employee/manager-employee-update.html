@@ -213,7 +213,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Số điện thoại</label>
-                                            <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" th:value="${employee.phone}">
+                                            <input type="number" class="form-control" placeholder="Số điện thoại" name="phone" th:value="${employee.phone}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Địa chỉ</label>
@@ -296,6 +296,14 @@
     <!-- Select Multi -->
     <script src="/view/vendor/select2/js/select2.full.min.js"></script>
     <script src="/view/js/plugins-init/select2-init.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        $('document').ready(function () {
+            var error = [[${error}]];
+            if(error !== null && error !== ''){
+                alert(error);
+            }
+        });
+    </script>
 </body>
 
 </html>

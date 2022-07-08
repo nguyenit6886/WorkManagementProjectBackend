@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
 import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
+import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
 import huce.edu.workmanagementprojectbackend.services.department.IDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,8 +57,18 @@ public class DepartmentController {
 
   @RequestMapping("/delete_department")
   public String deleteDepartment(@RequestParam("departmentId")int departmentId) {
-    iDepartmentService.deleteObject(departmentId);
+    if(validateDelete(departmentId)){
+      iDepartmentService.deleteObject(departmentId);
+    }
     return "redirect:/department_manager";
   }
 
+  private boolean validateDelete(int departmentId){
+    if(iDepartmentService.getAll().stream().map(DepartmentEntity::getId).collect(Collectors.toList()).contains(departmentId)){
+      return true;
+    }else{
+      errors.add("Phòng ban không tồn tại");
+      return false;
+    }
+  }
 }
