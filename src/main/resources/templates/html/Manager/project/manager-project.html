@@ -10,6 +10,7 @@
     <link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="/view/vendor/select2/css/select2.min.css" rel="stylesheet">
     <link href="/view/css/style.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
 </head>
 <body>
 
@@ -205,7 +206,7 @@
 								<p th:id="|lastUpdate${project.id}|">Cập nhật lần cuối 3p trước</p>
                                 <div class="action">
                                     <a th:href="@{'/get_project'(projectId=${project.id})}" id="updateModal" class="btn btn-info">Cập nhật</a>
-                                    <a th:href="@{'/delete_project'(projectId=${project.id})}" class="btn btn-danger">Xóa</a>
+                                    <button type="button" th:data-url="@{'/delete_project'(projectId=${project.id})}" class="btn btn-danger sweet-success-cancel">Xóa</button>
                                 </div>
 							</div>
 						</div>

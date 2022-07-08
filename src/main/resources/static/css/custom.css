@@ -35,3 +35,39 @@ textarea.workprogress-input {
     color: #593bdb;
     text-decoration: inherit;
 }
+
+/* Custom Sweet Alert Delete */
+.swal2-popup .swal2-styled.swal2-confirm {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.swal2-popup .swal2-styled.swal2-confirm:focus {
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.swal2-popup .swal2-styled.swal2-confirm a {
+    font-size: 1.0625em;
+    font-weight: 500;
+    padding: .7em 2em;
+    border: 0;
+    border-radius: 0.25em;
+    box-shadow: none;
+    color: #fff;
+    background-color: rgb(221, 107, 85);
+}
+
+.swal2-popup .swal2-styled.swal2-confirm a:hover {
+    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
+}
+
+.swal2-popup .swal2-styled.swal2-confirm a:focus {
+    outline: 0px;
+    box-shadow: rgb(255 255 255) 0px 0px 0px 2px, rgb(50 100 150 / 40%) 0px 0px 0px 4px;
+}
