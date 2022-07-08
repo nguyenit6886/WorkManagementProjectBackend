@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Đồ án tổng hợp</title>
-    <!-- Favicon icon -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
-    <!-- Datatable -->
+    <title>Work Management</title>
     <link href="/view/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="/view/vendor/select2/css/select2.min.css" rel="stylesheet">
@@ -62,58 +59,6 @@
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-end">
-<!--                        <div class="header-left">-->
-<!--                            <div class="search_bar dropdown">-->
-<!--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">-->
-<!--                                    <i class="mdi mdi-magnify"></i>-->
-<!--                                </span>-->
-<!--                                <div class="dropdown-menu p-0 m-0">-->
-<!--                                    <form>-->
-<!--                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-                        <ul class="navbar-nav header-right">
-                            <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Martin</strong> đã thêm một <strong>khách hàng</strong> Thành công!
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                    </ul>
-                                    <a class="all-notification" href="#">Xem tất cả thông báo<i
-                                            class="ti-arrow-right"></i></a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-account"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="../../profile.html" class="dropdown-item">
-                                        <i class="icon-user"></i>
-                                        <span class="ml-2">Hồ sơ</span>
-                                    </a>
-                                    <a href="/logout" class="dropdown-item">
-                                        <i class="icon-key"></i>
-                                        <span class="ml-2">Đăng xuất</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </nav>
             </div>
@@ -197,21 +142,17 @@
                                     <table id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
-<!--                                                <th>Ảnh</th>-->
                                                 <th>Tên</th>
                                                 <th>Ngày sinh</th>
                                                 <th>Email</th>
                                                 <th>Địa chỉ</th>
                                                 <th>Số điện thoại</th>
                                                 <th>Chức vụ</th>
-<!--                                                <th>Phòng ban</th>-->
                                                 <th>Ngày bắt đầu</th>
-<!--                                                <th>Hành động</th>-->
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr th:each="employee : ${employees}">
-<!--                                                <td><img class="" src="/view/images/avatar/4.png" alt="..."></td>-->
                                                 <td th:text="${employee.firstName} + ' ' + ${employee.lastName}">Tiger Nixon</td>
                                                 <td th:text="${#dates.format(employee.birthday, 'dd/MM/yyyy')}">System Architect</td>
                                                 <td th:text="${employee.email}">Edinburgh</td>
@@ -228,27 +169,9 @@
                                                         <td>Nhân viên</td>
                                                     </div>
                                                 </th:block>
-<!--                                                <td th:text="${employee.department.name}">Edinburgh</td>-->
                                                 <td th:text="${#dates.format(employee.createDate, 'dd/MM/yyyy HH:mm')}">2011/04/25</td>
-<!--                                                <td>-->
-<!--                                                    <span>-->
-<!--                                                        <a href="#" class="sweet-success-cancel" data-toggle="tooltip" data-placement="top" title="Xóa">-->
-<!--                                                            <i class="fa fa-close color-danger"></i>-->
-<!--                                                        </a>-->
-<!--                                                    </span>-->
-<!--                                                </td>-->
                                             </tr>
                                         </tbody>
-<!--                                        <tfoot>-->
-<!--                                            <tr>-->
-<!--                                                <th>Ảnh</th>-->
-<!--                                                <th>Tên</th>-->
-<!--                                                <th>Chức vụ</th>-->
-<!--                                                <th>Phòng ban</th>-->
-<!--                                                <th>Ngày bắt đầu</th>-->
-<!--                                                <th>Hành động</th>-->
-<!--                                            </tr>-->
-<!--                                        </tfoot>-->
                                     </table>
                                 </div>
                             </div>

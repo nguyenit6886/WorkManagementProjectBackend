@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Đồ án tổng hợp</title>
-    <!-- Favicon icon -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
+    <title>Work Management</title>
     <link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="/view/css/style.css" rel="stylesheet">
     <link href="/css/custom.css" rel="stylesheet">
@@ -60,58 +58,6 @@
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-end">
-<!--                        <div class="header-left">-->
-<!--                            <div class="search_bar dropdown">-->
-<!--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">-->
-<!--                                    <i class="mdi mdi-magnify"></i>-->
-<!--                                </span>-->
-<!--                                <div class="dropdown-menu p-0 m-0">-->
-<!--                                    <form>-->
-<!--                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-                        <ul class="navbar-nav header-right">
-                            <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Martin</strong> đã thêm một <strong>khách hàng</strong> Thành công!
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                    </ul>
-                                    <a class="all-notification" href="#">Xem tất cả thông báo<i
-                                            class="ti-arrow-right"></i></a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-account"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="../../profile.html" class="dropdown-item">
-                                        <i class="icon-user"></i>
-                                        <span class="ml-2">Hồ sơ</span>
-                                    </a>
-                                    <a href="/logout" class="dropdown-item">
-                                        <i class="icon-key"></i>
-                                        <span class="ml-2">Đăng xuất</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </nav>
             </div>
@@ -182,25 +128,27 @@
                         </ol>
                     </div>
                 </div>
-                <div class="row" th:each="department : ${departments.page}">
-                    <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12" th:id="'department' + ${department.id}">
-                        <a th:href="@{'/employees_of_department'(departmentId=${department.id})}">
-                            <div class="card text-white bg-primary">
-                                <div class="card-header d-sm-flex justify-content-between">
-                                    <h5 class="card-title text-white departmentInput" th:text="${department.name}" id="txtDepartmentName">Tên phòng ban</h5>
-                                </div>
-                                <div class="card-body mb-0 py-2">
-                                    <p class="card-text text-white departmentInput" th:text="${department.note}" id="txtDepartmentNote">Ghi chú phòng ban</p>
-                                </div>
-                                <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
-                                    <p th:id="|lastUpdate${department.id}|" class="text-white">Cập nhật lần cuối 3p trước</p>
-                                    <div>
-                                        <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'openModalFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-info">Sửa</a>
-                                        <button type="button" th:data-url="@{'/delete_department'(departmentId=${department.id})}" class="btn btn-danger sweet-success-cancel">Xóa</button>
+                <div class="row">
+                    <div class="col-xl-6 col-sm-12" th:each="department : ${departments.page}">
+                        <div th:id="'department' + ${department.id}">
+                            <a th:href="@{'/employees_of_department'(departmentId=${department.id})}">
+                                <div class="card text-white bg-primary">
+                                    <div class="card-header d-sm-flex justify-content-between">
+                                        <h5 class="card-title text-white departmentInput" th:text="${department.name}" id="txtDepartmentName">Tên phòng ban</h5>
+                                    </div>
+                                    <div class="card-body mb-0 py-2">
+                                        <p class="card-text text-white departmentInput" th:text="${department.note}" id="txtDepartmentNote">Ghi chú phòng ban</p>
+                                    </div>
+                                    <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
+                                        <p th:id="|lastUpdate${department.id}|" class="text-white">Cập nhật lần cuối 3p trước</p>
+                                        <div>
+                                            <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'openModalFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-info">Sửa</a>
+                                            <button type="button" th:data-url="@{'/delete_department'(departmentId=${department.id})}" class="btn btn-danger sweet-success-cancel">Xóa</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -250,7 +198,7 @@
                         </a>
 					</div>
                 </div>
-                <nav aria-label="Page navigation example">
+                <nav aria-label="Page navigation example" class="pb-5 mb-5">
                     <ul class="pagination justify-content-center" th:if="${departments.page.totalPages > 1}">
                         <li class="page-item" th:classappend="${!departments.paging.isPrevEnabled()? 'disabled' : ''}">
                             <a class="page-link" th:href="@{'department_manager?pageNumber=1'}" >Đầu</a>
@@ -364,21 +312,21 @@
                     var text="Cập nhật lần cuối: ";
                     if(days != 0){
                         text+= days;
-                        text+= " days ";
+                        text+= " ngày ";
                     }
                     if(hours != 0){
                         text += hours;
-                        text += " hours "
+                        text += " giờ "
                     }
                     if(minutes != 0){
                         text += minutes;
-                        text += " minutes "
+                        text += " phút "
                     }
                     if(sec != 0){
                         text += sec;
-                        text += "s "
+                        text += " giây "
                     }
-                    text += "ago";
+                    text += " trước";
                     document.getElementById("lastUpdate"+idDepartment).innerText=text;
                 }
             }
