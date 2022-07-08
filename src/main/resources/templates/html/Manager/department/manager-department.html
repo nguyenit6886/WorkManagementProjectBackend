@@ -184,7 +184,7 @@
                 <div class="row" th:each="department : ${departments.page}">
                     <div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12" th:id="'department' + ${department.id}">
                         <a th:href="@{'/employees_of_department'(departmentId=${department.id})}">
-                            <div class="card text-white bg-info">
+                            <div class="card text-white bg-primary">
                                 <div class="card-header d-sm-flex justify-content-between">
                                     <h5 class="card-title text-white departmentInput" th:text="${department.name}" id="txtDepartmentName">Tên phòng ban</h5>
                                 </div>
@@ -194,7 +194,7 @@
                                 <div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">
                                     <p th:id="|lastUpdate${department.id}|" class="text-white">Cập nhật lần cuối 3p trước</p>
                                     <div>
-                                        <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'openModalFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-primary">Sửa</a>
+                                        <a data-toggle="modal" data-target="#exampleModalCenter" th:onclick="'openModalFunction(\''+ 'department'+${department.id} +'\',this.id,\''+${department.id} +'\')'" id="updateModal" class="btn btn-info">Sửa</a>
                                         <a th:href="@{'/delete_department'(departmentId=${department.id})}" class="btn btn-danger">Xóa</a>
                                     </div>
                                 </div>

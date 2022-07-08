@@ -21,7 +21,7 @@ const deleteDepartmentUrl = 'http://localhost:8082/delete_department';
             if(data[i].name != null && data[i].name.trim().length > 0) {
                 stringListDepartment += '<div class="col-xl-12 col-xxl-12 col-lg-12 col-sm-12">' +
                                             '<a href="manager-employeeOfDepartment.html">' +
-                                                '<div class="card text-white bg-info">' +
+                                                '<div class="card text-white bg-primary">' +
                                                     '<div class="card-header d-sm-flex justify-content-between">' +
                                                     '<h5 class="card-title text-white">'+ data[i].name +'</h5>' +
                                                         '<div class="card-footer-link mb-4 mb-sm-0">' +
@@ -34,7 +34,7 @@ const deleteDepartmentUrl = 'http://localhost:8082/delete_department';
                                                     '<div class="card-footer px-4 bg-transparent border-0 text-white d-flex justify-content-between">' +
                                                         '<p class="text-white">Last updated '+ updateDate +'</p>' +
                                                         '<div>' +
-                                                            '<a href="" class="btn btn-primary">Sửa</a>' +
+                                                            '<a href="" class="btn btn-info">Sửa</a>' +
                                                             '<a href="#" data-id="'+ data[i].id + '" id="test" class="btn btn-danger btn-delete">Xóa</a>' +
                                                         '</div>' +
                                                     '</div>' +
