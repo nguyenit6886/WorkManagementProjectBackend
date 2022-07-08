@@ -69,7 +69,9 @@ public class ProjectController {
 
   @RequestMapping("/save_project")
   public String addProject(@ModelAttribute("project") ProjectEntity project,
-                           @RequestParam("departments") DepartmentEntity[] departments){
+                           @RequestParam("departments") DepartmentEntity[] departments,
+                           HttpSession session){
+    EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
     if(project.getId() != 0){
       project.setUpdateDate(new Date());
       iProjectService.updateObject(project);
@@ -85,16 +87,16 @@ public class ProjectController {
       }
       for(DepartmentEntity department : departments){
         if(!list.stream().map(AssignmentDepartmentEntity::getDepartment).collect(Collectors.toList()).contains(department)){
-          addAssignmentDepartmentByProject(project, department);
+          addAssignmentDepartmentByProject(project, department, session);
         }
       }
     }else{
       project.setCreateDate(new Date());
       project.setActive(true);
-      project.setCreateUser(LoginController.CREATE_USER_ID);
+      project.setCreateUser(employee.getId());
       iProjectService.insertObject(project);
       for(DepartmentEntity department : departments){
-        addAssignmentDepartmentByProject(project, department);
+        addAssignmentDepartmentByProject(project, department, session);
       }
     }
     return "redirect:/project_manager";
@@ -106,13 +108,16 @@ public class ProjectController {
     return "redirect:/project_manager";
   }
 
-  private void addAssignmentDepartmentByProject(ProjectEntity project, DepartmentEntity department){
+  private void addAssignmentDepartmentByProject(ProjectEntity project,
+                                                DepartmentEntity department,
+                                                HttpSession session){
     AssignmentDepartmentEntity ade = new AssignmentDepartmentEntity();
+    EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
     ade.setProject(project);
     ade.setDepartment(department);
     ade.setCreateDate(new Date());
     ade.setActive(true);
-    ade.setCreateUser(LoginController.CREATE_USER_ID);
+    ade.setCreateUser(employee.getId());
     iAssignmentDepartmentService.insertObject(ade);
   }
 }

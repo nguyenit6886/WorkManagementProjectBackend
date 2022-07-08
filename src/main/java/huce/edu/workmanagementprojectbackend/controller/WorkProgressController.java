@@ -122,7 +122,8 @@ public class WorkProgressController {
 
   @RequestMapping("/save_workprogress")
   public String addWorkProgress(@ModelAttribute("workProgress") WorkProgressEntity workProgress,
-                                @RequestParam("files") MultipartFile[] multipartFiles) {
+                                @RequestParam("files") MultipartFile[] multipartFiles,
+                                HttpSession session) {
     int workProgressId;
     if(workProgress.getId() != 0){
       workProgress.setUpdateDate(new Date());
@@ -135,9 +136,10 @@ public class WorkProgressController {
       workProgressId = iWorkProgressService.updateObject(workProgress);
       iWorkProgressService.insertFile(multipartFiles, workProgress);
     }else{
+      EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
       workProgress.setCreateDate(new Date());
       workProgress.setActive(true);
-      workProgress.setEmployee(iEmployeeService.getObjectById(LoginController.CREATE_USER_ID));
+      workProgress.setEmployee(iEmployeeService.getObjectById(employee.getId()));
       StringBuilder fileName = new StringBuilder();
       for(MultipartFile multipartFile : multipartFiles){
         fileName.append(multipartFile.getOriginalFilename());

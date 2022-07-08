@@ -80,7 +80,8 @@ public class TaskController {
 
   @RequestMapping("/save_task")
   public String saveTask(@ModelAttribute("task") TaskEntity task,
-                         @RequestParam("employees") EmployeeEntity[] employees){
+                         @RequestParam("employees") EmployeeEntity[] employees,
+                         HttpSession session){
     if(task.getId() != 0){
       iTaskService.updateObject(task);
       List<AssignmentEntity> list = iAssignmentService.getAssignmentByTask(task);
@@ -99,7 +100,8 @@ public class TaskController {
         }
       }
     }else{
-      task.setCreateUser(LoginController.CREATE_USER_ID);
+      EmployeeEntity employeeEntity = (EmployeeEntity) session.getAttribute("user");
+      task.setCreateUser(employeeEntity.getId());
       iTaskService.insertObject(task);
       for(EmployeeEntity employee : employees){
         addAssignmentByTask(task, employee);
@@ -129,13 +131,14 @@ public class TaskController {
     return "/html/Manager/project/manager-task";
   }
 
-  private void addAssignmentByTask(TaskEntity task, EmployeeEntity employee){
+  private void addAssignmentByTask(TaskEntity task,
+                                   EmployeeEntity employee){
     AssignmentEntity ae = new AssignmentEntity();
     ae.setTask(task);
     ae.setEmployee(employee);
     ae.setCreateDate(new Date());
     ae.setActive(true);
-    ae.setCreateUser(LoginController.CREATE_USER_ID);
+    ae.setCreateUser(employee.getId());
     iAssignmentService.insertObject(ae);
   }
 }
