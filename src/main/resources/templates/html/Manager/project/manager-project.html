@@ -194,7 +194,11 @@
                                 <span th:id="|deadline${project.id}|" class="text-white">Ngày kết thúc</span>
 							</div>
 							<div class="card-body mb-0">
-								<p class="card-text text-truncate" th:text="${project.content==''? '(Chưa có nội dung)' : project.content}">Mô tả dự án</p>
+                                <div class="d-flex justify-content-between mb-2" style="align-items: center;">
+                                    <p class="card-text text-truncate" th:text="${project.content==''? '(Chưa có nội dung)' : project.content}">Mô tả dự án</p>
+                                    <a class="show-detail-content text-light ml-2" title="xem chi tiết"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a class="close-detail-content text-light ml-2" style="display: none;" title="đóng"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                </div>
 								<a th:href="@{'/manager-task-list'(projectId=${project.id})}" class="btn btn-dark btn-card">Xem đầu mục công việc</a>
 							</div>
 							<div class="card-footer d-flex justify-content-between bg-transparent border-0 text-white">
@@ -353,6 +357,8 @@
     <!-- Select Multi -->
     <script src="/view/vendor/select2/js/select2.full.min.js"></script>
     <script src="/view/js/plugins-init/select2-init.js"></script>
+
+    <script src="/view/js/custom/show-detail-content.custom.js"></script>
 
     <script type="text/javascript">
         $('document').ready(function (){

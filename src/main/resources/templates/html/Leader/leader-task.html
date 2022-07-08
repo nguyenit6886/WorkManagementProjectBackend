@@ -10,6 +10,7 @@
 	<link href="/view/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 	<link href="/view/vendor/select2/css/select2.min.css" rel="stylesheet">
 	<link href="/view/css/style.css" rel="stylesheet" />
+	<link href="/css/custom.css" rel="stylesheet">
 </head>
 <body>
 <!--*******************
@@ -185,9 +186,10 @@ Preloader end
 							<span th:id="|deadline${task.id}|" class="text-danger" th:text="${task.deadline}">Deadline</span>
 						</div>
 						<div class="card-body mb-0">
-							<div class="d-flex justify-content-between">
-								<p class="card-text text-white text-truncate mb-1" th:text="${task.content==''? '(Chưa có nội dung)' : task.content}">Mô tả công việc</p>
-								<a href="#" class="text-primary" title="xem chi tiết"><i class="ti-eye"></i></a>
+							<div class="d-flex justify-content-between mb-2" style="align-items: center;">
+								<p class="card-text text-white text-truncate" th:text="${task.content==''? '(Chưa có nội dung)' : task.content}">Mô tả công việc</p>
+								<a class="show-detail-content text-light ml-2" title="xem chi tiết"><i class="fa fa-eye" aria-hidden="true"></i></a>
+								<a class="close-detail-content text-light ml-2" style="display: none;" title="đóng"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
 							</div>
 							<th:block th:switch="${task.workProgressLevel}">
 								<div th:case="0">
@@ -364,6 +366,7 @@ Scripts
 <script src="/view/js/plugins-init/select2-init.js"></script>
 
 <script src="/view/js/custom/progress-bar.custom.js"></script>
+<script src="/view/js/custom/show-detail-content.custom.js"></script>
 
 <script type="text/javascript" th:inline="javascript">
 	$('document').ready(function (){
