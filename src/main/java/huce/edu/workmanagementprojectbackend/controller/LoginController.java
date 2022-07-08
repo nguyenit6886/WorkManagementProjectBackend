@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
 
-  public static int CREATE_USER_ID = 3;
-
   @RequestMapping("/login")
   public String showLogin(Model model,
                           @RequestParam(required = false) String error){
