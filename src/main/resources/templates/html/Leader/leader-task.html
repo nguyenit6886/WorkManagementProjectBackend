@@ -219,7 +219,7 @@ Preloader end
 							<div class="d-flex justify-content-between">
 								<p th:id="|lastUpdate${task.id}|">Last updated 3 min ago</p>
 								<div class="action">
-									<a th:href="@{'/get_assignment'(taskId=${task.id})}" class="btn btn-primary">Cập nhật</a>
+									<a th:href="@{'/get_assignment'(taskId=${task.id})}" class="btn btn-info">Cập nhật</a>
 									<button type="button" th:data-url="@{'/delete_task'(taskId=${task.id})}" class="btn btn-danger sweet-success-cancel">Xóa</button>
 								</div>
 							</div>
@@ -376,7 +376,7 @@ Scripts
 				$('#projectTitle').text(projectResult.title);
 			}});
 
-		$('.action .btn-primary').on('click',function (event){
+		$('.action .btn-info').on('click',function (event){
 			event.preventDefault();
 			var href = $(this).attr('href');
 			$.get(href, function(data){
