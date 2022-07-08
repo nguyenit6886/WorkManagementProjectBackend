@@ -240,6 +240,12 @@
 		<script src="/view/js/custom.min.js"></script>
 		<script type="text/javascript" th:inline="javascript">
 			$('document').ready(function () {
+				var error = [[${error}]];
+				if(error !== null && error !== ''){
+					alert(error);
+				}
+			});
+			$('document').ready(function () {
 				var data = [[${projects}]];
 				var projects = data['page']['content'];
 				for (let i = 0; i < projects.length; i++) {
@@ -247,7 +253,7 @@
 					if(projects[i]['updateDate'] == null){
 						const d = new Date(projects[i]['createDate']);
 						var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
-						var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+						var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+(d.getMonth() + 1)+"/"+d.getFullYear();
 						document.getElementById("lastUpdate"+idProject).innerText="Tạo lúc: "+ createDateStr;
 					}else{
 						var updateDate = new Date(projects[i]['updateDate']);

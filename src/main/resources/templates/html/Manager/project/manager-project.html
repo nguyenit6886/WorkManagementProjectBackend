@@ -396,6 +396,12 @@
 
     <script type="text/javascript" th:inline="javascript">
         $('document').ready(function () {
+            var error = [[${error}]];
+            if(error !== null && error !== ''){
+                alert(error);
+            }
+        });
+        $('document').ready(function () {
             var data = [[${projects}]];
             var projects = data['page']['content'];
             for (let i = 0; i < projects.length; i++) {

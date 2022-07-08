@@ -1,6 +1,7 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
 import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
+import huce.edu.workmanagementprojectbackend.model.TaskEntity;
 import huce.edu.workmanagementprojectbackend.model.WorkProgressEntity;
 import huce.edu.workmanagementprojectbackend.services.comment.ICommentService;
 import huce.edu.workmanagementprojectbackend.services.employee.IEmployeeService;
@@ -15,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class WorkProgressController {
+
+  private List<String> errors = new ArrayList<>();
 
   @Autowired
   private IWorkProgressService iWorkProgressService;
@@ -37,6 +43,7 @@ public class WorkProgressController {
     model.addAttribute("workProgresss",iWorkProgressService.getPageByTaskId(taskId,pageNumber));
     model.addAttribute("taskId",taskId);
     model.addAttribute("user",session.getAttribute("user"));
+    sentError(model);
     return "/html/Employee/employee-workprogress";
   }
 
@@ -130,40 +137,83 @@ public class WorkProgressController {
 
   @RequestMapping("/save_workprogress")
   public String addWorkProgress(@ModelAttribute("workProgress") WorkProgressEntity workProgress,
-                                @RequestParam("files") MultipartFile[] multipartFiles,
+                                @RequestParam(value = "files", required = false) MultipartFile[] multipartFiles,
                                 HttpSession session) {
     int workProgressId;
-    if(workProgress.getId() != 0){
-      workProgress.setUpdateDate(new Date());
-      StringBuilder fileName = new StringBuilder();
-      for(MultipartFile multipartFile : multipartFiles){
-        fileName.append(multipartFile.getOriginalFilename());
-        fileName.append(";");
+    if(validateSave(workProgress)){
+      if(workProgress.getId() != 0){
+        workProgress.setUpdateDate(new Date());
+        if(multipartFiles != null){
+          StringBuilder fileName = new StringBuilder();
+          for(MultipartFile multipartFile : multipartFiles){
+            fileName.append(multipartFile.getOriginalFilename());
+            fileName.append(";");
+          }
+          workProgress.setFileName(fileName.toString());
+          workProgressId = iWorkProgressService.updateObject(workProgress);
+          iWorkProgressService.insertFile(multipartFiles, workProgress);
+        }else{
+          workProgressId = iWorkProgressService.updateObject(workProgress);
+        }
+      }else{
+        EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
+        workProgress.setCreateDate(new Date());
+        workProgress.setActive(true);
+        workProgress.setEmployee(iEmployeeService.getObjectById(employee.getId()));
+        if(multipartFiles != null){
+          StringBuilder fileName = new StringBuilder();
+          for(MultipartFile multipartFile : multipartFiles){
+            fileName.append(multipartFile.getOriginalFilename());
+            fileName.append(";");
+          }
+          workProgress.setFileName(fileName.toString());
+          workProgressId =  iWorkProgressService.insertObject(workProgress);
+          iWorkProgressService.insertFile(multipartFiles, workProgress);
+        }else{
+          workProgressId =  iWorkProgressService.insertObject(workProgress);
+        }
       }
-      workProgress.setFileName(fileName.toString());
-      workProgressId = iWorkProgressService.updateObject(workProgress);
-      iWorkProgressService.insertFile(multipartFiles, workProgress);
-    }else{
-      EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
-      workProgress.setCreateDate(new Date());
-      workProgress.setActive(true);
-      workProgress.setEmployee(iEmployeeService.getObjectById(employee.getId()));
-      StringBuilder fileName = new StringBuilder();
-      for(MultipartFile multipartFile : multipartFiles){
-        fileName.append(multipartFile.getOriginalFilename());
-        fileName.append(";");
-      }
-      workProgress.setFileName(fileName.toString());
-      workProgressId =  iWorkProgressService.insertObject(workProgress);
-      iWorkProgressService.insertFile(multipartFiles, workProgress);
+      return "redirect:/employee_detail_workprogress?workProgressId="+workProgressId;
     }
-    return "redirect:/employee_detail_workprogress?workProgressId="+workProgressId;
+    return "redirect:/employee_workprogress_by_task?taskId="+workProgress.getTask().getId();
   }
 
   @RequestMapping("/delete_workprogress")
   public String deleteDepartment(@RequestParam("taskId")int taskId,
                                  @RequestParam("workProgressId")int workProgressId) {
-    iWorkProgressService.deleteObject(workProgressId);
+    if(validateDelete(workProgressId)){
+      iWorkProgressService.deleteObject(workProgressId);
+    }
     return "redirect:/employee_workprogress_by_task?taskId="+taskId;
+  }
+
+  private boolean validateSave(WorkProgressEntity workProgress){
+    boolean valid = true;
+    if(workProgress.getTitle().isEmpty()){
+      errors.add("Chưa nhập tên tiến độ công việc");
+      return false;
+    }
+    return valid;
+  }
+
+  private boolean validateDelete(int workProgressId){
+    if(iWorkProgressService.getAll().stream().map(WorkProgressEntity::getId).collect(Collectors.toList()).contains(workProgressId)){
+      return true;
+    }else{
+      errors.add("Công việc không tồn tại");
+      return false;
+    }
+  }
+
+  private void sentError(Model model){
+    if(errors.size() > 0){
+      StringBuilder string = new StringBuilder();
+      for(String error : errors){
+        string.append(error);
+        string.append('\n');
+      }
+      model.addAttribute("error",string);
+      errors.clear();
+    }
   }
 }
