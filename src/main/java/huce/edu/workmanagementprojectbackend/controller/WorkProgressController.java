@@ -73,6 +73,10 @@ public class WorkProgressController {
     model.addAttribute("workProgress",workProgress);
     model.addAttribute("comments",iCommentService.getCommentByWorkProgress(workProgress));
     model.addAttribute("user",employee);
+    if(workProgress.getFileName() != null){
+      String[] files = workProgress.getFileName().split(";");
+      model.addAttribute("files",files);
+    }
     return "/html/Leader/leader-detail-workprogress";
   }
 
@@ -103,6 +107,10 @@ public class WorkProgressController {
     WorkProgressEntity workProgress = iWorkProgressService.getObjectById(workProgressId);
     model.addAttribute("workProgress",workProgress);
     model.addAttribute("comments",iCommentService.getCommentByWorkProgress(workProgress));
+    if(workProgress.getFileName() != null){
+      String[] files = workProgress.getFileName().split(";");
+      model.addAttribute("files",files);
+    }
     EmployeeEntity user = (EmployeeEntity) session.getAttribute("user");
     if(user != null) {
       model.addAttribute("user", user);

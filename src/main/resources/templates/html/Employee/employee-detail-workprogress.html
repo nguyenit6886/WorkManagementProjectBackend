@@ -172,19 +172,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
+                    <div class="col-12">
+                        <div class="card mb-3">
                             <form th:action="@{/save_workprogress}" enctype="multipart/form-data" method="post">
                                 <input type="hidden" name="id" th:value="${workProgress.id}">
                                 <input type="hidden" name="task" th:value="${workProgress.task.id}">
-                                <div class="card-header pb-0 col-md-10">
+                                <div class="card-header pb-0 col-xxl-10 col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <h3 class="workprogress-old" th:text="${workProgress.title}">Tên Tiến độ công việc</h3>
                                     <input type="text" name="title" th:value="${workProgress.title}" class="form-control border-primary workprogress-input">
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body pt-0">
                                     <div class="row">
-                                        <div class="col-md-10">
-                                            <div class="border border-primary p-2">
+                                        <div class="col-xxl-10 col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="p-2">
                                                 <div class="card-content">
                                                     <div class="card-text m-2">
                                                         <p class="text-black workprogress-old" th:text="${workProgress.content==''? '(Chưa có nội dung)' : workProgress.content}">
@@ -209,72 +209,81 @@
                                             </div>
                                         </div>
             
-                                        <div class="col-md-2">
-                                            <div class="custom-file text-white mb-5">
-                                                <input type="file" name="files" class="custom-file-input" multiple="multiple">
-                                                <label class="custom-file-label">Đính kèm tệp</label>
+                                        <div class="col-xxl-2 col-xl-2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4 custom-file" style="margin: 0 auto;">
+                                                    <div class="text-white w-100">
+                                                        <input type="file" name="files" class="custom-file-input" multiple="multiple">
+                                                        <label class="custom-file-label">Đính kèm tệp</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4" style="margin: 0 auto;">
+                                                    <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white w-100" style="text-align: start;" disabled>
+                                                        <option value="0" th:selected="${workProgress.workProgressLevel==0}">Chưa tiến hành</option>
+                                                        <option value="1" th:selected="${workProgress.workProgressLevel==1}">Đang tiến hành</option>
+                                                        <option value="2" th:selected="${workProgress.workProgressLevel==2}">Hoàn thành</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-xxl-12 col-xl-12 col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin: 0 auto;">
+                                                    <input type="submit" name="submit" value="Lưu" class="btn btn-primary text-white w-100 workprogress-input">
+                                                    <button type="button" id="btn-update" class="btn btn-primary text-white w-100 workprogress-old">Chỉnh sửa</button>
+                                                </div>
                                             </div>
-                                            <select id="inputState" name="workProgressLevel" class="btn bg-primary text-white" style="text-align: start;" disabled>
-                                                <option value="0" th:selected="${workProgress.workProgressLevel==0}">Chưa tiến hành</option>
-                                                <option value="1" th:selected="${workProgress.workProgressLevel==1}">Đang tiến hành</option>
-                                                <option value="2" th:selected="${workProgress.workProgressLevel==2}">Hoàn thành</option>
-                                            </select>
-                                            <input type="submit" name="submit" value="Save" class="btn btn-primary text-white mt-5 workprogress-input">
-                                            <button type="button" id="btn-update" class="btn btn-primary text-white mt-5 workprogress-old">Chỉnh sửa</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-                            <div class="card-footer" style="border-top: none">
-                                <div class="row px-1">
-                                    <div class="col-md-10">
-                                        <div class="p-2 border border-primary">
-                                            <div class="d-flex">
-                                                <img src="/view/images/avatar/1.png" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
-                                                <form th:action="@{/save_comment}" class="d-inline-flex w-100 ml-3" style="align-items: center;" id="addCommentForm">
-                                                    <input type="hidden" name="workProgress" th:value="${workProgress.id}">
-                                                    <input type="hidden" class="form-control input-rounded bg-light" name="employee" th:value="${user.id}">
-                                                    <div class="w-100 d-flex">
-                                                        <input type="text" name="content" class="form-control input-rounded bg-light w-90" placeholder="Nhập bình luận">
-                                                        <button class="btn btn-rounded btn-primary ml-2 w-10" style="min-width: fit-content" type="submit" form="addCommentForm">Bình luận</button>
-                                                    </div>
-                                                </form>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="px-3 py-2">
+                                    <div class="d-flex">
+                                        <img src="/view/images/avatar/1.png" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
+                                        <form th:action="@{/save_comment}" class="d-inline-flex w-100 ml-3" style="align-items: center;" id="addCommentForm">
+                                            <input type="hidden" name="workProgress" th:value="${workProgress.id}">
+                                            <input type="hidden" class="form-control input-rounded bg-light" name="employee" th:value="${user.id}">
+                                            <div class="w-100 d-flex">
+                                                <input type="text" name="content" class="form-control input-rounded bg-light w-90" placeholder="Nhập bình luận">
+                                                <button class="btn btn-rounded btn-primary ml-2 w-10" style="min-width: fit-content" type="submit" form="addCommentForm">Bình luận</button>
                                             </div>
-                                            <div class="list-comment mt-3" th:each="comment : ${comments}">
-                                                <div class="comment-item mb-2 d-flex justify-content-start">
-                                                    <div class="rounded-circle">
-                                                        <img src="/view/images/avatar/1.png" alt="avt" style="width: 40px; height: 40px; object-fit: cover;">
+                                        </form>
+                                    </div>
+                                    <div class="list-comment mt-3">
+                                        <div class="comment-item mb-2 d-flex justify-content-start" th:each="comment : ${comments}">
+                                            <div class="rounded-circle">
+                                                <img src="/view/images/avatar/1.png" alt="avt" style="width: 40px; height: 40px; object-fit: cover;">
+                                            </div>
+                                            <div class="ml-3 item-content-cmt">
+                                                <div class="before-edit-cmt">
+                                                    <div class="bg-light px-2 py-1" style="border-radius: 15px;">
+                                                        <span class="text-black" style="font-weight: 500;" th:text="${comment.employee.firstName} + ' ' + ${comment.employee.lastName}">Hoàng Tuấn Anh</span>
+                                                        <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
                                                     </div>
-                                                    <div class="ml-3 item-content-cmt">
-                                                        <div class="before-edit-cmt">
-                                                            <div class="bg-light px-2 py-1" style="border-radius: 15px;">
-                                                                <span class="text-black" style="font-weight: 500;" th:text="${comment.employee.firstName} + ' ' + ${comment.employee.lastName}">Hoàng Tuấn Anh</span>
-                                                                <p class="text-black-50" style="margin-bottom: 5px;" th:text="${comment.content}">Nội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung commentNội dung comment</p>
-                                                            </div>
-                                                            <div class="d-flex">
-                                                                <span class="ml-2" style="font-size: 90%;line-height:1.8" th:text="${comment.updateDate == null ? comment.createDate : comment.updateDate}">Thời gian comment</span>
-                                                                <div class="action ml-2">
-<!--                                                                    <span class="mr-1" style="font-size: 7px;position: relative;top:-2px;"><i class="fa fa-circle" aria-hidden="true"></i></span>-->
-                                                                    <div th:if="${comment.employee.id == user.id}">
-                                                                        <button class="btn-edit-cmt mr-1" style="font-size: 90%;"><strong>Chỉnh sửa</strong></button>
-                                                                        <a th:href="@{'/delete_comment'(commentId=${comment.id})}" style="font-size: 90%;"><strong>Xóa</strong></a>
-                                                                    </div>
-                                                                </div>
+                                                    <div class="d-flex">
+                                                        <span class="ml-2" style="font-size: 90%;line-height:1.8" th:text="${comment.updateDate == null ? comment.createDate : comment.updateDate}">Thời gian comment</span>
+                                                        <div class="action ml-2">
+                                                            <div th:if="${comment.employee.id == user.id}">
+                                                                <!-- <span class="mr-1" style="font-size: 7px;position: relative;top:-2px;"><i class="fa fa-circle" aria-hidden="true"></i></span> -->
+                                                                <button class="btn-edit-cmt mr-1" style="font-size: 90%;"><strong>Chỉnh sửa</strong></button>
+                                                                <a th:href="@{'/delete_comment'(commentId=${comment.id})}" style="font-size: 90%;"><strong>Xóa</strong></a>
                                                             </div>
                                                         </div>
-                                                        <div class="after-edit-cmt">
-                                                            <form th:action="@{/save_comment}" class="d-inline-flex w-100" style="align-items: center;" id="updateCommentForm">
-                                                                <input type="hidden" name="id" th:value="${comment.id}">
-                                                                <input type="hidden" name="employee" th:value="${comment.employee.id}">
-                                                                <input type="hidden" name="workProgress" th:value="${comment.workProgress.id}">
-                                                                <div class="w-100">
-                                                                    <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded" name="content" th:value="${comment.content}">
-                                                                </div>
-                                                                <input class="btn btn-primary ml-2" type="submit" value="Bình luận">
-                                                            </form>
-                                                            <button class="ml-2 btn-cancel-edit-cmt" style="font-size: 90%;"><strong>Hủy</strong></button>
-                                                        </div>
                                                     </div>
+                                                </div>
+                                                <div class="after-edit-cmt">
+                                                    <form th:action="@{/save_comment}" class="d-inline-flex w-100" style="align-items: center;" id="updateCommentForm">
+                                                        <input type="hidden" name="id" th:value="${comment.id}">
+                                                        <input type="hidden" name="employee" th:value="${comment.employee.id}">
+                                                        <input type="hidden" name="workProgress" th:value="${comment.workProgress.id}">
+                                                        <div class="w-100">
+                                                            <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded" name="content" th:value="${comment.content}">
+                                                        </div>
+                                                        <input class="btn btn-primary ml-2" type="submit" value="Bình luận">
+                                                    </form>
+                                                    <button class="ml-2 btn-cancel-edit-cmt" style="font-size: 90%;"><strong>Hủy</strong></button>
                                                 </div>
                                             </div>
                                         </div>

@@ -63,6 +63,9 @@ public class TaskServiceImpl implements ITaskService{
       if(!taskEntityUpdated.getNote().equals(taskEntity.getNote())){
         taskEntityUpdated.setNote(taskEntity.getNote());
       }
+      if(taskEntityUpdated.getWorkProgressLevel() != taskEntity.getWorkProgressLevel()){
+        taskEntityUpdated.setWorkProgressLevel(taskEntity.getWorkProgressLevel());
+      }
       taskEntityUpdated.setUpdateDate(new Date());
       repository.save(taskEntityUpdated);
       return 200;

@@ -69,7 +69,7 @@ public class ProjectController {
 
   @RequestMapping("/save_project")
   public String addProject(@ModelAttribute("project") ProjectEntity project,
-                           @RequestParam("departments") DepartmentEntity[] departments,
+                           @RequestParam(value = "departments",required = false) DepartmentEntity[] departments,
                            HttpSession session){
     EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
     if(project.getId() != 0){

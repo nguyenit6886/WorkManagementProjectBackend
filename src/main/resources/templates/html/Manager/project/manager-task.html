@@ -277,21 +277,26 @@ Scripts
         });
     });
     $('document').ready(function () {
+        var projectId = [[${projectId}]];
+        $.ajax({url: "/get_project?projectId="+projectId, success: function(data){
+                var projectResult = data["project"];
+                $('#projectTitle').text(projectResult.title);
+            }});
+
         var data = [[${tasks}]];
         var tasks = data['page']['content'];
         for (let i = 0; i < tasks.length; i++) {
             var idTask = tasks[i]['id'];
-            console.log(tasks[i]);
             if(tasks[i]['deadline'] != null){
-                let deadlineStr = tasks[i]['deadline'];
-                deadlineStr = deadlineStr.replace("T"," ");
-                deadlineStr = deadlineStr.substring(0,deadlineStr.length);
-                document.getElementById("deadline"+idTask).innerHTML = "Deadline: "+deadlineStr;
+                const d = new Date(tasks[i]['deadline']);
+                var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+                var deadlineStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+                document.getElementById("deadline"+idTask).innerText="Deadline: "+ deadlineStr;
             }
             if(tasks[i]['updateDate'] == null){
-                let createDateStr = tasks[i]['createDate'];
-                createDateStr = createDateStr.replace("T"," ");
-                createDateStr = createDateStr.substring(0,16);
+                const d = new Date(tasks[i]['createDate']);
+                var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
+                var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
                 document.getElementById("lastUpdate"+idTask).innerText="Tạo lúc: "+ createDateStr;
             }else{
                 var updateDate = new Date(tasks[i]['updateDate']);
