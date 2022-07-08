@@ -207,7 +207,7 @@
                                         <tbody>
                                             <tr th:each="employee : ${employees}">
                                                 <td th:text="${employee.firstName} + ' ' + ${employee.lastName}">Tiger Nixon</td>
-                                                <td th:text="${employee.birthday}">System Architect</td>
+                                                <td th:text="${#dates.format(employee.birthday,'dd/MM/yyyy')}">System Architect</td>
                                                 <td th:text="${employee.email}">Edinburgh</td>
                                                 <td th:text="${employee.address}">61</td>
                                                 <td th:text="${employee.phone}">2011/04/25</td>

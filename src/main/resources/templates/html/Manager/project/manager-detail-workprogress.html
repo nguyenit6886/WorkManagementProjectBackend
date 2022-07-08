@@ -257,7 +257,7 @@
                                                             <a class="mr-2" th:href="@{'/delete_comment'(commentId=${comment.id})}" style="font-size: 90%;"><strong>Xóa</strong></a>
                                                         </div>
                                                     </div>
-                                                    <span  style="font-size: 90%;line-height:1.8" th:text="${comment.updateDate == null ? comment.createDate : comment.updateDate}">Thời gian comment</span>
+                                                    <span  style="font-size: 90%;line-height:1.8" th:text="${#dates.format((comment.updateDate == null ? comment.createDate : comment.updateDate), 'dd/MM/yyyy HH:mm')}">Thời gian comment</span>
                                                 </div>
                                             </div>
                                             <div class="after-edit-cmt">
