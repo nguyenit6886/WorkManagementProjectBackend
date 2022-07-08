@@ -217,7 +217,7 @@
                                         <img src="/view/images/avatar/1.png" alt="" class="rounded-circle" style="width: 40px; height: 40px;">
                                         <form class="d-inline-flex w-100 ml-3" style="align-items: center;" th:action="@{/save_comment}" method="post">
                                             <div class="w-100 d-flex">
-                                                <input type="text" class="form-control input-rounded bg-light" name="content" placeholder="Nhập bình luận">
+                                                <input type="text" class="form-control input-rounded bg-light" name="content" placeholder="Nhập bình luận" required>
                                                 <input type="hidden" class="form-control input-rounded bg-light" name="employee" th:value="${user.id}">
                                                 <input type="hidden" class="form-control input-rounded bg-light" name="workProgress" th:value="${workProgress.id}">
                                                 <button type="submit" class="btn btn-rounded btn-primary ml-2 w-10" style="min-width: fit-content" >Bình luận</button>
@@ -252,7 +252,7 @@
                                                         <input type="hidden" name="employee" th:value="${comment.employee.id}">
                                                         <input type="hidden" name="workProgress" th:value="${comment.workProgress.id}">
                                                         <div class="w-100">
-                                                            <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded" name="content" th:value="${comment.content}">
+                                                            <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded" name="content" th:value="${comment.content}" required>
                                                         </div>
                                                         <input class="btn btn-primary ml-2" type="submit" value="Bình luận">
                                                     </form>

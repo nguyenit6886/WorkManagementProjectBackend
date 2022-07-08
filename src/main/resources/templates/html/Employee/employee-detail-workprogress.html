@@ -179,7 +179,7 @@
                                 <input type="hidden" name="task" th:value="${workProgress.task.id}">
                                 <div class="card-header pb-0 col-xxl-10 col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <h3 class="workprogress-old" th:text="${workProgress.title}">Tên Tiến độ công việc</h3>
-                                    <input type="text" name="title" th:value="${workProgress.title}" class="form-control border-primary workprogress-input">
+                                    <input type="text" name="title" th:value="${workProgress.title}" class="form-control border-primary workprogress-input" required>
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
@@ -246,7 +246,7 @@
                                             <input type="hidden" name="workProgress" th:value="${workProgress.id}">
                                             <input type="hidden" class="form-control input-rounded bg-light" name="employee" th:value="${user.id}">
                                             <div class="w-100 d-flex">
-                                                <input type="text" name="content" class="form-control input-rounded bg-light w-90" placeholder="Nhập bình luận">
+                                                <input type="text" name="content" class="form-control input-rounded bg-light w-90" placeholder="Nhập bình luận" required>
                                                 <button class="btn btn-rounded btn-primary ml-2 w-10" style="min-width: fit-content" type="submit" form="addCommentForm">Bình luận</button>
                                             </div>
                                         </form>
@@ -279,7 +279,7 @@
                                                         <input type="hidden" name="employee" th:value="${comment.employee.id}">
                                                         <input type="hidden" name="workProgress" th:value="${comment.workProgress.id}">
                                                         <div class="w-100">
-                                                            <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded" name="content" th:value="${comment.content}">
+                                                            <input type="text" class="form-control input-rounded bg-light" placeholder="input-rounded" name="content" th:value="${comment.content}" required>
                                                         </div>
                                                         <input class="btn btn-primary ml-2" type="submit" value="Bình luận">
                                                     </form>

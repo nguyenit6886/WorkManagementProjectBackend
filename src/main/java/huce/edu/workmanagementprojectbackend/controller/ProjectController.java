@@ -1,10 +1,7 @@
 package huce.edu.workmanagementprojectbackend.controller;
 
 import huce.edu.workmanagementprojectbackend.common.AccountRole;
-import huce.edu.workmanagementprojectbackend.model.AssignmentDepartmentEntity;
-import huce.edu.workmanagementprojectbackend.model.DepartmentEntity;
-import huce.edu.workmanagementprojectbackend.model.EmployeeEntity;
-import huce.edu.workmanagementprojectbackend.model.ProjectEntity;
+import huce.edu.workmanagementprojectbackend.model.*;
 import huce.edu.workmanagementprojectbackend.services.assignmentdepartment.IAssignmentDepartmentService;
 import huce.edu.workmanagementprojectbackend.services.department.IDepartmentService;
 import huce.edu.workmanagementprojectbackend.services.project.IProjectService;
@@ -61,32 +58,38 @@ public class ProjectController {
   public String addProject(@ModelAttribute("project") ProjectEntity project,
                            @RequestParam(value = "departments",required = false) DepartmentEntity[] departments,
                            HttpSession session){
-    EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
-    if(project.getId() != 0){
-      project.setUpdateDate(new Date());
-      iProjectService.updateObject(project);
-      List<AssignmentDepartmentEntity> list = iAssignmentDepartmentService.getAssignmentDepartmentByProject(project);
-      for(AssignmentDepartmentEntity ade : list){
-        if(!Arrays.asList(departments).contains(ade.getDepartment())){
-          if(ade.isActive()) ade.setActive(false);
-        }else{
-          if(!ade.isActive()) ade.setActive(true);
+    if(validateSave(project)){
+      if(project.getId() != 0){
+        project.setUpdateDate(new Date());
+        iProjectService.updateObject(project);
+        if(departments != null){
+          List<AssignmentDepartmentEntity> list = iAssignmentDepartmentService.getAssignmentDepartmentByProject(project);
+          for(AssignmentDepartmentEntity ade : list){
+            if(!Arrays.asList(departments).contains(ade.getDepartment())){
+              if(ade.isActive()) ade.setActive(false);
+            }else{
+              if(!ade.isActive()) ade.setActive(true);
+            }
+            ade.setUpdateDate(new Date());
+            iAssignmentDepartmentService.updateObject(ade);
+          }
+          for(DepartmentEntity department : departments){
+            if(!list.stream().map(AssignmentDepartmentEntity::getDepartment).collect(Collectors.toList()).contains(department)){
+              addAssignmentDepartmentByProject(project, department, session);
+            }
+          }
         }
-        ade.setUpdateDate(new Date());
-        iAssignmentDepartmentService.updateObject(ade);
-      }
-      for(DepartmentEntity department : departments){
-        if(!list.stream().map(AssignmentDepartmentEntity::getDepartment).collect(Collectors.toList()).contains(department)){
-          addAssignmentDepartmentByProject(project, department, session);
+      }else{
+        EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
+        project.setCreateDate(new Date());
+        project.setActive(true);
+        project.setCreateUser(employee.getId());
+        iProjectService.insertObject(project);
+        if(departments != null){
+          for(DepartmentEntity department : departments){
+            addAssignmentDepartmentByProject(project, department, session);
+          }
         }
-      }
-    }else{
-      project.setCreateDate(new Date());
-      project.setActive(true);
-      project.setCreateUser(employee.getId());
-      iProjectService.insertObject(project);
-      for(DepartmentEntity department : departments){
-        addAssignmentDepartmentByProject(project, department, session);
       }
     }
     return "redirect:/project_manager";
@@ -113,11 +116,30 @@ public class ProjectController {
     iAssignmentDepartmentService.insertObject(ade);
   }
 
+  private boolean validateSave(ProjectEntity project){
+    boolean valid = true;
+    if(project.getTitle().isEmpty()){
+      errors.add("Chưa nhập tên dự án");
+      return false;
+    }
+    if(project.getBeginDate() != null){
+      if(project.getDeadline() != null && project.getBeginDate().isAfter(project.getDeadline())){
+        errors.add("Ngày bắt đầu không thể lớn hơn thời hạn");
+        valid = false;
+      }
+      if(project.getEndDate() != null && project.getBeginDate().isAfter(project.getEndDate())){
+        errors.add("Ngày bắt đầu không thể lớn hơn ngày kết thúc");
+        valid = false;
+      }
+    }
+    return valid;
+  }
+
   private boolean validateDelete(int projectId){
     if(iProjectService.getAll().stream().map(ProjectEntity::getId).collect(Collectors.toList()).contains(projectId)){
       return true;
     }else{
-      errors.add("Phòng ban không tồn tại");
+      errors.add("Dự án không tồn tại");
       return false;
     }
   }
