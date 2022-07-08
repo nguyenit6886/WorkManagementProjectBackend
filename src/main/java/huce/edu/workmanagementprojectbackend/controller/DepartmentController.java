@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Controller
 public class DepartmentController {
 
-  List<String> errors = new ArrayList<>();
+  private List<String> errors = new ArrayList<>();
 
   @Autowired
   private IDepartmentService iDepartmentService;
@@ -26,23 +26,13 @@ public class DepartmentController {
                                           HttpSession session){
     model.addAttribute("departments",iDepartmentService.getPage(pageNumber));
     model.addAttribute("user",session.getAttribute("user"));
-    if(errors.size() > 0){
-      StringBuilder string = new StringBuilder();
-      for(String error : errors){
-        string.append(error);
-        string.append('\n');
-      }
-      model.addAttribute("error",string);
-      errors.clear();
-    }
+    sentError(model);
     return "/html/Manager/department/manager-department";
   }
 
   @RequestMapping("/save_department")
   public String addDepartment(@ModelAttribute("department")DepartmentEntity department) {
-    if(iDepartmentService.getAll().stream().map(DepartmentEntity::getName).collect(Collectors.toList()).contains(department.getName())){
-      errors.add("Tên đã tồn tại");
-    }else{
+    if(validateSave(department)){
       if(department.getId() != 0){
         department.setUpdateDate(new Date());
         iDepartmentService.updateObject(department);
@@ -69,6 +59,39 @@ public class DepartmentController {
     }else{
       errors.add("Phòng ban không tồn tại");
       return false;
+    }
+  }
+
+  private boolean validateSave(DepartmentEntity department){
+    boolean valid = true;
+    if(department.getName().isEmpty()){
+      errors.add("Chưa nhập tên phòng ban");
+      valid = false;
+    }if(department.getId() != 0){
+      if(!iDepartmentService.getObjectById(department.getId()).getName().equals(department.getName())){
+        if(iDepartmentService.getAll().stream().map(DepartmentEntity::getName).collect(Collectors.toList()).contains(department.getName())){
+          errors.add("Tên đã tồn tại");
+          valid = false;
+        }
+      }
+    }else{
+      if(iDepartmentService.getAll().stream().map(DepartmentEntity::getName).collect(Collectors.toList()).contains(department.getName())){
+        errors.add("Tên đã tồn tại");
+        valid = false;
+      }
+    }
+    return valid;
+  }
+
+  private void sentError(Model model){
+    if(errors.size() > 0){
+      StringBuilder string = new StringBuilder();
+      for(String error : errors){
+        string.append(error);
+        string.append('\n');
+      }
+      model.addAttribute("error",string);
+      errors.clear();
     }
   }
 }

@@ -21,6 +21,8 @@ import java.util.Date;
 @Controller
 public class ProjectController {
 
+  private List<String> errors = new ArrayList<>();
+
   @Autowired
   private IProjectService iProjectService;
 
@@ -49,20 +51,8 @@ public class ProjectController {
     model.addAttribute("user",userSession);
     if(userSession != null && userSession.getPosition() == AccountRole.ROLE_MANAGER.getValue()){
       model.addAttribute("user",userSession);
+      sentError(model);
       return "/html/Manager/project/manager-project";
-    }
-    return "redirect:/login";
-  }
-
-  @RequestMapping("/leader_manager")
-  public String showLeaderManagerPage(@RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
-                                      Model model,
-                                      HttpSession session){
-    model.addAttribute("projects",iProjectService.getPageByDepartmentId(pageNumber,((EmployeeEntity) session.getAttribute("user")).getDepartment().getId()));
-    EmployeeEntity userSession = (EmployeeEntity) session.getAttribute("user");
-    if(userSession != null && userSession.getPosition() == AccountRole.ROLE_LEADER.getValue()){
-      model.addAttribute("user",userSession);
-      return "/html/Leader/leader-project";
     }
     return "redirect:/login";
   }
@@ -104,7 +94,9 @@ public class ProjectController {
 
   @RequestMapping("/delete_project")
   public String deleteEmployee(@RequestParam("projectId")int projectId) {
-    iProjectService.deleteObject(projectId);
+    if(validateDelete(projectId)){
+      iProjectService.deleteObject(projectId);
+    }
     return "redirect:/project_manager";
   }
 
@@ -119,5 +111,26 @@ public class ProjectController {
     ade.setActive(true);
     ade.setCreateUser(employee.getId());
     iAssignmentDepartmentService.insertObject(ade);
+  }
+
+  private boolean validateDelete(int projectId){
+    if(iProjectService.getAll().stream().map(ProjectEntity::getId).collect(Collectors.toList()).contains(projectId)){
+      return true;
+    }else{
+      errors.add("Phòng ban không tồn tại");
+      return false;
+    }
+  }
+
+  private void sentError(Model model){
+    if(errors.size() > 0){
+      StringBuilder string = new StringBuilder();
+      for(String error : errors){
+        string.append(error);
+        string.append('\n');
+      }
+      model.addAttribute("error",string);
+      errors.clear();
+    }
   }
 }

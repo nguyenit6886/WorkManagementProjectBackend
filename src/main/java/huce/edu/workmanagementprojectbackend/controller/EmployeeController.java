@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Controller
 public class EmployeeController {
 
-  List<String> errors = new ArrayList<>();
+  private List<String> errors = new ArrayList<>();
 
   @Autowired
   private IEmployeeService iEmployeeService;
@@ -96,6 +96,14 @@ public class EmployeeController {
 
   private boolean validateSave(EmployeeEntity employee){
     boolean valid = true;
+    if(employee.getFirstName().isEmpty()){
+      errors.add("Chưa nhập họ");
+      return false;
+    }
+    if(employee.getLastName().isEmpty()){
+      errors.add("Chưa nhập tên");
+      return false;
+    }
     if(!checkRegularExpression("^[_A-Za-z0-9]+(\\.[_A-Za-z0-9]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",employee.getEmail())){
       errors.add("Email không đúng định dạng");
       valid = false;

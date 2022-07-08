@@ -336,6 +336,14 @@
     <script src="/view/js/custom.min.js"></script>
 
     <script src="/view/js/custom/form-workprogress.custom.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        $('document').ready(function () {
+            var error = [[${error}]];
+            if(error !== null && error !== ''){
+                alert(error);
+            }
+        });
+    </script>
 </body>
 
 </html>

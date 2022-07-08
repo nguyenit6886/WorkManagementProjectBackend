@@ -422,6 +422,12 @@ Scripts
 
 <script type="text/javascript" th:inline="javascript">
 	$('document').ready(function () {
+		var error = [[${error}]];
+		if(error !== null && error !== ''){
+			alert(error);
+		}
+	});
+	$('document').ready(function () {
 		var data = [[${tasks}]];
 		var tasks = data['page']['content'];
 		for (let i = 0; i < tasks.length; i++) {
@@ -435,7 +441,7 @@ Scripts
 			if(tasks[i]['updateDate'] == null){
 				const d = new Date(tasks[i]['createDate']);
 				var minutes = (""+d.getMinutes()).length == 1 ? d.getMinutes()+"0" : d.getMinutes();
-				var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+				var createDateStr = d.getHours()+":"+minutes+" "+d.getDate()+"/"+(d.getMonth() + 1)+"/"+d.getFullYear();
 				document.getElementById("lastUpdate"+idTask).innerText="Tạo lúc: "+ createDateStr;
 			}else{
 				var updateDate = new Date(tasks[i]['updateDate']);
