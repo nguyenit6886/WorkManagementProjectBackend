@@ -85,11 +85,12 @@ public class TaskController {
                                  @RequestParam(value = "pageNumber",required = false, defaultValue = "1") int pageNumber,
                                  Model model,
                                  HttpSession session){
+    EmployeeEntity employee = (EmployeeEntity) session.getAttribute("user");
+    model.addAttribute("user",employee);
     Paged<TaskEntity> taskEntities = iTaskService.getPageByProjectId(projectId, pageNumber);
     model.addAttribute("tasks", taskEntities);
     model.addAttribute("projectId", projectId);
-    model.addAttribute("employees",iEmployeeService.getAll());
-    model.addAttribute("user",session.getAttribute("user"));
+    model.addAttribute("employees",iEmployeeService.getObjectsByDepartment(employee.getDepartment().getId()));
     sentError(model);
     return "/html/Leader/leader-task";
   }

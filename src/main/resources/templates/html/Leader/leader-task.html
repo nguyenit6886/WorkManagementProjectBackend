@@ -218,7 +218,7 @@ Preloader end
 										<select class="form-control multi-select" name="employees" multiple="multiple" id="employees">
 											<option th:each="employee : ${employees}"
 													th:value="${employee.id}"
-													th:text="${employee.firstName + ' ' + employee.lastName + ' (Phòng: ' + employee.department.name} + ')'"/>
+													th:text="${employee.firstName + ' ' + employee.lastName}"/>
 										</select>
 									</div>
 								</div>
